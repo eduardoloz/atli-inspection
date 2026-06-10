@@ -1,0 +1,28 @@
+# Secrets — never commit
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Datasets, training runs, weights — regenerate from Roboflow + data/build_dataset.py
+datasets/
+runs/
+*.pt
+*.pth
+
+# Conference paper (copyrighted — cite it, don't redistribute)
+APET2025_T0388.pdf
+
+# Hard-negative review image dumps (regenerate via analysis/hard_negatives/)
+analysis/hard_negatives/review/
+analysis/hard_negatives/review_annotated/
+
+# Unrelated side project (relocate out of this repo when convenient)
+amazon-order-tracker/
+
+# Local tooling / OS cruft
+.claude/
+.DS_Store
