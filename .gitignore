@@ -16,6 +16,10 @@ runs/
 # Conference paper (copyrighted — cite it, don't redistribute)
 APET2025_T0388.pdf
 
+# Professor's paper folder (copyrighted PDFs + local data/results dumps)
+ATLI/
+*.zip
+
 # Hard-negative review image dumps (regenerate via analysis/hard_negatives/)
 analysis/hard_negatives/review/
 analysis/hard_negatives/review_annotated/
