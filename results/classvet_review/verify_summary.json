@@ -1,0 +1,26 @@
+{
+  "ins_giomartins": {
+    "exact_0": 92,
+    "le_2": 93,
+    "le_4": 93,
+    "le_8": 93
+  },
+  "ins_trashdet": {
+    "exact_0": 74,
+    "le_2": 74,
+    "le_4": 74,
+    "le_8": 74
+  },
+  "ins_uttam": {
+    "exact_0": 121,
+    "le_2": 140,
+    "le_4": 142,
+    "le_8": 142
+  },
+  "nest_nestdet": {
+    "exact_0": 18,
+    "le_2": 22,
+    "le_4": 23,
+    "le_8": 25
+  }
+}

@@ -24,6 +24,11 @@ ATLI/
 analysis/hard_negatives/review/
 analysis/hard_negatives/review_annotated/
 
+# Bulky regenerable vetting/comparison image montages (findings kept in the .md docs + .json)
+results/classvet_review/review/
+results/classvet_review/pairs/
+results/box_compare/
+
 # Unrelated side project (relocate out of this repo when convenient)
 amazon-order-tracker/
 

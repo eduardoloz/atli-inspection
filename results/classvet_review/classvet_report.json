@@ -1,0 +1,145 @@
+{
+  "ins_giomartins": {
+    "url": "https://universe.roboflow.com/giomartins/danified-insulators-wyxhs",
+    "images": 614,
+    "classes": [
+      "isolador-disco-descarga",
+      "isolador-disco-faltante",
+      "isolador-disco-quebrado",
+      "isolador-intacto"
+    ],
+    "leak_target_valtest": 93,
+    "leak_target_valtest_examples": [
+      "0313_jpg.rf.3879841d782ee7e0ad23273d3ca8e0a3.jpg",
+      "100213_jpg.rf.a63a4e8a26f69101121a601118ea47dc.jpg",
+      "130119_jpg.rf.d10254ee4343dbe9185ad79378db82af.jpg",
+      "140031_jpg.rf.73d34e4b30583f2de154cd87b72dd2f7.jpg",
+      "150346_jpg.rf.b71cc3679e66d042c102bfd6d146d953.jpg"
+    ],
+    "dup_target_train": 216,
+    "overlap_source": 105,
+    "intra_dups": 0
+  },
+  "ins_trashdet": {
+    "url": "https://universe.roboflow.com/trash-detection-zqfed/insulator-defect-gcnfq",
+    "images": 1578,
+    "classes": [
+      "broken",
+      "insulator",
+      "pollution-flashover"
+    ],
+    "leak_target_valtest": 74,
+    "leak_target_valtest_examples": [
+      "130021_jpg.rf.32bd2d7e6426b252700a171e8f79d1fb.jpg",
+      "15060299_jpg.rf.0b62456e15dbd03ad13497769d4d2a2b.jpg",
+      "150800_jpg.rf.c7dad41af80ab12a0e068485a8582bb7.jpg",
+      "160169_jpg.rf.e25914b6553ad041e453ebf6f0b1b031.jpg",
+      "160605_jpg.rf.ebae7553435cc8717ed272dec1be2145.jpg"
+    ],
+    "dup_target_train": 171,
+    "overlap_source": 45,
+    "intra_dups": 0
+  },
+  "ins_hello": {
+    "url": "https://universe.roboflow.com/hello-92xp7/insulator-defect-detection-yywkb",
+    "images": 5493,
+    "classes": [
+      "Flash Over",
+      "Insulator",
+      "Insulator Damaged",
+      "Insulator Good"
+    ],
+    "leak_target_valtest": 0,
+    "leak_target_valtest_examples": [],
+    "dup_target_train": 0,
+    "overlap_source": 0,
+    "intra_dups": 72
+  },
+  "ins_uttam": {
+    "url": "https://universe.roboflow.com/uttam/insulator-defect",
+    "images": 4107,
+    "classes": [
+      "broken",
+      "insulator",
+      "pollution-flashover"
+    ],
+    "leak_target_valtest": 142,
+    "leak_target_valtest_examples": [
+      "130037_jpg.rf.7825b94ba006a3282de3a3f74407a460.jpg",
+      "15060299_jpg.rf.2a221a0b6d72b606a351584da5ae8272.jpg",
+      "161020_jpg.rf.8d42f8f74fb6bfa8c1ccfe264206a0d9.jpg",
+      "161036_jpg.rf.03f3b19680b65b86607dd2172a721cd8.jpg",
+      "161245_jpg.rf.2cfeb7c880b2c0fed2928509580933d5.jpg"
+    ],
+    "dup_target_train": 312,
+    "overlap_source": 75,
+    "intra_dups": 1191
+  },
+  "ins_adspq": {
+    "url": "https://universe.roboflow.com/insulator-adspq/broken-insulator",
+    "images": 1028,
+    "classes": [
+      "broken",
+      "dirty",
+      "good"
+    ],
+    "leak_target_valtest": 0,
+    "leak_target_valtest_examples": [],
+    "dup_target_train": 1,
+    "overlap_source": 0,
+    "intra_dups": 11
+  },
+  "nest_nestdet": {
+    "url": "https://universe.roboflow.com/nestdet/nest-9imzt",
+    "images": 1583,
+    "classes": [
+      "nest"
+    ],
+    "leak_target_valtest": 25,
+    "leak_target_valtest_examples": [
+      "125a_jpg.rf.e4bb02a3f7518c35d96212975bbdd563.jpg",
+      "82a_jpg.rf.421afcf103dc3109a4bd8a41be204100.jpg",
+      "zhedang037_jpg.rf.3aeede043038723720ac5b373c3f264d.jpg",
+      "000137_jpg.rf.fcb8110c6ccaf7f37dba89ab816fafa8.jpg",
+      "000138_jpg.rf.50bbb08a6a37fc81805edc6840280e28.jpg"
+    ],
+    "dup_target_train": 70,
+    "overlap_source": 74,
+    "intra_dups": 136
+  },
+  "nest_cugb": {
+    "url": "https://universe.roboflow.com/cugb/nest-ezl6r",
+    "images": 5406,
+    "classes": [
+      "0",
+      "1",
+      "2"
+    ],
+    "leak_target_valtest": 0,
+    "leak_target_valtest_examples": [],
+    "dup_target_train": 0,
+    "overlap_source": 3,
+    "intra_dups": 61
+  },
+  "nest_gg": {
+    "url": "https://universe.roboflow.com/gg-97eg1/nest-hgbmq",
+    "images": 6682,
+    "classes": [
+      "0"
+    ],
+    "leak_target_valtest": 0,
+    "leak_target_valtest_examples": [],
+    "dup_target_train": 0,
+    "overlap_source": 0,
+    "intra_dups": 71
+  },
+  "_cross_candidate_dups": {
+    "ins_giomartins \u2229 ins_trashdet": 388,
+    "ins_giomartins \u2229 ins_uttam": 394,
+    "ins_giomartins \u2229 ins_adspq": 101,
+    "ins_trashdet \u2229 ins_uttam": 1578,
+    "ins_trashdet \u2229 nest_gg": 1,
+    "ins_uttam \u2229 nest_gg": 1,
+    "nest_nestdet \u2229 nest_cugb": 3
+  }
+}
