@@ -98,6 +98,46 @@ The current research focus. `Defective_Damper` is heavily confused with `Normal_
 - **One-line conclusion:** raw community data did **not** improve `Defective_Damper` AP at any dose — the failure is a **recall drop from a domain/label-style mismatch** (precision holds), not quantity; Ufull's ≈0.91 in-domain DD confirms the labels are learnable but the transfer fails. Best baseline DD AP50 = **0.708** (`B_v11_150p100`).
 - **Current direction:** automated experiments needing no manual labels — pretrain(universe)→finetune(native) (`train/run_config_pf.sh`), native oversampling (`data/build_oversample_native.py`, 3×/6×), and hi-res imgsz=1280 (a DD-crop audit, `results/dd_audit/`, showed defects are mostly small-object, not unlearnable rust). Manual box-fixing in `universe-damper-staging` and detect-then-classify (PA-DETR) are **deferred**.
 
+---
+
+## Experiment log — all conditions run (updated 2026-06-17; 113 runs since 06-10, 154 all-time)
+Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_results_section.md`. Running notes: `results/dd_recall_investigation.md`. PI email + confusion matrices: `results/email_to_PI.md`, `results/figures/confusion_matrices/CURRENT_*`. Memory: `universe-damper-benchmark`. All on the native 199-img test split (39 DefDamper instances) unless noted; numbers are seed-averaged DD AP@0.5.
+
+**★ Verified champion: `HROaug_v11`** = YOLOv11n, COCO-init 2-stage TL, **imgsz 1280 + ×3 native oversampling of DefDamper images + scale-down aug (`scale=0.9`)**, 150+100 ep. Data-free (no external data). Drivers: `train/run_config_ext.sh` (`MODEL=yolo11n.pt EXTRA="scale=0.9" DATA=<OS3 yaml> ... 1280 16`); datasets via `data/build_oversample_native.py`.
+
+**5-fold cross-validation** (robust benchmark; tests all ~264 DefDamper instances across folds; builder `data/build_cv.py`, eval `eval/eval_cv.py`):
+| metric | baseline B_v11 | champion HROaug_v11 | Δ |
+|---|---|---|---|
+| mAP@0.5 | 0.760 | **0.802** | +0.042 |
+| DefDamper AP | 0.727 ± 0.089 | 0.745 ± 0.079 | +0.018 (within fold noise) |
+| DefDamper recall | 0.680 | **0.728** | +0.048 |
+| Normal_Damper AP | 0.733 | **0.789** | +0.056 |
+
+**Single-split config means (seed-averaged), best→worst on DefDamper AP:**
+| condition | recipe | seeds | DD AP | mAP |
+|---|---|---|---|---|
+| HROaug_OS6 | 1280 + ×6 oversample + scale | 2 | 0.751 | 0.744 |
+| HRObird | champion + clean niaochao birdnest data | 1 | 0.763* | 0.750 |
+| HROaug_v8 | YOLOv8n, 1280 + ×3 + scale | 2 | 0.715 | 0.738 |
+| HRO_v11 | 1280 + ×3 (no scale-aug) | 2 | 0.709 | 0.724 |
+| **HROaug_v11 (champion)** | 1280 + ×3 + scale | 11 | **0.699 ± 0.027** | 0.747 |
+| HROaug_sc07/08/085/095 | hi-res scale-strength sweep | 1–3 | 0.67–0.70 | ~0.74 |
+| OSaug_v11 | 640 + ×3 + scale (no hi-res) | 5 | 0.661 ± 0.058 | 0.67 |
+| B_v11_300p100 | 300-ep stage-1 (longer) | 1 | 0.646 | 0.686 |
+| HROfrz10 | freeze 10 backbone layers | 1 | 0.649 | 0.696 |
+| USMcap / USM | scale-matched universe (1:1 / 4:1) | 3 | 0.63–0.65 | 0.66 |
+| **baseline B_v11** | 640 native, 150+100 | 11 | **0.641 ± 0.036** | 0.691 |
+| OS6aug(640) / OSaug95 / OSaug_v8 | over-aug / wrong-model variants | 3 | 0.61–0.64 | 0.65 |
+| Uto / Uw / Ucap | universe mixed in, 1:1→11.7:1 | 8 | 0.58–0.65 | 0.67 |
+| P2 / CP / PF | P2-head / copy-paste / pretrain→finetune | 6 | 0.59–0.69 | ~0.68 |
+| HROfrz20 | freeze 20 layers — **collapsed** | 1 | 0.397 | 0.448 |
+| (control) Ufull | universe data, scored in-domain | 4 | ~0.91 | 0.79 |
+\* HRObird also raised Birdnest 0.76→0.90 but hurt insulators (single-class images → unlabeled co-objects); 1 seed.
+
+**Key findings:** (1) **Native augmentation wins; external/community data never improved DefDamper** at any dose — label/domain mismatch causes a recall drop (Ufull's ≈0.91 *in-domain* proves the data is learnable but doesn't transfer). (2) **Overfitting:** 300-epoch stage-1 and ×6-oversample-at-640 *memorized* the rare class and underperformed the 150-ep/×3 setup. (3) **Freezing the backbone hurts** (freeze-20 collapsed) → full fine-tuning required (matches the paper's unfreeze-all). (4) Scale-aug sweet spot 0.85–0.9; copy-paste hurt DefDamper; SAHI inapplicable (640²/512² images). (5) **Test set too small for per-class precision** — baseline DefDamper AP swings **0.61–0.88** across CV folds → always report multi-seed / CV means, never single runs. (6) **Leakage hazard:** CPLID + DVDI + PTL-AI Furnas exact-duplicate into the ATLI test set (`results/classvet_results.md`, `dataset_and_technique_leads.md`) → a pHash+filename leakage gate is mandatory before any external data is added.
+
+**Convention going forward:** log new experiment conditions in this section (seed-averaged, with the recipe), update `results/config_benchmark.csv`, and `git push` — so GitHub always reflects the full experiment record.
+
 ## Repo structure & key scripts
 Repo was reorganized from a flat layout into `env/ data/ train/ eval/ analysis/ rebalance/ results/ scripts/` (see `README.md`). The old `.atli_*` hidden scripts were renamed and moved into these dirs. Key scripts:
 - **Data builders** (`data/`): `build_dataset.py` (rebuild stratified merged dataset from Roboflow), `build_dataset_universe.py` (universe-augmented variants), `build_oversample_native.py` (duplicate native DD images N×), `build_ablation.py` / `build_condition_*.py` (ablation + per-condition variants), `explore_roboflow.py` (read-only inventory).
