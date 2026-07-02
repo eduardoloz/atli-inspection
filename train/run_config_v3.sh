@@ -12,6 +12,7 @@ conda activate "$ROOT/env"
 mkdir -p "$PROJ"
 
 case "$FW" in
+  v5)     WEIGHTS="yolov5nu.pt" ;;
   v8)     WEIGHTS="yolov8n.pt" ;;
   v11)    WEIGHTS="yolo11n.pt" ;;
   rtdetr) WEIGHTS="rtdetr-l.pt" ;;

@@ -1,0 +1,146 @@
+{
+ "dino": {
+  "n_folds": 5,
+  "mAP50_mean": 0.7854,
+  "mAP50_std": 0.03196560651700511,
+  "mAP_mean": 0.481,
+  "DD_AP50_mean": 0.7888000000000001,
+  "DD_AP50_std": 0.1100940507021156,
+  "per_fold": {
+   "0": {
+    "mAP50": 0.759,
+    "DD_AP50": 0.743
+   },
+   "1": {
+    "mAP50": 0.806,
+    "DD_AP50": 0.898
+   },
+   "2": {
+    "mAP50": 0.822,
+    "DD_AP50": 0.888
+   },
+   "3": {
+    "mAP50": 0.794,
+    "DD_AP50": 0.783
+   },
+   "4": {
+    "mAP50": 0.746,
+    "DD_AP50": 0.632
+   }
+  },
+  "per_class_AP50_mean": {
+   "Birdnest": 0.8926000000000001,
+   "Broken_Insulator": 0.6838,
+   "Defective_Damper": 0.7888000000000001,
+   "Flashover_Insulator": 0.6368,
+   "Normal_Damper": 0.7864,
+   "Normal_Insulators": 0.8418,
+   "Self-Exploded_Insulator": 0.8668
+  },
+  "per_class_mAP_mean": {
+   "Birdnest": 0.4874,
+   "Broken_Insulator": 0.5804,
+   "Defective_Damper": 0.3738,
+   "Flashover_Insulator": 0.3718,
+   "Normal_Damper": 0.4314,
+   "Normal_Insulators": 0.479,
+   "Self-Exploded_Insulator": 0.6424
+  }
+ },
+ "rtmdet": {
+  "n_folds": 5,
+  "mAP50_mean": 0.7468,
+  "mAP50_std": 0.02281885185542868,
+  "mAP_mean": 0.4528,
+  "DD_AP50_mean": 0.7744,
+  "DD_AP50_std": 0.051843996759509195,
+  "per_fold": {
+   "0": {
+    "mAP50": 0.728,
+    "DD_AP50": 0.729
+   },
+   "1": {
+    "mAP50": 0.754,
+    "DD_AP50": 0.861
+   },
+   "2": {
+    "mAP50": 0.763,
+    "DD_AP50": 0.781
+   },
+   "3": {
+    "mAP50": 0.771,
+    "DD_AP50": 0.752
+   },
+   "4": {
+    "mAP50": 0.718,
+    "DD_AP50": 0.749
+   }
+  },
+  "per_class_AP50_mean": {
+   "Birdnest": 0.878,
+   "Broken_Insulator": 0.6218,
+   "Defective_Damper": 0.7744,
+   "Flashover_Insulator": 0.6058,
+   "Normal_Damper": 0.7656,
+   "Normal_Insulators": 0.7788,
+   "Self-Exploded_Insulator": 0.8049999999999999
+  },
+  "per_class_mAP_mean": {
+   "Birdnest": 0.5048,
+   "Broken_Insulator": 0.4842,
+   "Defective_Damper": 0.339,
+   "Flashover_Insulator": 0.331,
+   "Normal_Damper": 0.4494,
+   "Normal_Insulators": 0.4636,
+   "Self-Exploded_Insulator": 0.5978
+  }
+ },
+ "dynamic_rcnn": {
+  "n_folds": 5,
+  "mAP50_mean": 0.7184,
+  "mAP50_std": 0.023490423580684944,
+  "mAP_mean": 0.4226,
+  "DD_AP50_mean": 0.699,
+  "DD_AP50_std": 0.06500769185258004,
+  "per_fold": {
+   "0": {
+    "mAP50": 0.687,
+    "DD_AP50": 0.649
+   },
+   "1": {
+    "mAP50": 0.724,
+    "DD_AP50": 0.776
+   },
+   "2": {
+    "mAP50": 0.749,
+    "DD_AP50": 0.73
+   },
+   "3": {
+    "mAP50": 0.727,
+    "DD_AP50": 0.724
+   },
+   "4": {
+    "mAP50": 0.705,
+    "DD_AP50": 0.616
+   }
+  },
+  "per_class_AP50_mean": {
+   "Birdnest": 0.8802,
+   "Broken_Insulator": 0.591,
+   "Defective_Damper": 0.699,
+   "Flashover_Insulator": 0.6178,
+   "Normal_Damper": 0.714,
+   "Normal_Insulators": 0.7754,
+   "Self-Exploded_Insulator": 0.752
+  },
+  "per_class_mAP_mean": {
+   "Birdnest": 0.4856,
+   "Broken_Insulator": 0.4216,
+   "Defective_Damper": 0.3348,
+   "Flashover_Insulator": 0.3462,
+   "Normal_Damper": 0.4072,
+   "Normal_Insulators": 0.4406,
+   "Self-Exploded_Insulator": 0.5222
+  }
+ }
+}

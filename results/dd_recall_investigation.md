@@ -1,5 +1,21 @@
 # Defective_Damper low-recall investigation + staging-project priority plan
 
+## ★ RECALL / FALSE-NEGATIVE focus (2026-06-17) — FN is the safety-critical error
+Objective clarified: a missed defective damper (false negative) is the dangerous error → maximize
+**recall**, accept precision cost. Operating-point sweep (`recall_sweep.py`, 39 DD test instances):
+| conf | champion recall | FN | baseline recall | FN |
+|---|---|---|---|---|
+| 0.25 (default) | 0.74 | 10 | 0.64 | 14 |
+| 0.05 | 0.79 | 8 | 0.67 | 13 |
+| →0 (max) | **0.82** | **7** | 0.72 | 11 |
+- **Two levers:** (1) FREE recall by lowering deploy threshold to ~0.05 (FN 10→8, prec 0.91→0.79);
+  (2) a **hard FN floor of 7** (18%) the champion never detects even at conf→0 — only TRAINING fixes
+  these (invisible-tiny OR detected-but-called-Normal_Damper).
+- **Recall loop launched:** 8 experiments targeting the floor — higher resolution (1536, see tiny
+  defects) + upweighted classification loss (cls=1.5/2.0, push borderline → defective) + combos.
+  Evaluate by recall@conf0.05 and FN floor, not AP. Next if needed: detect-then-classify (PA-DETR).
+
+
 Self-paced loop (started 2026-06-15). Goal: find what causes low DD recall and work through
 the `universe-damper-staging` curation actions in priority order — **minimal overtraining,
 without hurting Normal_Damper**.

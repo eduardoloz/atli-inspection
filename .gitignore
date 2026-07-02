@@ -32,6 +32,10 @@ results/box_compare/
 # Unrelated side project (relocate out of this repo when convenient)
 amazon-order-tracker/
 
+# Personal communications — never commit
+results/email_*.md
+results/update_*.md
+
 # Local tooling / OS cruft
 .claude/
 .DS_Store

@@ -105,7 +105,7 @@ Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_re
 
 **★ Verified champion: `HROaug_v11`** = YOLOv11n, COCO-init 2-stage TL, **imgsz 1280 + ×3 native oversampling of DefDamper images + scale-down aug (`scale=0.9`)**, 150+100 ep. Data-free (no external data). Drivers: `train/run_config_ext.sh` (`MODEL=yolo11n.pt EXTRA="scale=0.9" DATA=<OS3 yaml> ... 1280 16`); datasets via `data/build_oversample_native.py`.
 
-**5-fold cross-validation** (robust benchmark; tests all ~264 DefDamper instances across folds; builder `data/build_cv.py`, eval `eval/eval_cv.py`):
+**5-fold cross-validation** (⚠ old leaked CV — val=test, builder `data/build_cv.py`, eval `eval/eval_cv.py`; **superseded by the proper-CV block below**):
 | metric | baseline B_v11 | champion HROaug_v11 | Δ |
 |---|---|---|---|
 | mAP@0.5 | 0.760 | **0.802** | +0.042 |
@@ -136,6 +136,20 @@ Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_re
 
 **Key findings:** (1) **Native augmentation wins; external/community data never improved DefDamper** at any dose — label/domain mismatch causes a recall drop (Ufull's ≈0.91 *in-domain* proves the data is learnable but doesn't transfer). (2) **Overfitting:** 300-epoch stage-1 and ×6-oversample-at-640 *memorized* the rare class and underperformed the 150-ep/×3 setup. (3) **Freezing the backbone hurts** (freeze-20 collapsed) → full fine-tuning required (matches the paper's unfreeze-all). (4) Scale-aug sweet spot 0.85–0.9; copy-paste hurt DefDamper; SAHI inapplicable (640²/512² images). (5) **Test set too small for per-class precision** — baseline DefDamper AP swings **0.61–0.88** across CV folds → always report multi-seed / CV means, never single runs. (6) **Leakage hazard:** CPLID + DVDI + PTL-AI Furnas exact-duplicate into the ATLI test set (`results/classvet_results.md`, `dataset_and_technique_leads.md`) → a pHash+filename leakage gate is mandatory before any external data is added.
 
+**SOTA 5-fold CV (2026-07-01, MMDetection, same `Merged_CV_proper` folds as YOLO CV — `results/sota_cv_results.md`):**
+| model | params | mAP@0.5 | DD AP@0.5 |
+|---|---|---|---|
+| DINO-4scale | 47M | **0.785 ± 0.032** | 0.789 ± 0.110 |
+| RTM-DET Tiny | 4.8M | 0.747 ± 0.023 | 0.774 ± 0.052 |
+| Dynamic-RCNN | 41M | 0.718 ± 0.023 | 0.699 ± 0.065 |
+| (ref) YOLO champ v11n | 2.6M | **0.785 ± 0.023** | **0.812 ± 0.080** |
+
+**Champion YOLOv11n ties DINO on mAP and wins Defective_Damper at ~18× fewer params** — edge-deployment case strengthened. All three SOTA models score higher under CV than the original single split (pessimistic draw). Infra: `~/atli/env_mmdet`, runs in `~/atli/runs_mmdet/SOTA_*`, collector `~/atli/collect_sota_cv.py` → `results/sota_cv_summary.json`.
+
+**Proper 5-fold CV — FINAL (2026-07-02 re-eval, all 45 runs incl. re-queued champ_v11 + osall — `results/cv_proper_results.md`):** best condition = **champ v11n: mAP 0.785 ± 0.023, DD AP 0.812 ± 0.080, DD recall 0.764** (its 06-25 crashes were the competing Ollama process, not the recipe). osall (all-defect ×3 oversample) is a wash on mAP but adds Flashover AP (+0.01–0.04) and Self-Exploded recall (+0.02–0.07); best for v5n. Champion recipe beats the APET paper's mAP on every model under stricter eval (78.5 vs 76.8 on v11n). The 06-25 partial CV numbers are superseded.
+
+**OBB 5-fold CV — FINAL (2026-07-02 — `results/cv_obb_results.md`):** best = **osall v11n OBB, mAP 0.817 ± 0.017**; under OBB the *baseline* v11 has the best DD AP (0.798 ± 0.024) — champ/osall gains shift to Broken Insulator (+0.10–0.16) and defect recall. OBB folds come from a different export than the detection CV (not cross-comparable); the det-aligned control shows task mode is a wash overall (OBB helps NI box tightness 38%, ND 4.5%).
+
 **Convention going forward:** log new experiment conditions in this section (seed-averaged, with the recipe), update `results/config_benchmark.csv`, and `git push` — so GitHub always reflects the full experiment record.
 
 ## Repo structure & key scripts
@@ -145,6 +159,52 @@ Repo was reorganized from a flat layout into `env/ data/ train/ eval/ analysis/ 
 - **Eval** (`eval/`): `collect_universe_results.py` (scrape runs → `epoch_map.csv` + `test_summary.csv`), `parse_results.py`, `eval_all.sh`.
 - **Rebalance** (`rebalance/`): `vet_universe_dampers.py` (pHash vetting), `upload_universe_staging.py`, `phase1_select.py` / `phase2_upload.py`.
 - **Monitor** (`scripts/`): `check_status_universe.sh`, `check_status.sh` (watch remote runs from the laptop).
+
+## Pipeline & code index (quick-find for PI questions)
+
+### YOLO task modes used in this project
+| Task | Train command | Label format | Scripts |
+|---|---|---|---|
+| **Detection** (axis-aligned bbox) | `yolo detect train` | `class cx cy w h` (normalised) | `train/run_config_v3.sh:25`, `train/run_config_ext.sh:9` |
+| **OBB** (rotated bbox) | `yolo obb train` | `class x1 y1 x2 y2 x3 y3 x4 y4` (4 corners, normalised) | `train/run_config_obb.sh:11`, `train/cv_obb_sweep.sh` |
+| **Segmentation** (polygon masks) | `yolo segment train` | `class x1 y1 x2 y2 ... xN yN` (polygon vertices, normalised) | *(not yet used — annotations exist in Roboflow but exported as detection)* |
+
+### Data pipelines — which script builds what
+| Script | What it builds | Label type | Annotation source |
+|---|---|---|---|
+| `data/build_dataset.py` | `Merged_Dataset_Stratified/` (single split, seed 42, 70/15/15) | detection (cx cy w h) | Roboflow `yolov5` export |
+| `data/build_dataset_v5.py` | `Merged_Dataset_v5/` + stratified + OSall (tightened NI boxes) | detection | Roboflow v5 `yolov5pytorch` |
+| `data/build_cv.py` | `Merged_CV/` — old 5-fold CV (80/20, val=test, **leaked**) | detection | local `Merged_Dataset/` pool |
+| `data/build_cv_proper.py` | `Merged_CV_proper/` — proper 5-fold CV (70/15/15, val≠test) | detection | local `Merged_Dataset/` pool |
+| `data/build_cv_obb.py` | `Merged_CV_obb/` — 5-fold CV with OBB labels (rotated bboxes) | OBB (4 corners) | Roboflow segmentation export → `cv2.minAreaRect` conversion |
+| `data/build_cv_extended.py` | extended CV variants | detection | local pool |
+| `data/build_oversample_native.py` | `*_OS*/` dirs — duplicate DD images N× | detection | copies existing labels |
+| `data/build_dataset_universe.py` | universe-augmented variants (Ucap/Uw/Uto) | detection | Roboflow universe datasets |
+
+### Training scripts — which runner does what
+| Script | YOLO task | Key command line | Notes |
+|---|---|---|---|
+| `train/run_config_v3.sh` | `yolo detect train` | 2-stage TL: SGD lr0=0.01 → lr0=0.00334 | Main detection recipe (single-split) |
+| `train/run_config_ext.sh` | `yolo detect train` | Same 2-stage, supports `MODEL`, `EXTRA` env vars | Flexible detection runner (used by CV sweeps) |
+| `train/run_config_obb.sh` | `yolo obb train` | Same 2-stage TL recipe, OBB mode | OBB runner |
+| `train/run_config_pf.sh` | `yolo detect train` | pretrain(universe) → finetune(native) | Transfer experiment |
+| `train/cv_proper_sweep.sh` | detect (via ext) | 45 runs: base/champ/osall × v5/v8/v11 × 5 folds | Proper CV sweep |
+| `train/cv_obb_sweep.sh` | obb (via obb runner) | 45 runs: same conditions, OBB labels | OBB CV sweep |
+
+### Evaluation scripts
+| Script | YOLO task | What it evaluates |
+|---|---|---|
+| `eval/eval_cv_proper.py` | detect (`v.box`) | Proper CV: per-fold + mean±std for all 9 conditions |
+| `eval/eval_cv_obb.py` | obb (`v.obb`) | OBB CV: same structure, uses OBB metrics |
+| `eval/eval_cv.py` | detect | Old leaked CV (deprecated) |
+| `eval/eval_cv_all.py` | detect | Extended CV evaluation |
+| `eval/collect_universe_results.py` | detect | Scrape single-split runs → CSV |
+
+### Annotation formats (how Roboflow exports map to YOLO)
+- **Roboflow `yolov5pytorch`** → detection labels: `class cx cy w h` (bounding box, normalised). Polygons are collapsed to axis-aligned enclosing rectangles.
+- **Roboflow `yolov5` (segmentation)** → polygon labels: `class x1 y1 x2 y2 ... xN yN` (polygon vertices, normalised).
+- **OBB conversion** (`data/build_cv_obb.py:72-97`): reads segmentation polygons, runs `cv2.minAreaRect()` to get the minimum-area rotated rectangle, outputs 4-corner format for `yolo obb train`.
+- **Tightened NI annotations**: drawn as polygons in Roboflow UI on `merged_atli_target` v5; exported as tighter bounding boxes via `yolov5pytorch`. The polygon geometry lives only on Roboflow's servers.
 
 ## Server
 - Experiments run on `ssh $ATLI_SERVER` (8× Quadro RTX 6000).
