@@ -116,6 +116,10 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 
 **Verification (orchestrator):** MCP-YOLO ✅ confirmed (Sensors 25:7049 — 8.65M params, −37.3%, mAP 0.921, 250 fps, Group SLIM). HALP ⚠ caveat: its GPU speedups were measured at **batch 256** on TITAN V (paper checked) — not batch-1; directionally fine for the compute-bound Nano but not a bs=1 guarantee. A's numpy disclosure integrated into the postmortem above.
 
+**Thread B (`opt/thesis-enhancements` @ 3df8b0c) srcTL root-cause: genuine negative transfer, NOT plumbing.** Plumbing verified (fine-tune loaded pretrain weights: "Transferred 499/499" vs COCO-init's 448/499; source pretrain converged, source-val mAP 0.898). Causes: (1) 45.3% of source supervision is transmission_line/tower boxes — classes ATLI deliberately treats as background (orchestrator re-counted on server: 42,097/92,917 ✅); (2) source ≈ one arid-corridor capture campaign (single scene × 11k images) vs ATLI's heterogeneity; (3) catastrophic forgetting of COCO diversity — largest drops exactly in classes absent from source (Birdnest, Broken_Insulator). **T1 (in-domain pretraining) CLOSED for available inventory — external ATLI-domain data is now 0-for-2 mechanisms (co-training, pretrain-init).** A publishable negative result. B's remaining lever: lowlr seeds 1–2 running (GPU 6) + a 4th champ768 replicate (seed 3, GPU 7); thread converging to final synthesis (EDP + variance-as-metric adopted for reporting).
+
+**Round-3 tasking sent:** Thread A — 3-epoch fine-tune smoke test, then the 9-run prune grid {1.5,1.75,2.0}× × 3 seeds **based on the native-768 champion** (`HR768nc_v11_s{0,1,2}_s2`), acceptance mAP ≥ 0.745 & DD ≥ 0.59 @768, GPUs 0–2. Thread B — lowlr 3-seed verdict, then final thread synthesis. Orchestrator — G1 engine parity (building on GPU 0: FP16, 1×3×768×768 static, INT64→INT32 cast warning only).
+
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
 |---|---|---|---|---|
@@ -133,3 +137,6 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 | 3 | MCP-YOLO: Group SLIM −37.3% params, mAP 0.909→0.921, 161→250 fps | Thread A | ✅ confirmed | Sensors 25:7049 (PMC12656040) |
 | 3 | HALP 1.6–1.9× GPU latency from structured pruning | Thread A | ⚠ caveat | Paper measures TITAN V at batch 256, not batch-1; directional for compute-bound Nano only |
 | 3 | GPU 3–5 09:12 relaunch actor | (record) | ✅ resolved | Was main relaunching its own OBB benchmark |
+| 3 | srcTL fine-tune actually loaded pretrain weights (499/499) | Thread B | ✅ confirmed | Grepped TH2_gpu6.log on server |
+| 3 | 45% of source boxes are line/tower (background-conflict) | Thread B | ✅ confirmed | Orchestrator re-count: 42,097/92,917 = 45.3% |
+| 3 | srcTL failure = genuine negative transfer (not plumbing) | Thread B | ✅ adopted | Converged source pretrain (0.898) + weight-load proof + class/scene audit |
