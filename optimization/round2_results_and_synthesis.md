@@ -47,7 +47,7 @@ Leakage gate: 11,294 → **11,188 kept** (2 pHash ≤ 8, 104 filename) vs all 79
 | lever | status for ATLI |
 |---|---|
 | T1 in-domain source pretraining | **DEAD** with available sources (−7.5 mAP, root-caused above) |
-| T2 stage-2 lr0 = 1e-4 | wash at 1 seed; **seeds 1–2 running now** to settle (variance/DD-recall is the remaining question) |
+| T2 stage-2 lr0 = 1e-4 | **settled 2026-07-08: WASH** — 3 seeds @768: mAP 0.769 ± 0.008 vs champion 0.766 ± 0.009, DD AP 0.659 ± 0.022 vs 0.664 ± 0.042, DD recall 0.623 vs 0.667; keep lr0 = 0.00334 (see `final_synthesis.md`) |
 | T3 zero frozen layers | **CONFIRMED** (thesis Table 4.2 + our frz10/frz20) — already champion practice; cite both studies in the paper |
 | T4 no cascaded TL | adopted as negative guidance (saved us a sweep) |
 | T5 lightweight backbone swaps | **DEAD** for accuracy at our data scale (thesis Table 5.6/5.8) |
@@ -63,7 +63,7 @@ The thesis thread's accuracy levers are exhausted: **the champion recipe stands 
 
 | run | GPU | purpose | status |
 |---|---|---|---|
-| `TH2_champ768_v11_s3` | 7 | orchestrator-tasked integrity replicate (seed 3) | launched 09:16, ~22 min/run |
-| `TH2_lowlr_v11_768_s1` → `_s2` | 6 | settle T2 (2 extra seeds, chained) | launched 09:32, log `TH2_gpu6_lowlr_s12.log` |
+| `TH2_champ768_v11_s3` | 7 | orchestrator-tasked integrity replicate (seed 3) | **done** — mAP 0.758, DD 0.643 (4th champion@768 seed) |
+| `TH2_lowlr_v11_768_s1` → `_s2` | 6 | settle T2 (2 extra seeds, chained) | **done** — mAP 0.775 / 0.760, DD 0.651 / 0.642; verdict in `final_synthesis.md` |
 
 Pilot chosen per Round-3 item 3: **lowlr seeds over a revised srcTL** — the srcTL failure is data-fundamental (source homogeneity + background-class supervision), so a 768-pretrain or merged-source variant has <50% prior; merged co-training is additionally pre-refuted by F1.
