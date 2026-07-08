@@ -81,7 +81,17 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 - `HR768nc_v11_s{0,1,2}` (orchestrator, GPUs 0–2): champion recipe retrained natively at **imgsz 768** on `ATLI_noCPLID_OS3`, 150+100 ep, scale=0.9, seeds 0–2. Question: does native-768 beat train-1280/infer-768 (0.754/0.593)? Monitor armed.
 - Thread B round-2 tasking sent: (1) leakage-gated (pHash+filename vs all noCPLID splits) pretraining source from `atli_source_dataset` + 1-seed champ_srcTL pilot fine-tuned at 768; (2) champ_lowlr pilot (stage-2 lr0=1e-4) at 768. GPUs 6–7 only.
 
-**Thread A:** no report yet — proceeding without it this round per loop rules.
+**Thread A (Jetson, `opt/jetson-nano` @ fe6119f) reported** (arrived late in the round). Headlines: (1) original Nano cannot run the 1280 champion in real time (~6 fps inference-only, ~4–5 e2e); (2) **30 fps is unachievable on the Nano at any useful resolution** — realistic ceiling ~24–26 fps inference-only / ~15–20 e2e at 640; (3) INT8 dead end independently confirmed (Maxwell: no DP4A); (4) no published on-drone inspection system runs 1280 on Nano-class hardware; (5) exports at 640/960/1280 functionally verified, static-letterbox cost ≈ −0.012 mAP; (6) RTX 6000 is latency-bound 640→1280 (flat 7.5 ms) so it cannot proxy Nano latency scaling. Ranked actions: Nano-vs-Orin decision memo, on-device trtexec bench, multi-seed re-val of resolution ladder, 640-native student (+CWD distill), 30–50% structured pruning.
+
+**Verification of Thread A (orchestrator):**
+- Orin Nano Super YOLO11n TRT FP16 = 4.57 ms @640 ✅ confirmed (docs.ultralytics.com/guides/nvidia-jetson: FP32 7.53 / FP16 4.57 / INT8 3.80 ms; INT8 costs 3.1 mAP50-95 pts there — FP16-terminal even on Orin for nano models).
+- fps ceiling ✅ consistent with my independent anchor projection (Round 0).
+- **"DD flat under reduced inference resolution" ⚠ corrected: single-seed (seed-0) artifact.** A's numbers match seed 0 exactly; my 3-seed ladder shows seed-averaged DD 0.622@1280 → 0.539@640 (−0.083). Claim *does* hold at ≥960. A's proposed multi-seed re-val was already done (Round 0.5) — deduplicated.
+- A's action #3 cancelled (done); #1 (decision memo) and #5 (pruning) tasked for Round 2; #4 (640-native student) partially covered by my HR768nc runs.
+
+**G2 verdict update:** 30 fps batch-1 on the *original* Nano is **infeasible for any G4-passing configuration** (both threads + my projection agree). Path forward is a decision, not an experiment: (a) rescope the fps gate to ~10–15 fps e2e (arguably sufficient for inspection frame-overlap needs — memo requested), or (b) hardware bump to Orin Nano Super ($249; champion @1280 est. 30–55 fps → all gates pass at full accuracy). To be presented at checkpoint; meanwhile the campaign optimizes max-fps-at-G4 (768 envelope + pruning toward ~1.7×).
+
+**Round-2 tasking sent:** Thread A — pruning feasibility for v11n/C2PSA with TensorRT-FP16 latency evidence + Nano/Orin/rescope decision memo + 768 export. Thread B — leakage-gated srcTL pilot + lowlr pilot at 768 (GPUs 6–7). Orchestrator — HR768nc 3-seed (GPUs 0–2, running), TRT FP16 engine parity at 768 (GPU 6, running).
 
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
@@ -91,3 +101,6 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 | 1 | FASDD→AFSE 79.2 vs COCO 64.8 vs scratch-600 69.2; freeze-10 −15 mAP; v11n FT lr0=1e-4/75ep | Thread B | ✅ confirmed | Thesis PDF Tables 4.1/4.2 (pp. 39–41), read directly |
 | 1 | "TL cuts CV variance" | Thread B | ⚠ corrected | Fig 4.2: TL std 4.23 < scratch-300 5.86 but > scratch-600 3.85 |
 | 1 | OpenVINO 2.9× free speedup applies to us | Thread B (implicit) | ❌ rejected | OpenVINO = Intel CPU toolchain; Jetson target needs TensorRT — analog already covered by G1 |
+| 1 | Orin Nano Super: YOLO11n TRT FP16 4.57 ms @640 | Thread A | ✅ confirmed | docs.ultralytics.com/guides/nvidia-jetson benchmark table |
+| 1 | DefDamper AP flat at reduced inference res (0.54 @1280/960/640) | Thread A | ⚠ corrected | Single seed (=champion s0); 3-seed ladder: DD −0.083 at 640, flat only ≥960 (`results/optimization/res_ladder_infer_lo.csv`) |
+| 1 | 30 fps unachievable on original Nano at ≥640 | Thread A | ✅ accepted | Matches orchestrator projection from 19-fps anchor; ceiling ~24–26 fps inference-only @640 |
