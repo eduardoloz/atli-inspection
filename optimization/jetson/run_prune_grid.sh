@@ -32,12 +32,16 @@ for CFG in "pr150:0.667" "pr175:0.571" "pr200:0.50"; do
   TAG=${CFG%%:*}; KEEP=${CFG##*:}
   NAME=${TAG}_s${SEED}
   echo "=== $(date) $NAME (keep ${KEEP} MACs) on GPU$GPU ==="
-  CUDA_VISIBLE_DEVICES=$GPU $PY prune_v11n.py \
+  # NB: pass the PHYSICAL gpu id via --device and do NOT set
+  # CUDA_VISIBLE_DEVICES here: ultralytics select_device() overwrites
+  # CUDA_VISIBLE_DEVICES with the --device string, so combining both
+  # remaps the job onto the wrong physical GPU.
+  $PY prune_v11n.py \
     --weights "$BASE" \
     --target-flops-ratio "$KEEP" --imgsz 768 \
     --out "$OUTDIR/${NAME}.pt" \
     --finetune --data "$DATA" --epochs 100 --batch 16 \
-    --device 0 --seed "$SEED" --project "$PROJ" --name "$NAME" \
+    --device "$GPU" --seed "$SEED" --project "$PROJ" --name "$NAME" \
     || echo "!!! $NAME FAILED"
 done
 echo "=== $(date) seed $SEED queue done ==="
