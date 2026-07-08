@@ -174,20 +174,17 @@ def main():
     save_pruned(yolo, args.out)
 
     # reload sanity check: the pickled pruned model must load through YOLO().
-    # NB: ultralytics select_device('cpu') clobbers CUDA_VISIBLE_DEVICES for
-    # the whole process, which would blind the later GPU finetune — snapshot
-    # and restore it around the CPU predict.
-    import os
-    cvd = os.environ.get("CUDA_VISIBLE_DEVICES")
+    # NB: in --finetune mode this must run on the SAME device as training.
+    # A device="cpu" predict here makes ultralytics clear CUDA_VISIBLE_DEVICES
+    # and lazily initialize CUDA with zero visible devices — that is one-shot
+    # per process, so the later GPU finetune would see no CUDA even after the
+    # env var is restored.
+    check_device = args.device if args.finetune else "cpu"
     check = YOLO(args.out)
     import numpy as np
     check.predict((np.random.rand(args.imgsz, args.imgsz, 3) * 255).astype("uint8"),
-                  imgsz=args.imgsz, device="cpu", verbose=False)
-    if cvd is None:
-        os.environ.pop("CUDA_VISIBLE_DEVICES", None)
-    else:
-        os.environ["CUDA_VISIBLE_DEVICES"] = cvd
-    print("reload + predict sanity check: OK")
+                  imgsz=args.imgsz, device=check_device, verbose=False)
+    print(f"reload + predict sanity check: OK (device={check_device})")
 
     if args.finetune:
         assert args.data, "--finetune requires --data"
