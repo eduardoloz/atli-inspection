@@ -93,6 +93,24 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 
 **Round-2 tasking sent:** Thread A — pruning feasibility for v11n/C2PSA with TensorRT-FP16 latency evidence + Nano/Orin/rescope decision memo + 768 export. Thread B — leakage-gated srcTL pilot + lowlr pilot at 768 (GPUs 6–7). Orchestrator — HR768nc 3-seed (GPUs 0–2, running), TRT FP16 engine parity at 768 (GPU 6, running).
 
+### Round 2 (2026-07-08) — incident postmortem + native-768 result: G4 PASSES
+
+**INCIDENT (orchestrator's fault, logged for the record):** my `pip install tensorrt` into the *shared* `~/atli/env` on 07-07 transiently broke numpy mid-resolution (the meta-package pulled a broken `tensorrt_cu13_libs`, mutated numpy, then failed) while jobs were running. Main's OBB benchmark runs (GPUs 3–5) crashed on fresh-process numpy imports; long-running trainings (my HR768nc, Thread B's chains) survived because numpy was already in memory. TRT parity job never ran (install failed). **New campaign-wide hard rule: `~/atli/env` is FROZEN — never pip install/upgrade/uninstall in it. All export tooling lives in a separate `~/atli/env_export` venv** (python 3.10, ultralytics + onnx + onnxslim + onnxruntime-gpu + tensorrt-cu12 via pypi.nvidia.com; build in progress). Note: the 09:12 GPU 3–5 relaunch (`rerun_obb_champ.sh`) was **not** initiated by this campaign or its subagents.
+
+**Suspect-window re-validation (fresh vals, healthy env, GPU 0 — `results/optimization/reval_round2.csv`):** all 6 runs re-scored on the noCPLID test split @768. Integrity proof: `TH2_champ768_v11_s0` (Thread B's control) re-validated **bit-identical** to `HR768nc_v11_s0` (mAP 0.7773, DD 0.7252, identical per-class) — two independent launches, same config+seed → deterministic match. Suspect-window trainings are trustworthy.
+
+| run | mAP@0.5 | DefDamper AP | verdict |
+|---|---|---|---|
+| **HR768nc_v11 (champion recipe @768 native, 3 seeds)** | **0.769 ± 0.009** | **0.670 ± 0.049** | **G4 PASS with margin** (floors 0.745 / 0.59) |
+| — vs champion @1280 | 0.784 ± 0.011 | 0.622 ± 0.073 | −1.5 mAP, **+4.8 DD** |
+| — vs train-1280/infer-768 | 0.754 | 0.593 | native retrain +1.5 mAP, +7.7 DD |
+| TH2_lowlr_v11_768_s0 (stage-2 lr0=1e-4) | 0.772 | 0.684 | wash vs control (0.777/0.725), 1 seed |
+| TH2_srcTL_v11_768_s0 (gated in-domain pretrain) | 0.702 | 0.524 | **FAILED: −7.5 mAP vs control** — thesis lever did not replicate with `atli_source_dataset` |
+
+**Findings:** (1) **Native-768 is the new deployment candidate**: passes both G4 floors, DD *above* the 1280 champion (small-object DD apparently benefits more from matched train/infer resolution than from raw pixels), at ~18 fps projected on Nano — 3× the champion's speed for −1.5 mAP. (2) **In-domain source pretraining transfers negatively here** — consistent with the earlier universe-damper finding (community-sourced `atli_source_dataset` has domain/label-style mismatch; the thesis's FASDD source was larger and homogeneous-quality). One-seed evidence; Thread B to diagnose before the lever is killed. (3) Thesis low-LR fine-tune: no effect at 1 seed.
+
+**Gate scoreboard after Round 2:** G1 ONNX ✅ / engine parity pending (env_export rebuilding) · G2 at 768: ~18 fps projected — needs ~1.7× from pruning (Thread A critical path) · G3 untested · **G4 ✅ PASSED at 768-native** (0.769/0.670).
+
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
 |---|---|---|---|---|
@@ -104,3 +122,6 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 | 1 | Orin Nano Super: YOLO11n TRT FP16 4.57 ms @640 | Thread A | ✅ confirmed | docs.ultralytics.com/guides/nvidia-jetson benchmark table |
 | 1 | DefDamper AP flat at reduced inference res (0.54 @1280/960/640) | Thread A | ⚠ corrected | Single seed (=champion s0); 3-seed ladder: DD −0.083 at 640, flat only ≥960 (`results/optimization/res_ladder_infer_lo.csv`) |
 | 1 | 30 fps unachievable on original Nano at ≥640 | Thread A | ✅ accepted | Matches orchestrator projection from 19-fps anchor; ceiling ~24–26 fps inference-only @640 |
+| 2 | Suspect-window trainings valid despite numpy incident | orchestrator | ✅ proven | Independent same-seed replicate re-validated bit-identical (0.7773/0.7252 all classes) |
+| 2 | In-domain source pretraining = dominant accuracy lever (thesis) | Thread B / thesis | ❌ did not replicate | srcTL pilot −7.5 mAP vs control on ATLI (`reval_round2.csv`); source-data quality/domain differs from FASDD |
+| 2 | Leakage gate counts (11,294→11,188; 104+2 drops) | Thread B | ✅ confirmed | `source_pretrain_gate_report.json` read directly on server |
