@@ -13,6 +13,9 @@ set -u
 
 SEED=${1:?seed}
 GPU=${2:?gpu}
+LR0=${3:-0.00334}   # 0.01 for post-prune recovery ("hlr") runs
+LRF=${4:-0.1535}    # pair 0.01/0.01 for the standard YOLO recovery schedule
+SUFFIX=${5:-}       # e.g. "_hlr" to keep conditions separate
 PY=~/atli/env_jetson/bin/python
 BASE=~/atli/runs/HR768nc_v11_s${SEED}_s2/weights/best.pt
 DATA=~/atli/ATLI_noCPLID_OS3/data.yaml
@@ -30,8 +33,8 @@ done
 # tag:keep-ratio pairs (keep = 1/speedup)
 for CFG in "pr150:0.667" "pr175:0.571" "pr200:0.50"; do
   TAG=${CFG%%:*}; KEEP=${CFG##*:}
-  NAME=${TAG}_s${SEED}
-  echo "=== $(date) $NAME (keep ${KEEP} MACs) on GPU$GPU ==="
+  NAME=${TAG}${SUFFIX}_s${SEED}
+  echo "=== $(date) $NAME (keep ${KEEP} MACs, lr0=$LR0 lrf=$LRF) on GPU$GPU ==="
   # NB: pass the PHYSICAL gpu id via --device and do NOT set
   # CUDA_VISIBLE_DEVICES here: ultralytics select_device() overwrites
   # CUDA_VISIBLE_DEVICES with the --device string, so combining both
@@ -41,6 +44,7 @@ for CFG in "pr150:0.667" "pr175:0.571" "pr200:0.50"; do
     --target-flops-ratio "$KEEP" --imgsz 768 \
     --out "$OUTDIR/${NAME}.pt" \
     --finetune --data "$DATA" --epochs 100 --batch 16 \
+    --lr0 "$LR0" --lrf "$LRF" \
     --device "$GPU" --seed "$SEED" --project "$PROJ" --name "$NAME" \
     || echo "!!! $NAME FAILED"
 done

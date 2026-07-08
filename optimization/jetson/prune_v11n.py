@@ -138,7 +138,7 @@ def finetune(pruned_model, args):
         model="yolo11n.yaml",  # placeholder; replaced by the pruned module below
         data=args.data, imgsz=args.imgsz, epochs=args.epochs,
         batch=args.batch, device=args.device, optimizer="SGD",
-        lr0=0.00334, lrf=0.1535, scale=0.9, seed=args.seed,
+        lr0=args.lr0, lrf=args.lrf, scale=0.9, seed=args.seed,
         project=args.project, name=args.name or Path(args.out).stem + "_ft",
         val=True, amp=True, exist_ok=True,
     )
@@ -163,6 +163,10 @@ def main():
     ap.add_argument("--batch", type=int, default=16)
     ap.add_argument("--device", default=0)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--lr0", type=float, default=0.00334,
+                    help="finetune lr0 (0.00334 = champion stage-2; 0.01 = "
+                         "recovery LR for heavily pruned models)")
+    ap.add_argument("--lrf", type=float, default=0.1535)
     ap.add_argument("--project", default="runs_prune")
     ap.add_argument("--name", default=None)
     args = ap.parse_args()
