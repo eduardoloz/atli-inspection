@@ -122,6 +122,14 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 
 **G1 RESULT — PASSED.** `HR768nc_v11_s0` best.pt → ONNX (opset 12, 10.2 MB) → **TensorRT 8.6.1 FP16 engine (8.1 MB, 461 s build)** → engine val on noCPLID test @768 bs=1: **mAP@0.5 0.768, DD AP 0.732** vs PyTorch same-weights 0.7773/0.7252 → total export cost −0.009 mAP (FP16 + static letterbox combined; consistent with Thread A's −0.0026 letterbox-only measurement), DD unharmed. Deployed-artifact accuracy still clears both G4 floors. G3 note: 8.1 MB engine; on-Nano process footprint dominated by the ~600–800 MB CUDA context — published Nano YOLO TRT deployments run comfortably under 2 GB headless; G3 marked **provisional pass** pending Thread A's memo citation (no hardware available by mission definition).
 
+### Round 4 (2026-07-08, in progress) — git migration; Thread B complete (T2 closed)
+**Git migration:** repo history rewritten twice (user-ordered privacy scrub: noreply author emails; personal names → "the PI"/"a co-PI"/"et al."; server login → `$ATLI_SERVER`; `results/data_outreach.md` purged). Orchestrator worktree reset to new head `b0d8592` (no unpushed work; privacy gate CLEAN; noreply email set). Thread B migrated and pushed `632c042` (independently privacy-scanned by orchestrator: CLEAN). Thread A migration relayed, pending. Standing policy: `GIT.md` on main.
+
+**Thread B final round (`opt/thesis-enhancements` @ 632c042), verified:** lowlr numbers are internally consistent with orchestrator's own revals (seed-0 values match exactly; 3-/4-seed means recompute correctly).
+- **T2 (thesis low-LR fine-tune) CLOSED — wash.** lowlr@768 3 seeds: mAP 0.769 ± 0.008, DD 0.659 ± 0.022, DD recall 0.623 vs champion@768 (now **4 seeds** incl. B's s3 replicate): mAP **0.766 ± 0.009**, DD **0.664 ± 0.042**, DD recall 0.667. OneCycle from lr0=0.00334 already reaches the same basin; keep the champion stage-2 LR.
+- **Deployment reference band updated (4 seeds): champion@768 = mAP 0.766 ± 0.009, DD 0.664 ± 0.042.**
+- `optimization/final_synthesis.md` delivered: T1–T8 lever scoreboard, negative-transfer result framed as a paper contribution, 768 deployment profile, EDP + variance-as-metric adopted. **Thread B complete**; GPUs 6–7 released.
+
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
 |---|---|---|---|---|
