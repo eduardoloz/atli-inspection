@@ -70,11 +70,24 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 
 **Implication for strategy:** target deployment envelope is now **768–896 px + FP16 TensorRT + ~1.5–2× structural speedup**, or a 640/704 retrain with accuracy-recovery tricks (distillation, thesis-thread enhancements) to claw back the ~0.03 mAP gap to G4.
 
-### Round 1 — pending subagent reports
-(to be filled)
+### Round 1 (2026-07-07, in progress) — Thread B reported; Thread A pending
+**G1 progress:** champion `best.pt` → ONNX **opset 12, imgsz 768, simplified — export success** (10.2 MB, `runs/HROaugnc_v11_s1_s2/weights/best.onnx` on server). Remaining G1 leg: TensorRT engine build + parity val. `onnx onnxslim onnxruntime` installed into `~/atli/env`.
+
+**Thread B (thesis, `opt/thesis-enhancements` @ be81e70) reported.** Headlines: (1) homogeneous/in-domain source pretraining is the thesis's dominant accuracy lever (FASDD→AFSE 79.2 vs COCO-init 64.8 vs 600-ep scratch 69.2, test mAP@0.5); (2) freezing always hurts (up to −15 mAP); (3) cascaded TL never beats single-stage — merge sources instead; (4) lightweight backbone swaps lose 4–14 mAP at small-data scale; (5) OpenVINO export ≈ 2.9× fps free on Pi-CPU (their edge target); pruning/quant/distill unexplored. Ranked proposals: champ_srcTL (in-domain pretrain from `atli_source_dataset`), champ_lowlr (stage-2 lr0 1e-4), edge export, EDP/variance reporting, (deferred) Ghost-neck.
+
+**Verification (orchestrator, primary source = thesis PDF pp. 39–45):** Tables 4.1/4.2 + Fig 4.2 all match B's numbers ✅ (79.2/64.8/69.2; freeze-10 = 79.2→64.2; v8n/11n fine-tune lr0=0.0001, 75 ep). One correction logged: TL's 5-fold mAP std (4.23) beats 300-ep scratch (5.86) but is *worse* than 600-ep scratch (3.85) — claim restated as "TL matches long-scratch generalizability at ~1/4 budget." OpenVINO leg rejected for this project (Intel-CPU toolchain; our target is Jetson GPU/TensorRT) — the correct analog, TensorRT FP16 export, is already gate G1.
+
+**Experiments launched this round:**
+- `HR768nc_v11_s{0,1,2}` (orchestrator, GPUs 0–2): champion recipe retrained natively at **imgsz 768** on `ATLI_noCPLID_OS3`, 150+100 ep, scale=0.9, seeds 0–2. Question: does native-768 beat train-1280/infer-768 (0.754/0.593)? Monitor armed.
+- Thread B round-2 tasking sent: (1) leakage-gated (pHash+filename vs all noCPLID splits) pretraining source from `atli_source_dataset` + 1-seed champ_srcTL pilot fine-tuned at 768; (2) champ_lowlr pilot (stage-2 lr0=1e-4) at 768. GPUs 6–7 only.
+
+**Thread A:** no report yet — proceeding without it this round per loop rules.
 
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
 |---|---|---|---|---|
 | 0 | INT8 gives no speedup on original Nano | orchestrator hypothesis | ✅ confirmed | Qengineering repo measurement; Maxwell sm_53 lacks DP4A |
 | 0 | "Jetson Nano" fps numbers in recent posts | web at large | ⚠ mostly Orin Nano | Ultralytics blog/docs benchmark Orin devices only |
+| 1 | FASDD→AFSE 79.2 vs COCO 64.8 vs scratch-600 69.2; freeze-10 −15 mAP; v11n FT lr0=1e-4/75ep | Thread B | ✅ confirmed | Thesis PDF Tables 4.1/4.2 (pp. 39–41), read directly |
+| 1 | "TL cuts CV variance" | Thread B | ⚠ corrected | Fig 4.2: TL std 4.23 < scratch-300 5.86 but > scratch-600 3.85 |
+| 1 | OpenVINO 2.9× free speedup applies to us | Thread B (implicit) | ❌ rejected | OpenVINO = Intel CPU toolchain; Jetson target needs TensorRT — analog already covered by G1 |
