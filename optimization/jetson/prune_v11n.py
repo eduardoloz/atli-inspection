@@ -135,10 +135,12 @@ def finetune(pruned_model, args):
     from ultralytics.models.yolo.detect import DetectionTrainer
 
     overrides = dict(
-        model=None, data=args.data, imgsz=args.imgsz, epochs=args.epochs,
+        model="yolo11n.yaml",  # placeholder; replaced by the pruned module below
+        data=args.data, imgsz=args.imgsz, epochs=args.epochs,
         batch=args.batch, device=args.device, optimizer="SGD",
-        lr0=0.00334, lrf=0.1535, scale=0.9,
-        name=Path(args.out).stem + "_ft", val=True, amp=True,
+        lr0=0.00334, lrf=0.1535, scale=0.9, seed=args.seed,
+        project=args.project, name=args.name or Path(args.out).stem + "_ft",
+        val=True, amp=True, exist_ok=True,
     )
     trainer = DetectionTrainer(overrides=overrides)
     trainer.model = pruned_model.float()
@@ -160,6 +162,9 @@ def main():
     ap.add_argument("--epochs", type=int, default=100)
     ap.add_argument("--batch", type=int, default=16)
     ap.add_argument("--device", default=0)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--project", default="runs_prune")
+    ap.add_argument("--name", default=None)
     args = ap.parse_args()
 
     from ultralytics import YOLO
@@ -168,11 +173,20 @@ def main():
                         importance=args.importance)
     save_pruned(yolo, args.out)
 
-    # reload sanity check: the pickled pruned model must load through YOLO()
+    # reload sanity check: the pickled pruned model must load through YOLO().
+    # NB: ultralytics select_device('cpu') clobbers CUDA_VISIBLE_DEVICES for
+    # the whole process, which would blind the later GPU finetune — snapshot
+    # and restore it around the CPU predict.
+    import os
+    cvd = os.environ.get("CUDA_VISIBLE_DEVICES")
     check = YOLO(args.out)
     import numpy as np
     check.predict((np.random.rand(args.imgsz, args.imgsz, 3) * 255).astype("uint8"),
                   imgsz=args.imgsz, device="cpu", verbose=False)
+    if cvd is None:
+        os.environ.pop("CUDA_VISIBLE_DEVICES", None)
+    else:
+        os.environ["CUDA_VISIBLE_DEVICES"] = cvd
     print("reload + predict sanity check: OK")
 
     if args.finetune:
