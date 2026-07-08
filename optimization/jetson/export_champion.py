@@ -31,6 +31,7 @@ def main():
     ap.add_argument("--imgsz", type=int, nargs="+", default=[640, 960, 1280])
     ap.add_argument("--outdir", default="export_jetson")
     ap.add_argument("--opset", type=int, default=12)
+    ap.add_argument("--device", default=0, help="export device (cpu works fine for ONNX)")
     ap.add_argument("--engine", action="store_true",
                     help="also build a TensorRT FP16 engine for the LOCAL gpu "
                          "(functional test only; NOT a Nano artifact)")
@@ -46,7 +47,7 @@ def main():
         print(f"\n=== Exporting ONNX @ imgsz={sz} (opset {args.opset}) ===")
         onnx_path = model.export(
             format="onnx", imgsz=sz, opset=args.opset,
-            simplify=True, dynamic=False, batch=1, device=0,
+            simplify=True, dynamic=False, batch=1, device=args.device,
         )
         dst = outdir / f"champ_v11n_{sz}.onnx"
         shutil.copy(onnx_path, dst)
@@ -57,7 +58,7 @@ def main():
             print(f"=== Building local TensorRT FP16 engine @ {sz} (functional test only) ===")
             eng_path = model.export(
                 format="engine", imgsz=sz, half=True,
-                dynamic=False, batch=1, device=0, workspace=4,
+                dynamic=False, batch=1, device=args.device, workspace=4,
             )
             dst = outdir / f"champ_v11n_{sz}_LOCALGPU.engine"
             shutil.copy(eng_path, dst)

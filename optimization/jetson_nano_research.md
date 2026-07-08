@@ -130,6 +130,13 @@ Champion weights `~/atli/runs/HROaugnc_v11_s0_s2/weights/best.pt` (single seed; 
 
 **RTX 6000 ≠ Nano, stated once more:** every latency number produced on the UNLV server in this report is a *functional* or *relative-accuracy* result. The only valid Nano latencies will come from `build_engine_nano.sh` on the physical device; §4's fps table is an estimate anchored to third-party published Nano measurements.
 
+## 9b. Round-2 addendum (2026-07-08)
+
+- **Correction from orchestrator's 3-seed resolution ladder** (`results/optimization/res_ladder_infer_lo.csv`, branch `opt/orchestrator`): §5.3's "DD flat at 640" was a seed-0 artifact. Seed-averaged: DD 0.622@1280 / 0.634@1024 / 0.599@896 / 0.593@768 / 0.539@640. DD holds to ~896–1024; at 640 it drops −0.083. Working deployment envelope: **768** (mAP 0.754, DD 0.593).
+- **768 export added** (`~/atli/export_jetson/champ_v11n_768.onnx`, CPU-exported): static-letterbox cost at 768 measured on the 120-img test split = **−0.0026 mAP@0.5** (0.7429→0.7402, seed 0, both CPU-valed) — PASS at the 0.005 tolerance, much smaller than the −0.012 seen at 1280.
+- **Pruning pipeline functionally validated** (CPU-only): `prune_v11n.py` pruned the champion to **57.3% MACs (1.75× FLOPs cut), 2.59M→1.17M params**, reloaded through `YOLO()`, ran predict, and exported to ONNX (3.6 GFLOPs @640 summary, 4.8 MB). Details/evidence: `optimization/jetson/prune_plan.md`. Decision memo (Nano vs Orin Nano Super vs rescoped requirement): `optimization/jetson/decision_memo.md`.
+- **Server-env hygiene:** export/pruning tooling now lives in an isolated venv `~/atli/env_jetson` (system-site-packages). Round 1's pip installs into the shared `~/atli/env` (onnx, onnxslim, onnxruntime-gpu, torch-pruning) are suspected of the 07-07 numpy downgrade that killed running jobs (onnxruntime-gpu 1.18.1 pins numpy<2) — do not install into `~/atli/env` again.
+
 ## 10. Key sources
 
 - Qengineering, *YoloV8 TensorRT Jetson Nano* — https://github.com/Qengineering/YoloV8-TensorRT-Jetson_Nano (Nano FP16 fps anchor; INT8 no-gain note)
