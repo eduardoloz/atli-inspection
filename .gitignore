@@ -39,3 +39,9 @@ results/update_*.md
 # Local tooling / OS cruft
 .claude/
 .DS_Store
+
+# private drafts / redacted content — never commit
+results/email_to_PI*.md
+results/LOCAL_*
+results/data_outreach*.md
+*.pdf
