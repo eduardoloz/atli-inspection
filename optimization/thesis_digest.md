@@ -43,7 +43,7 @@ YOLOv5n on AFSE test set (mAP@0.5, %):
 
 ### 2.2 TL improves generalizability (5-fold stratified CV, §4.1.2, Fig. 4.2 p. 43)
 
-Stratified 5-fold CV: FASDD-TL vs 600-ep scratch vs 300-ep scratch — mAP mean 74.0 vs 66.9 vs 61.7; **mAP std 4.23 vs 3.85 vs 5.86**; AP_fire std 9.26 vs 8.04 vs 11.53. TL raises the mean and reduces variance vs 300-ep scratch (variance conclusion is strongest for the fire class; 600-ep scratch is comparably stable but 7 mAP worse).
+Stratified 5-fold CV: FASDD-TL vs 600-ep scratch vs 300-ep scratch — mAP mean 74.0 vs 66.9 vs 61.7; **mAP std 4.23 vs 3.85 vs 5.86**; AP_fire std 9.26 vs 8.04 vs 11.53. **Precise claim: TL cuts variance vs 300-ep scratch, but 600-ep scratch is slightly *more* stable (3.85 < 4.23) — so the correct statement is "TL matches long-scratch generalizability at a fraction of the training budget (150 vs 600 ep), while raising mean mAP by 7."** Not "TL cuts variance" unqualified.
 
 ### 2.3 Cascaded TL does NOT help; merged-source pretraining does (§4.1.3, Table 4.4 p. 46)
 

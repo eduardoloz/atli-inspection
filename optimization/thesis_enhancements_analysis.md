@@ -43,8 +43,9 @@ Digest with page-referenced numbers: `optimization/thesis_digest.md`.
 ### T7. EDP + power measurement methodology (thesis §3.3)
 - **Applies to us? Yes, as evaluation methodology.** ~$30 USB power meter + normalized Energy-Delay Product gives our edge-deployment claims quantitative teeth (currently we argue params/FLOPs only). Zero model impact; pairs with T6 for a deployment section in our paper. Confidence: high (it's instrumentation, not modeling).
 
-### T8. TL-reduces-variance via stratified k-fold CV (thesis §4.1.2)
+### T8. TL-matches-long-scratch generalizability via stratified k-fold CV (thesis §4.1.2)
 - Methodological confirmation of our F(5) "always report multi-seed/CV means." The thesis additionally uses **variance itself as a headline metric** — worth copying into our results tables (we already have the fold data; report std as a generalizability claim, not just error bars).
+- **Precision note (orchestrator-verified 2026-07-07):** TL's variance win (std 4.23 vs 5.86) holds only vs 300-ep scratch; 600-ep scratch is slightly *more* stable (3.85). Correct claim: *TL matches long-scratch generalizability at ¼ the training budget while raising mean mAP by 7* — not "TL cuts variance" unqualified.
 
 ---
 
@@ -63,9 +64,8 @@ The thesis's headline result, never properly tested here (PF used a tiny single-
 `EXTRA="scale=0.9"` unchanged; override fine-tune lr0 via the runner's stage-2 args (or a variant runner): grid {lr0₂ = 0.001, 0.0005, 0.0001} × {EP2 = 100, 75}. E.g. `MODEL=yolo11n.pt EXTRA="scale=0.9" DATA=~/atli/ATLI_noCPLID_OS3/data.yaml LR2=0.001 bash ~/atli/run_config_ext.sh champ_lr2_1e3 <GPU> 150 75 1280 16` (add an `LR2` env passthrough to the stage-2 `lr0=` arg if not present). 2 seeds per cell, prune after first pass.
 **Expected:** ±1 mAP; main win = DD variance/recall (medium confidence). **Cost:** ≤ champion cost per run (shorter stage 2).
 
-### 3. OpenVINO/ONNX export + edge benchmark (T6, no training) — "edge_export"
-`yolo export model=<champ best.pt> format=openvino imgsz=1280` and `imgsz=640`; verify test-set mAP parity with `yolo val`; benchmark FPS/power on a Pi-5-class ARM board (or server CPU as proxy). Then INT8 (`int8=True` with a calibration split) as the step the thesis left as future work.
-**Expected:** identical accuracy, 2–3× CPU FPS (high confidence); produces the numbers the 30-fps real-time goal needs. **Cost:** ~zero.
+### 3. ~~OpenVINO/ONNX export + edge benchmark (T6)~~ — DESCOPED from this thread (2026-07-07)
+**Project decision (orchestrator):** deployment target is a Jetson-class GPU device with TensorRT, not a Pi CPU; the export/runtime toolchain belongs to a separate workstream. This thread owns **accuracy only**. T6's transferable residue for us: (a) framework conversion is accuracy-neutral, so accuracy results here carry to deployment unchanged; (b) the deployment image size will likely be **768 (maybe 640), not 1280** — so accuracy levers that hold up at reduced resolution earn extra credit, and pilots below run at imgsz 768.
 
 ### 4. EDP/power instrumentation + variance-as-metric reporting (T7 + T8)
 Buy/borrow a FNIRSI FNB58-class USB meter, adopt the thesis's Simpson-rule energy + normalized EDP protocol for all edge comparisons; add fold-std as an explicit generalizability metric in our results tables. **Cost:** ~$30 + a script; strengthens the paper regardless of model outcomes.
