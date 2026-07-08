@@ -52,6 +52,24 @@ Facts established by the orchestrator before any subagent input:
 - Server capability audit done (fact 6). TEAM ROSTER received; Subagents A & B working on Round-1 deliverables.
 - Gate scoreboard: G1 ⬜ · G2 ⬜ (fails at 1280 by projection) · G3 ⬜ · G4 ⬜.
 
+### Round 0.5 (2026-07-07) — Experiment 1: train-hi/infer-lo resolution ladder ✅
+Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the noCPLID test split (`results/optimization/res_ladder_infer_lo.csv`; runner `res_ladder_eval.py` on server, GPU 0). Seed-averaged:
+
+| infer imgsz | mAP@0.5 | DefDamper AP | projected Nano fps* | G4 (mAP≥0.745 & DD≥0.59) |
+|---|---|---|---|---|
+| 512 | 0.674 ± 0.017 | 0.550 ± 0.051 | ~40 | ✗ |
+| 640 | 0.717 ± 0.013 | 0.539 ± 0.093 | ~25 | ✗ |
+| **768** | **0.754 ± 0.016** | **0.593 ± 0.077** | **~18** | **✓ (on the nose)** |
+| 896 | 0.776 ± 0.009 | 0.599 ± 0.035 | ~13 | ✓ |
+| 1024 | 0.783 ± 0.034 | 0.634 ± 0.143 | ~10 | ✓ |
+| 1280 (native) | 0.783 ± 0.012 | 0.622 ± 0.073 | ~6 | ✓ |
+
+\* G2 projection method above (anchor 19 fps YOLOv8n@640, ×8.7/6.5 GFLOPs, ×(640/sz)²).
+
+**Findings:** (1) **Inference at 1024 is free** — identical mAP to 1280, DD actually up; instant 1.56× FLOPs cut with zero retraining. (2) **768 is the current G4/G2 frontier point**: passes both accuracy floors, projected ~18 fps → needs only ~1.7× more speedup (pruning / slimmer head / lighter arch) to reach 30 fps, vs 5× from 1280. (3) **Train-hi/infer-lo loses to retraining at 640** (0.717 vs the 640-retrained baseline's 0.736) — if we drop below 768, retrain; at 768+ the champion transfers well. (4) DD variance across seeds is large (±0.08–0.14) — per-seed, not single-run, decisions remain mandatory.
+
+**Implication for strategy:** target deployment envelope is now **768–896 px + FP16 TensorRT + ~1.5–2× structural speedup**, or a 640/704 retrain with accuracy-recovery tricks (distillation, thesis-thread enhancements) to claw back the ~0.03 mAP gap to G4.
+
 ### Round 1 — pending subagent reports
 (to be filled)
 
