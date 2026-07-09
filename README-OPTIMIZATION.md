@@ -134,6 +134,64 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 1. **Restoring 249 previously-removed in-domain images (train-only) is resolution-dependent:** helps at 1280 (+1.8 mAP → 0.802) but **hurts at 768** (0.747 ± 0.012 / DD 0.606 vs the 4-seed reference 0.766 ± 0.009 / DD 0.664) — the close-up-heavy additions skew object scale at deploy resolution. **Recipe decision: the deployment model trains on the clean 561-img train set as-is; restored data excluded at 768** (remains valid for the 1280 full-accuracy model). This is the third instance of a campaign meta-finding: *data and hyperparameter choices do not transfer across resolutions* (cf. train-hi/infer-lo < native retrain; DD better at 768-native than 1280).
 2. **close_mosaic=20 @768:** 0.767 ± 0.003, DD **0.708 ± 0.051** vs control 0.766/0.664 (3 seeds) — mAP flat, DD +0.044 (~1σ, suggestive). **Recipe decision: included as an optional flag with explicit pending-confirmation caveat** — zero inference cost and no downside observed, but the DD gain is within seed noise until more seeds land.
 
+### Round 4 close (2026-07-09) — prune grid verdict: pre-registered outcome 3 (negative result); G2 settled
+**Thread A final (`opt/jetson-nano` @ 4488b4d, migrated + independently privacy-scanned CLEAN).** 21-run prune grid (baseline-LR + hlr recovery arms + 1.25× probe), all clean, `optimization/jetson/prune_grid_results.{md,csv}`. Orchestrator verification: CSV means recompute exactly (pr125_hlr 0.695/0.526 ✓); degradation monotone in ratio across both LR arms, seeds tight (sd ≤ 0.04).
+
+| condition | FLOPs cut | GMACs | proj. Nano fps | mAP@0.5 | DD AP | gate (0.745/0.59) |
+|---|---|---|---|---|---|---|
+| reference (unpruned) | 1× | 4.60 | ~17 | 0.769 ± 0.009 | 0.670 ± 0.049 | ✅ |
+| pr125_hlr | 1.25–1.35× | 3.4–3.7 | ~22 | 0.695 ± 0.018 | 0.526 ± 0.048 | ✗ |
+| pr150_hlr | 1.53× | 3.00 | ~27 | 0.639 ± 0.019 | 0.526 ± 0.036 | ✗ |
+| pr175_hlr | 1.83× | 2.51 | ~32 | 0.475 ± 0.040 | 0.501 | ✗ |
+| pr200_hlr | 2.04× | 2.25 | ~36 | 0.364 ± 0.032 | — | ✗ |
+
+**Booked negative result:** global structured pruning of a nano-scale detector (2.6M params) on n=633 train images is unrecoverable even at a 1.25× FLOPs cut (−0.07 mAP, −0.14 rare-class DD) — the 1.25× probe *converged to healthy losses* and still lost accuracy (capacity/data floor, not schedule; hlr beat stage-2 LR everywhere but closed <⅓ of the gap). Contrast: published pruning wins start from ≥5× larger models/datasets (MCP-YOLO 13.79M). The rare class is hit ~2× harder than the mean at every ratio. **Pruning is off the Nano recipe; there is no software path to a literal 30 fps on the original Nano at deployable accuracy** (the ≥30 fps tiers sit at mAP ≤ 0.48).
+
+**Git migration complete for all three worktrees** (orchestrator b0d8592→, A fffd109→4488b4d, B 8be1ffb→632c042), all pushes privacy-gated and independently re-scanned.
+
+---
+
+## FINAL DEPLOYMENT RECIPE (campaign output, Round 4/5 checkpoint)
+
+### Operating point: unpruned YOLOv11n @ native 768, FP16 TensorRT
+**Training** (server, `~/atli/env`, runner `run_config_ext.sh`):
+```
+MODEL=yolo11n.pt DATA=<ATLI_noCPLID_OS3>/data.yaml EXTRA="scale=0.9 seed=<s>" \
+  bash run_config_ext.sh <NAME> <GPU> 150 100 768 16
+```
+= COCO-init 2-stage TL (150 ep SGD lr0=0.01 → 100 ep lr0=0.00334 lrf=0.1535), imgsz **768**, batch 16, scale=0.9 aug, ×3 DefDamper oversample. Train set = **clean 561-img noCPLID train only** (restored close-up data *hurts* at 768: 0.747/0.606 — main @ 9a1ffbf). Optional flag pending more seeds: `close_mosaic=20` (DD 0.708 ± 0.051 vs 0.664, mAP flat). Always ≥3 seeds, report mean±std.
+**Expected PyTorch accuracy:** mAP@0.5 **0.766 ± 0.009**, DefDamper AP **0.664 ± 0.042** (4 seeds, noCPLID test split).
+
+**Export** (workstation, `~/atli/env_export` — never the frozen training env):
+```
+yolo export model=best.pt format=onnx opset=12 simplify=True imgsz=768   # static letterbox, −0.003 mAP
+```
+**On-device build** (Nano, JetPack 4.6 / TRT 8.2 — engines are never portable; `optimization/jetson/build_engine_nano.sh` on opt/jetson-nano):
+```
+/usr/src/tensorrt/bin/trtexec --onnx=best.onnx --fp16 --saveEngine=best_768_fp16.engine
+```
+**Measured deployed-artifact accuracy** (TRT 8.6 FP16 proxy, seed 0): mAP **0.768**, DD **0.732** — export cost −0.009 mAP, hard class unharmed. **INT8 must not be used** (Maxwell: no speedup, real mAP loss).
+
+**Expected on-Nano performance** (projected from cited anchors — no hardware in-lab): **~17 fps inference-only, ~12–15 fps end-to-end**, engine ~8 MB, process footprint well under the 2 GB budget (G3). Anchor: 19 fps YOLOv8n@640 TRT FP16 (Qengineering) ⇒ ~160 GFLOP/s effective; champion@768 = 4.60 GMACs.
+
+### The decision main must make (full package: `optimization/jetson/decision_memo.md` on opt/jetson-nano)
+- **Option A — rescope the spec (recommended, free):** inspection physics needs 5–10 Hz detection (blur-limited ~3.3 m/s flight, ~26 sightings/component-pass at 5 Hz). The recipe above **meets this on the original Nano with margin** at mAP 0.766/DD 0.664.
+- **Option B — Orin Nano Super ($249):** the only path to a literal ≥30 fps; runs the full 1280 champion (mAP 0.784/DD 0.622 — or 0.802 with restored data) at 30–55 fps e2e. Options A+B are complementary (memo recommends both: buy Orin, keep Nano as validated fallback).
+
+### Final gate scoreboard
+| Gate | Verdict |
+|---|---|
+| G1 Exportability | ✅ PASSED (ONNX opset12 → TRT FP16 engine, parity −0.009 mAP) |
+| G2 ≥30 fps (as written) | ❌ IMPOSSIBLE on original Nano at deployable accuracy — proven via prune grid + published anchors; **rescoped 5–10 Hz spec: ✅ met with margin**; Orin path: ✅ 30+ fps at full accuracy |
+| G3 < 2 GB | ✅ (provisional) 8 MB engine + ~0.6–0.8 GB CUDA context, headless |
+| G4 ≥95% accuracy floors | ✅ PASSED (0.766/0.664 PyTorch; 0.768/0.732 deployed artifact, seed 0) |
+
+### Negative results booked (publishable)
+1. External in-domain data fails to transfer to ATLI across **two mechanisms** (co-training, pretrain-init: −7.5 mAP) — cause: 45% background-class supervision conflict + single-scene source + COCO-diversity forgetting.
+2. Global structured pruning of nano-scale YOLO is unrecoverable at n=633 even at 1.25× (converged-loss proof).
+3. INT8 on Maxwell-class edge devices: no speed, real accuracy loss (device lacks DP4A).
+4. Resolution non-transferability: data additions and LR schedules tuned at 1280 do not transfer to 768 (restored-data +1.8 mAP @1280 vs −1.9 @768; lowlr wash; infer-lo < native retrain).
+
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
 |---|---|---|---|---|
@@ -154,3 +212,6 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 | 3 | srcTL fine-tune actually loaded pretrain weights (499/499) | Thread B | ✅ confirmed | Grepped TH2_gpu6.log on server |
 | 3 | 45% of source boxes are line/tower (background-conflict) | Thread B | ✅ confirmed | Orchestrator re-count: 42,097/92,917 = 45.3% |
 | 3 | srcTL failure = genuine negative transfer (not plumbing) | Thread B | ✅ adopted | Converged source pretrain (0.898) + weight-load proof + class/scene audit |
+| 4 | lowlr 3-seed means (0.769/0.659) & champ768 4-seed band (0.766/0.664) | Thread B | ✅ confirmed | Seed-0 values match orchestrator revals exactly; means recompute |
+| 4 | Prune grid: deep miss at every ratio incl. 1.25× probe | Thread A | ✅ confirmed | CSV means recompute exactly; monotone in ratio, both LR arms, sd ≤ 0.04 |
+| 4 | Threads A & B git migrations privacy-clean | Threads A/B | ✅ confirmed | Orchestrator re-scanned both pushed diffs: 0 hits; noreply authors verified |
