@@ -1,6 +1,13 @@
 # Structured Pruning Plan — YOLOv11n champion → ~1.7× on Jetson Nano
 **Round 2 deliverable · branch `opt/jetson-nano` · 2026-07-08**
 
+> **STATUS (2026-07-09): EXECUTED — NEGATIVE RESULT.** The 21-run grid
+> ({1.25, 1.5, 1.75, 2.0}× × 3 seeds × 2 LR schedules) missed the acceptance
+> gate at every ratio; pruning is off the Nano recipe. See
+> `prune_grid_results.md` for the table, evidence, and the booked finding.
+> The mechanics below (v11n + torch-pruning recipe, quarantine fix, runbook)
+> remain valid and reusable.
+
 ## Verdict (headline)
 
 **Feasible, and the pipeline is already functionally validated.** `optimization/jetson/prune_v11n.py` pruned the champion to the exact target this round (CPU-only, no training): **4.60 → 2.63 GMACs @768 (57.3% kept = 1.75× FLOPs speedup), 2.59M → 1.17M params (−55%)**, survived reload through `YOLO()`, ran inference, and exported to a clean ONNX (4.8 MB, opset 12: `~/atli/export_jetson/pruned_v11n_59pct.{pt,onnx}` on the UNLV server). What remains is the fine-tune (GPU, next round) and accuracy verification.
