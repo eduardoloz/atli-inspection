@@ -200,4 +200,50 @@ fig.suptitle("Per-class AP@0.5 before vs after CPLID removal (eval protocols dif
 fig.tight_layout()
 fig.savefig(OUT / "fig_f_before_after_perclass.png", dpi=150, bbox_inches="tight")
 
+# ── Fig G: CPLID-restore result (train-only restore, same clean test) ────────
+groups = ["Overall\nmAP@0.5", "Self-Exploded\nInsulator", "Normal\nInsulators", "Defective\nDamper"]
+clean_champ = [0.784, 0.871, 0.838, 0.622]
+clean_champ_e = [0.011, 0.027, 0.013, 0.073]
+restored = [0.802, 0.907, 0.857, 0.693]
+restored_e = [0.015, 0.026, 0.002, 0.050]
+x = np.arange(len(groups))
+w = 0.36
+fig, ax = plt.subplots(figsize=(8, 4))
+err_kw = dict(ecolor=INK2, elinewidth=1, capsize=2, capthick=1)
+ax.bar(x - w / 2 - 0.01, clean_champ, w, color=BLUE, label="Champion, clean train (561 imgs)",
+       yerr=clean_champ_e, error_kw=err_kw)
+ax.bar(x + w / 2 + 0.01, restored, w, color=AQUA,
+       label="Champion + 249 CPLID restored to train only", yerr=restored_e, error_kw=err_kw)
+for xi, v, e in zip(x - w / 2 - 0.01, clean_champ, clean_champ_e):
+    ax.text(xi, v + e + 0.012, f"{v:.3f}", ha="center", va="bottom", fontsize=8.5, color=INK2)
+for xi, v, e in zip(x + w / 2 + 0.01, restored, restored_e):
+    ax.text(xi, v + e + 0.012, f"{v:.3f}", ha="center", va="bottom", fontsize=8.5, color=INK)
+ax.set_xticks(x, groups)
+ax.set_ylim(0.4, 1.02)
+ax.set_title("Train-only CPLID restore: identical clean test set, no leakage (3 seeds)")
+ax.grid(axis="y", color=GRID, linewidth=0.8)
+ax.set_axisbelow(True)
+ax.legend(frameon=True, facecolor=SURFACE, edgecolor=GRID, loc="lower right", fontsize=8.5)
+fig.tight_layout()
+fig.savefig(OUT / "fig_g_cplid_restore.png", dpi=150, bbox_inches="tight")
+
+# ── Fig H: motion-blur fragility (768 deployment candidate, eval-only) ───────
+conds = ["clean\ntest set", "gaussian blur\n(sigma 2)", "mild motion blur\n(7 px)", "strong motion blur\n(15 px)"]
+blur_map = [0.777, 0.442, 0.531, 0.104]
+order = [0, 2, 1, 3]  # clean, mild motion, gaussian, strong
+conds = [conds[i] for i in order]
+blur_map = [blur_map[i] for i in order]
+fig, ax = plt.subplots(figsize=(7.5, 3.8))
+bars = ax.bar(np.arange(4), blur_map, 0.5, color=[BLUE, AQUA, AQUA, AQUA])
+for xi, v in enumerate(blur_map):
+    ax.text(xi, v + 0.015, f"{v:.3f}", ha="center", va="bottom", fontsize=9, color=INK)
+ax.set_xticks(np.arange(4), conds)
+ax.set_ylim(0, 0.9)
+ax.set_ylabel("mAP@0.5")
+ax.set_title("Motion-blur fragility of the 768 model (same test images, synthetic blur)")
+ax.grid(axis="y", color=GRID, linewidth=0.8)
+ax.set_axisbelow(True)
+fig.tight_layout()
+fig.savefig(OUT / "fig_h_blur_fragility.png", dpi=150, bbox_inches="tight")
+
 print("wrote:", *[p.name for p in sorted(OUT.glob("*.png"))], sep="\n  ")
