@@ -58,6 +58,9 @@ Copy-paste augmentation (quasi-synthetic composites) was tested earlier and reje
 unless stated otherwise, so their test metrics are directly comparable (exception: the OBB
 card, which uses its own 107-image split).
 
+Per-category image counts before vs. after augmentation (oversampling), with the split and
+methods spelled out for outside readers: `results/dataset_augmentation_summary.md`.
+
 | split | images | annotations | Birdnest | Broken_Ins | Def_Damper | Flashover | Normal_Damper | Normal_Ins | Self-Exploded |
 |---|---|---|---|---|---|---|---|---|---|
 | train | 561 | 2,344 | 162 | 140 | 82 | 302 | 833 | 604 | 221 |
