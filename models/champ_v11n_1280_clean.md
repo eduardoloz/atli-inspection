@@ -9,6 +9,7 @@ Clean-data champion: the reference benchmark model after CPLID decontamination.
   image-level oversampling of Defective_Damper images (561 → 633 train imgs, 2,344 → 2,810
   train annotations; DD 82 → 246). Val 116 imgs / 506 ann and test 120 imgs / 467 ann are the
   untouched clean splits (see `models/README.md` for the per-class table).
+- **eduardos-annotated-photos:** NOT included. All splits derive from the ATLI target projects only; the 300 user-annotated images (151 Defective_Damper instances) are excluded from train, val, and test.
 - **Training (2-stage transfer learning, COCO-init):**
   ```
   MODEL=yolo11n.pt EXTRA="scale=0.9 seed=<s>" DATA=~/atli/ATLI_noCPLID_OS3/data.yaml \

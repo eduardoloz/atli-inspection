@@ -9,6 +9,7 @@ at 1280.
 - **Dataset:** `ATLI_noCPLID_OS3` (clean train + ×3 DD oversample: 633 train imgs / 2,810
   annotations; clean val/test 116/120 imgs). **Deliberately trained on the clean set only** —
   restoring the 249 CPLID images was tested at this resolution and hurt (0.747 vs 0.766).
+- **eduardos-annotated-photos:** NOT included. All splits derive from the ATLI target projects only; the 300 user-annotated images (151 Defective_Damper instances) are excluded from train, val, and test.
 - **Training:** identical 2-stage recipe at 768:
   ```
   MODEL=yolo11n.pt EXTRA="scale=0.9 seed=<s>" DATA=~/atli/ATLI_noCPLID_OS3/data.yaml \

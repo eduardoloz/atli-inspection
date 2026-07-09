@@ -60,3 +60,11 @@ card, which uses its own 107-image split).
 Caveat that applies to every card: the test split has only **12 Defective_Damper instances**,
 so DD numbers carry ±0.05–0.08 seed spread and are directional; 5-fold CV on the clean pool
 is the planned hardening step.
+
+**eduardos-annotated-photos: NOT included in any current card.** The 300 user-annotated
+images (151 Defective_Damper, 819 Normal_Damper, 992 Normal_Insulators, 152 generic
+Defective_Insulators) were part of the old pre-purge 1,343-image merged pool but are excluded
+from the clean dataset and every model above. They are the largest untapped
+Defective_Damper source (would take the DD pool from 110 to 261 instances); a leakage-gated
+train-only merge is the planned experiment. Every future card must state this field
+explicitly (see the "eduardos-annotated-photos" line in each card).

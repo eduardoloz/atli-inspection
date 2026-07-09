@@ -11,6 +11,7 @@ overlap, and this configuration has none).
   oversampling. Train: **888 imgs / 3,419 annotations** (Birdnest 178, Broken 142, DD 255,
   Flashover 304, Normal_Damper 1,322, Normal_Ins 740, Self-Exploded 478). Val/test identical
   to the clean splits (116/120 imgs) — directly comparable to `champ_v11n_1280_clean`.
+- **eduardos-annotated-photos:** NOT included. All splits derive from the ATLI target projects only; the 300 user-annotated images (151 Defective_Damper instances) are excluded from train, val, and test.
 - **Training:** identical recipe to the clean champion, only DATA differs:
   ```
   MODEL=yolo11n.pt EXTRA="scale=0.9 seed=<s>" DATA=~/atli/ATLI_noCPLID_plusCPLIDtrain_OS3/data.yaml \

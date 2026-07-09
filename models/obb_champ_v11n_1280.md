@@ -12,6 +12,7 @@ split — NOT comparable to the detection cards' 120-image split; compare only w
   oversampling. Train **652 imgs / 2,841 annotations** (Birdnest 187, Broken 146, DD 258,
   Flashover 288, Normal_Damper 1,043, Normal_Ins 710, Self-Exploded 209); val 113 imgs / 450;
   test 107 imgs / 465 (merged-split layout).
+- **eduardos-annotated-photos:** NOT included. All splits derive from the ATLI target projects only; the 300 user-annotated images (151 Defective_Damper instances) are excluded from train, val, and test.
 - **Training:**
   ```
   MODEL=yolo11n-obb.pt EXTRA="scale=0.9 seed=<s>" DATA=~/atli/ATLI_noCPLID_OBB_OS3/data.yaml \
