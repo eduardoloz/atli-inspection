@@ -130,6 +130,10 @@ Champion weights (3 seeds, trained @1280) evaluated at 6 inference sizes on the 
 - **Deployment reference band updated (4 seeds): champion@768 = mAP 0.766 ± 0.009, DD 0.664 ± 0.042.**
 - `optimization/final_synthesis.md` delivered: T1–T8 lever scoreboard, negative-transfer result framed as a paper contribution, 768 deployment profile, EDP + variance-as-metric adopted. **Thread B complete**; GPUs 6–7 released.
 
+**External inputs from main (07-08, logged on main @ 9a1ffbf) — resolution-dependent data effects:**
+1. **Restoring 249 previously-removed in-domain images (train-only) is resolution-dependent:** helps at 1280 (+1.8 mAP → 0.802) but **hurts at 768** (0.747 ± 0.012 / DD 0.606 vs the 4-seed reference 0.766 ± 0.009 / DD 0.664) — the close-up-heavy additions skew object scale at deploy resolution. **Recipe decision: the deployment model trains on the clean 561-img train set as-is; restored data excluded at 768** (remains valid for the 1280 full-accuracy model). This is the third instance of a campaign meta-finding: *data and hyperparameter choices do not transfer across resolutions* (cf. train-hi/infer-lo < native retrain; DD better at 768-native than 1280).
+2. **close_mosaic=20 @768:** 0.767 ± 0.003, DD **0.708 ± 0.051** vs control 0.766/0.664 (3 seeds) — mAP flat, DD +0.044 (~1σ, suggestive). **Recipe decision: included as an optional flag with explicit pending-confirmation caveat** — zero inference cost and no downside observed, but the DD gain is within seed noise until more seeds land.
+
 ## Ledger of verification verdicts
 | Round | Claim | Source of claim | Verdict | Evidence |
 |---|---|---|---|---|
