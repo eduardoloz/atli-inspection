@@ -186,6 +186,11 @@ yolo export model=best.pt format=onnx opset=12 simplify=True imgsz=768   # stati
 | G3 < 2 GB | ✅ (provisional) 8 MB engine + ~0.6–0.8 GB CUDA context, headless |
 | G4 ≥95% accuracy floors | ✅ PASSED (0.766/0.664 PyTorch; 0.768/0.732 deployed artifact, seed 0) |
 
+### Artifact inventory (for resumption)
+- **Branch `opt/jetson-nano` @ 4488b4d:** `jetson_nano_research.md`, `decision_memo.md`, `prune_plan.md` (status: negative), `prune_grid_results.{md,csv}`, scripts `export_champion.py` / `build_engine_nano.sh` / `latency_harness.py` / `accuracy_check.py` / `prune_v11n.py` / `run_prune_grid.sh` / `eval_prune_grid.py`.
+- **Branch `opt/thesis-enhancements` @ 632c042:** `optimization/final_synthesis.md` (T1–T8 scoreboard), `data/build_source_pretrain.py` (leakage gate), `train/run_config_ext2.sh` (LR2/LRF2 runner).
+- **Server (`~/atli/`):** ONNX exports @640/768/960/1280 + pruned checkpoints in `export_jetson/`; prune runs in `runs_prune/`; deployment-candidate weights `runs/HR768nc_v11_s{0,1,2}_s2/weights/best.{pt,onnx,engine}` (+ B's s3 replicate `runs/TH2_champ768_v11_s0*`); revals in `runs_reval/`, ladder in `runs_ladder/`; venvs `env_export` (TRT 8.6.1) and `env_jetson` (torch-pruning); training env untouched and frozen.
+
 ### Negative results booked (publishable)
 1. External in-domain data fails to transfer to ATLI across **two mechanisms** (co-training, pretrain-init: −7.5 mAP) — cause: 45% background-class supervision conflict + single-scene source + COCO-diversity forgetting.
 2. Global structured pruning of nano-scale YOLO is unrecoverable at n=633 even at 1.25× (converged-loss proof).
