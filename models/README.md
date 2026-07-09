@@ -11,14 +11,21 @@ card). To distribute weights, attach them to a GitHub Release (tag `vX.Y-<name>`
 with the card — never commit TensorRT `.engine` files (device/version-specific; deployers
 build their own with `optimization/jetson/build_engine_nano.sh` on `opt/jetson-nano`).
 
+## Layout
+
+Each model lives in its own folder: `models/<name>/README.md` is the card (GitHub renders it
+when you open the folder), and any distributed artifacts for that model (ONNX, sample
+predictions, confusion matrices) belong in the same folder next to it. Weights stay on the
+server / GitHub Releases per the rules above.
+
 ## Cards
 
 | card | mAP@0.5 (clean test) | role |
 |---|---|---|
-| [champ_v11n_1280_cplid_restore](champ_v11n_1280_cplid_restore.md) | **0.802 ± 0.015** | best benchmark model |
-| [champ_v11n_1280_clean](champ_v11n_1280_clean.md) | 0.784 ± 0.011 | clean-data champion (reference) |
-| [champ_v11n_768_deploy](champ_v11n_768_deploy.md) | 0.769 ± 0.009 | edge/drone deployment model |
-| [obb_champ_v11n_1280](obb_champ_v11n_1280.md) | 0.765 ± 0.015 (OBB) | oriented-box variant |
+| [champ_v11n_1280_cplid_restore](champ_v11n_1280_cplid_restore/README.md) | **0.802 ± 0.015** | best benchmark model |
+| [champ_v11n_1280_clean](champ_v11n_1280_clean/README.md) | 0.784 ± 0.011 | clean-data champion (reference) |
+| [champ_v11n_768_deploy](champ_v11n_768_deploy/README.md) | 0.769 ± 0.009 | edge/drone deployment model |
+| [obb_champ_v11n_1280](obb_champ_v11n_1280/README.md) | 0.765 ± 0.015 (OBB) | oriented-box variant |
 
 ## How augmentation works in this project (applies to every card)
 
@@ -67,4 +74,4 @@ Defective_Insulators) were part of the old pre-purge 1,343-image merged pool but
 from the clean dataset and every model above. They are the largest untapped
 Defective_Damper source (would take the DD pool from 110 to 261 instances); a leakage-gated
 train-only merge is the planned experiment. Every future card must state this field
-explicitly (see the "eduardos-annotated-photos" line in each card).
+explicitly (see the "eduardos-annotated-photos" line in each model folder's README).

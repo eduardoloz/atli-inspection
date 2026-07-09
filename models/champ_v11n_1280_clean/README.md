@@ -42,5 +42,5 @@ Clean-data champion: the reference benchmark model after CPLID decontamination.
 - **Known limitations:** DD test basis is 12 instances (±0.073 seed spread — directional);
   blur-fragile (−0.246 mAP under 7-px synthetic motion blur); not comparable to pre-purge
   benchmarks (different test set). For a higher-accuracy variant see
-  `champ_v11n_1280_cplid_restore.md`; for edge deployment use `champ_v11n_768_deploy.md`
+  `models/champ_v11n_1280_cplid_restore/`; for edge deployment use `models/champ_v11n_768_deploy/`
   (this 1280 model projects to only ~6 fps on a Jetson Nano).

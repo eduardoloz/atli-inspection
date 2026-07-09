@@ -44,15 +44,18 @@ attached as assets) or a `models/` folder for small `.pt`/`.onnx` files. Rules:
 
 - Share `.pt` and/or `.onnx`. NEVER share TensorRT `.engine` files (device+version specific;
   deployers build their own with `optimization/jetson/` scripts).
-- Every shared model REQUIRES a model card `models/<name>.md` committed in the same
-  release/commit. No card, no share.
+- Every shared model REQUIRES a model card at `models/<name>/README.md` (one folder per
+  model; artifacts for that model live in the same folder) committed in the same
+  release/commit. No card, no share. The card MUST state whether eduardos-annotated-photos
+  was included in training.
 
-### Model card template (copy verbatim, fill every field)
+### Model card template (copy verbatim into models/<name>/README.md, fill every field)
 
 ```markdown
 # <model name, e.g. champ_v11n_768>
 
 - **Architecture:** YOLOv11n (2.6M params) | task: detect | obb
+- **eduardos-annotated-photos:** included | NOT included (mandatory field)
 - **Dataset:** <local dir on server + Roboflow project/version, e.g.
   ATLI_target_tightNI_noCPLID (797 imgs, 561/116/120) = atli_target-* post-purge versions>
 - **Recipe (exact reproduction command):**
