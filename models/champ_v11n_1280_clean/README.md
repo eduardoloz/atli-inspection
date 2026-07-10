@@ -37,6 +37,8 @@ Clean-data champion: the reference benchmark model after CPLID decontamination.
   | Self-Exploded_Insulator | 0.871 ± 0.027 | 0.960 |
   | **overall** | **0.784 ± 0.011** | 0.833 |
 
+  ![Per-class AP vs baseline](../../results/figures/clean_vs_prior/fig_b_perclass_det.png)
+
 - **Provenance:** server runs `~/atli/runs/HROaugnc_v11_s{0,1,2}_s2/weights/best.pt`, trained
   2026-07-07; scripts as of repo commit `9a1ffbf`.
 - **Known limitations:** DD test basis is 12 instances (±0.073 seed spread — directional);

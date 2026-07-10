@@ -7,6 +7,15 @@ Inspection using Transfer Learning Enhanced Deep Learning Models* (Tsai et al.).
 
 > **Funding:** NSF grant no. 1950872 and the UNLV AI SUSTEIN Seed Grant.
 
+## Current benchmarks
+
+Clean (decontaminated) test split, seed-averaged. Best benchmark model: **mAP@0.5 0.802 ±
+0.015** (YOLOv11n @1280, ×3 oversampling + scale-aug, train-only CPLID restore). Full model
+registry with per-class metrics and reproduction commands: [`models/`](models/); dataset
+composition + augmentation method: [`results/dataset_augmentation_summary.md`](results/dataset_augmentation_summary.md).
+
+![Clean benchmark, per-class AP baseline vs champion](results/figures/clean_vs_prior/fig_b_perclass_det.png)
+
 ## Repo layout
 
 ```

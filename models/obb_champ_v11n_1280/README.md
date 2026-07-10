@@ -40,6 +40,8 @@ split — NOT comparable to the detection cards' 120-image split; compare only w
   DD AP 0.738 ± 0.012, costing overall mAP (0.730, paid by Self-Exploded/NI). Runs
   `OBBdeg45_s{0,1,2}` — the configuration of choice if missing defective dampers is the
   dominant cost.
+  ![Per-class AP, OBB benchmark](../../results/figures/clean_vs_prior/fig_c_perclass_obb.png)
+
 - **Provenance:** server runs `~/atli/runs/OBBnc_champ_v11_s{0,1,2}_s2/weights/best.pt`,
   trained 2026-07-08 (rerun after the numpy env incident; postmortem in
   `results/pi_summary_2026-07-08.md`); scripts as of commit `9a1ffbf`.

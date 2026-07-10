@@ -27,6 +27,11 @@ server / GitHub Releases per the rules above.
 | [champ_v11n_768_deploy](champ_v11n_768_deploy/README.md) | 0.769 ± 0.009 | edge/drone deployment model |
 | [obb_champ_v11n_1280](obb_champ_v11n_1280/README.md) | 0.765 ± 0.015 (OBB) | oriented-box variant |
 
+Benchmark graphs (all on the identical clean 120-image test split, 3 seeds):
+
+![Per-class AP, baseline vs champion](../results/figures/clean_vs_prior/fig_b_perclass_det.png)
+![Train-only CPLID restore effect](../results/figures/clean_vs_prior/fig_g_cplid_restore.png)
+
 ## How augmentation works in this project (applies to every card)
 
 **No synthetic data is used anywhere in training.** Two mechanisms only:

@@ -47,6 +47,8 @@ at 1280.
   measured on device. Meets the physics-derived 5–10 Hz inspection requirement with margin;
   30 fps at deployable accuracy is proven impossible on this device (pruning fails at every
   ratio ≥1.25× — see `optimization/jetson/prune_grid_results.md`).
+  ![Resolution/deployment frontier](../../results/figures/clean_vs_prior/fig_d_deploy_frontier.png)
+
 - **Provenance:** server runs `~/atli/runs/HR768nc_v11_s{0,1,2}_s2/weights/best.pt` +
   `champ_v11n_768.onnx`, trained 2026-07-08; scripts as of commit `9a1ffbf`.
 - **Known limitations:** blur-fragile (0.777 → 0.531 mAP under 7-px synthetic motion blur) —

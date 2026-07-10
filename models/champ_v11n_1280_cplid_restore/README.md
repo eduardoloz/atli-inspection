@@ -35,6 +35,8 @@ overlap, and this configuration has none).
   | **overall** | **0.802 ± 0.015** | **+0.018** |
 
   Gains land where the restored data lives (Self-Exploded, Normal_Insulators), as predicted.
+  ![Restore effect vs clean champion](../../results/figures/clean_vs_prior/fig_g_cplid_restore.png)
+
 - **Provenance:** server runs `~/atli/runs/CPRest1280_s{0,1,2}_s2/weights/best.pt`, trained
   2026-07-08/09; dataset built by the restore experiment (249 imgs identified via
   `target_join_mapping.json` is_cplid records); scripts as of commit `9a1ffbf`.
