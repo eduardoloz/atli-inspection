@@ -49,6 +49,35 @@ changes only through co-occurrence on the duplicated images. The test set still 
 12 Defective_Damper instances, so per-run DD metrics carry ±0.05–0.08 spread — results are
 always reported as multi-seed means.
 
+![Train split before vs after augmentation, per class](figures/dataset_summary/fig_train_composition.png)
+*(regenerate: `python3 results/figures/generate_dataset_summary.py`)*
+
+## Which image sources went into training
+
+Everything below refers to the current model cards. ✅ = images are in the training set,
+❌ = not used anywhere in the model.
+
+| image source | in train | in val/test | why |
+|---|:---:|:---:|---|
+| ATLI target (`merged_atli_target`, tightened-NI, post-purge) | ✅ | ✅ | the native dataset — all 797 images above come from here |
+| COCO (Microsoft) | ✅* | ❌ | *weights only — models start from COCO-pretrained checkpoints; no COCO images enter the dataset |
+| CPLID (600 public insulator photos) | ❌ / ✅** | ❌ | removed 2026-07-07 (duplicated into the old test set — leakage); **restored to train ONLY in the `champ_v11n_1280_cplid_restore` variant, test stays clean |
+| eduardos-annotated-photos (300 images, 151 Defective_Damper) | ❌ | ❌ | excluded from every current model; largest untapped DD source — leakage-gated train-only merge is the planned experiment |
+| Roboflow Universe damper sets (wangbo, yolov11-tasks — 2,175 imgs) | ❌ | ❌ | tested at every dose, never improved Defective_Damper (domain/label-style mismatch) — rejected |
+| DVDI (public damper dataset) | ❌ | ❌ | rejected before any use: ~50% of it already inside ATLI, harvesting it would leak eval images into train |
+
+## Performance
+
+Effect of the full recipe (×3 oversampling + hi-res 1280 + scale=0.9) vs the plain baseline,
+per class, on the identical untouched 120-image test split (3 seeds each):
+
+![Clean benchmark per-class AP, baseline vs champion](figures/clean_vs_prior/fig_b_perclass_det.png)
+
+The train-only CPLID restore (the ✅** row above) on the same clean test set — the current
+best benchmark model:
+
+![Train-only CPLID restore effect](figures/clean_vs_prior/fig_g_cplid_restore.png)
+
 ## Methods
 
 **No synthetic data is used anywhere.** Two mechanisms only (full explainer:
