@@ -5,7 +5,7 @@ Eduardo-free test set** (156 images / 563 instances). All runs follow the standa
 protocol — stage-1 train 150 ep from COCO-pretrained weights, stage-2 fine-tune 100 ep
 SGD (`lr0=0.00334`, `lrf=0.1535`), 640 px — unless marked otherwise.
 
-> Numbers scraped from `~/atli/eval/*.txt` on `ai.ee.unlv.edu` (2026-06-10).
+> Numbers scraped from `~/atli/eval/*.txt` on `$ATLI_SERVER` (2026-06-10).
 > ⚠️ Not comparable to `benchmark_results.md` — that table uses a different,
 > larger test split (199 img / 867 inst).
 

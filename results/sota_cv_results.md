@@ -1,6 +1,6 @@
 # SOTA Model Comparison — 5-Fold Cross-Validation Results
 
-Generated 2026-07-02. All 15 runs (3 models × 5 folds) completed 2026-07-01 on ai.ee.unlv.edu.
+Generated 2026-07-02. All 15 runs (3 models × 5 folds) completed 2026-07-01 on `$ATLI_SERVER`.
 
 **Setup:** MMDetection 3.3.0, COCO-pretrained weights, trained on the same `Merged_CV_proper`
 folds (70/15/15, val ≠ test) as the YOLO proper-CV sweep — directly comparable numbers.

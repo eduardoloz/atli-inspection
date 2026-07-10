@@ -26,7 +26,7 @@ Availability and annotations **verified against the actual repos on 2026-06-11**
 
 ---
 
-## 1b. Web-search extension (2026-06-11) — papers/datasets NOT in the professor's folder
+## 1b. Web-search extension (2026-06-11) — papers/datasets NOT in the PI's folder
 
 A follow-up web sweep for UAV defective-damper datasets beyond the folder. Roboflow entries verified live via the Universe API.
 

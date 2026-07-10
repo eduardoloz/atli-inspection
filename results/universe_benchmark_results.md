@@ -1,6 +1,6 @@
 # Universe Damper Benchmark — Results (updated 2026-06-12, evening)
 
-20 runs on `ai.ee.unlv.edu`: `{B, Ucap1, Ucap2, Uw, Uto, Ufull} × {v8n, v11n} × {150+100, 300+100*}`,
+20 runs on `$ATLI_SERVER`: `{B, Ucap1, Ucap2, Uw, Uto, Ufull} × {v8n, v11n} × {150+100, 300+100*}`,
 recipe = `run_config_v3.sh` (s1 COCO-init SGD lr0=0.01 → s2 fine-tune lr0=0.00334 → test eval), imgsz 640, batch 32.
 Methods summary: [README.md](README.md). Raw: `test_summary.csv`, `epoch_map.csv`.
 

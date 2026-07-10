@@ -1,7 +1,7 @@
 # ATLI Benchmark Reproduction — Untitled2.ipynb
 
-Re-run from scratch on UNLV `ai.ee.unlv.edu` (8× Quadro RTX 6000) under account
-`LozanoE`, because the original lived in `mazumder`'s private home. Environment
+Re-run from scratch on the UNLV GPU server (`$ATLI_SERVER`, 8× Quadro RTX 6000) under our
+own account, because the original lived in another user's private home. Environment
 rebuilt to match the notebook: **torch 2.6.0+cu118, YOLOv5 (latest), Ultralytics
 8.4.9**. Dataset rebuilt faithfully from `Merging_datasets_of_Eduardo_and_target.ipynb`
 (Roboflow `merged_atli_target` v4 + `eduardos-annotated-photos` v1 → 1343 imgs,

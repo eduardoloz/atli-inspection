@@ -67,11 +67,11 @@ mAP@0.5: **v8n + SGD @ 150ep = 0.707**.
 ## Working on the GPU server (for teammates)
 
 Code is shared through git; **data, runs, and weights stay on the server** (too large to
-commit, fully regenerable). The server is the GPU box `ai.ee.unlv.edu` (8× Quadro RTX
-6000); each person works from their own clone:
+commit, fully regenerable). The server is the GPU box `$ATLI_SERVER` (real address in the
+untracked `.env`, 8× Quadro RTX 6000); each person works from their own clone:
 
 ```bash
-ssh <user>@ai.ee.unlv.edu
+ssh $ATLI_SERVER
 git clone <repo-url> ~/atli-inspection
 cd ~/atli-inspection
 cp .env.example .env && $EDITOR .env   # paste your Roboflow key

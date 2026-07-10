@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Rebuild the torch-2.6 / YOLOv5-v7 / Ultralytics-8.4.9 environment that
-# Untitled2.ipynb ran in, under LozanoE's own home (mazumder's is private).
+# Untitled2.ipynb ran in, under your own home (the original account's home is private).
 set -euo pipefail
 ROOT="$HOME/atli"
 mkdir -p "$ROOT"

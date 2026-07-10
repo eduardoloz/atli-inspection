@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Check the ATLI benchmark sweep status on the UNLV server from your own machine.
 #   Usage:  bash ~/Research/Vegas/check_status.sh
-SRV=${SRV:-LozanoE@ai.ee.unlv.edu}
+SRV=${SRV:-${ATLI_SERVER:?set ATLI_SERVER (see .env) or SRV}}
 ssh -o BatchMode=yes -o ConnectTimeout=10 "$SRV" 'bash -s' <<'EOF'
 cd ~/atli 2>/dev/null || { echo "no ~/atli on server"; exit 0; }
 echo "================== ATLI sweep status =================="

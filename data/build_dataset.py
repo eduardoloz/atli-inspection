@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild Merged_Dataset_Stratified under LozanoE's home, faithfully reproducing
+"""Rebuild Merged_Dataset_Stratified under your own home, faithfully reproducing
 Merging_datasets_of_Eduardo_and_target.ipynb. Hard asserts on instance counts catch
 any Roboflow class-order drift before it can corrupt the benchmark.
 

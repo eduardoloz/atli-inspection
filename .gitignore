@@ -16,7 +16,7 @@ runs/
 # Conference paper (copyrighted — cite it, don't redistribute)
 APET2025_T0388.pdf
 
-# Professor's paper folder (copyrighted PDFs + local data/results dumps)
+# PI's paper folder (copyrighted PDFs + local data/results dumps)
 ATLI/
 *.zip
 

@@ -1,6 +1,6 @@
 # ATLI target (original split) + tightened-NI labels − CPLID — build report
 
-Built 2026-07-07 on `ai.ee.unlv.edu`. Output dataset: `~/atli/ATLI_target_tightNI_noCPLID/`.
+Built 2026-07-07 on `$ATLI_SERVER`. Output dataset: `~/atli/ATLI_target_tightNI_noCPLID/`.
 
 ## Interpretation / decisions
 

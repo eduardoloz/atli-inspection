@@ -1,6 +1,6 @@
 # Universe Damper-Dataset Vetting — Results
 
-**Date:** 2026-06-11 · **Script:** `rebalance/vet_universe_dampers.py` (read-only; ran on `ai.ee.unlv.edu`, data under `~/atli/datasets/vetting/`)
+**Date:** 2026-06-11 · **Script:** `rebalance/vet_universe_dampers.py` (read-only; ran on `$ATLI_SERVER`, data under `~/atli/datasets/vetting/`)
 **Goal:** vet the Roboflow Universe damper-defect datasets (+ DVDI's 300 test images) as sources of **distant/UAV-style `Defective_Damper`** training images for `merged_atli_target` (v4, 772/137/137).
 **Method:** pHash (64-bit, near-dup = Hamming ≤ 8) leakage check vs target val/test and train; cross-set duplicate matrix; normalized-bbox-area analysis of defective boxes; 40 most-zoomed-out defective images per set staged with boxes drawn for manual review.
 

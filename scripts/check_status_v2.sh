@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Check sweep_v2 status on the UNLV server.
 #   Usage:  bash ~/Research/Vegas/check_status_v2.sh
-SRV=${SRV:-LozanoE@ai.ee.unlv.edu}
+SRV=${SRV:-${ATLI_SERVER:?set ATLI_SERVER (see .env) or SRV}}
 ssh -o BatchMode=yes -o ConnectTimeout=10 "$SRV" 'bash -s' <<'EOF'
 cd ~/atli 2>/dev/null || { echo "no ~/atli on server"; exit 0; }
 echo "================== Sweep V2 status =================="

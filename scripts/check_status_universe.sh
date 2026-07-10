@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Status of the universe-damper benchmark sweep on ai.ee.unlv.edu (launched 2026-06-11).
-# Usage: bash scripts/check_status_universe.sh
-ssh LozanoE@ai.ee.unlv.edu '
+# Status of the universe-damper benchmark sweep on the UNLV server (launched 2026-06-11).
+# Usage: bash scripts/check_status_universe.sh   (needs ATLI_SERVER, see .env)
+ssh "${ATLI_SERVER:?set ATLI_SERVER (see .env)}" '
 echo "=== GPUs ==="; nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader
 echo; echo "=== runs (epoch + current val mAP50, from results.csv) ==="
 for d in ~/atli/runs/U*_s[12]; do

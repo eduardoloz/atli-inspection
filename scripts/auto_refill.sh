@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Auto-refiller: keeps queue non-empty with meaningful seeds (champion/baseline/2 candidate-leaders).
 B="$HOME/atli/universe_bench"; QF="$B/queue.txt"; DISP="$B/queue.dispatched"; STOP="$B/STOP_QUEUE"
-OS3=/mnt/sdb/home/LozanoE/atli/Merged_Native_OS3/merged_native_os3.yaml
-OS6=/mnt/sdb/home/LozanoE/atli/Merged_Native_OS6/merged_native_os6.yaml
-NAT=/mnt/sdb/home/LozanoE/atli/Merged_Dataset_Stratified/merged_stratified.yaml
+OS3=$HOME/atli/Merged_Native_OS3/merged_native_os3.yaml
+OS6=$HOME/atli/Merged_Native_OS6/merged_native_os6.yaml
+NAT=$HOME/atli/Merged_Dataset_Stratified/merged_stratified.yaml
 CAP=80; n=30
 echo "[$(date)] auto-refiller started (cap $CAP jobs)"
 while true; do
