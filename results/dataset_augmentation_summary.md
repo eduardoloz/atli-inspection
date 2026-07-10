@@ -83,10 +83,24 @@ best benchmark model:
 **No synthetic data is used anywhere.** Two mechanisms only (full explainer:
 `models/README.md`):
 
-1. **Image-level oversampling (offline, table above).** Rare-class training images are
-   duplicated ×3 on disk. The copies are byte-identical; they become useful because of
-   mechanism 2. Ablation-validated: worth **+0.07 Defective_Damper AP** over a
-   no-oversampling control; ×6 duplication overfits, ×3 is the recipe.
+1. **Image-level oversampling (offline, table above).** To be precise about what gets
+   duplicated — it is **NOT all images, and NOT ×3 of the whole dataset**:
+   - Only **training** images that contain **at least one `Defective_Damper` box** are
+     affected. Every other training image appears exactly once.
+   - Each such image ends up **3 copies total** (the original + 2 byte-identical
+     duplicates), labels copied along with it.
+   - The arithmetic: of the 561 training images, **36** contain a Defective_Damper box;
+     36 × 2 extra copies = 72 added images → **633** training images. That is why other
+     categories grow only slightly in the table above — they gain counts only when they
+     happen to sit on the same photo as a defective damper (e.g. normal dampers on the
+     same tower).
+   - **Val and test are never oversampled** — evaluation always runs on the original,
+     untouched images.
+   The copies are byte-identical; they become useful because of mechanism 2 (each copy is
+   randomly transformed differently every epoch, so the network effectively sees the rare
+   class ~3× as often, each time with a different view). Ablation-validated: worth
+   **+0.07 Defective_Damper AP** over a no-oversampling control; ×6 duplication overfits,
+   ×3 is the recipe.
 2. **Online augmentation (on-the-fly, adds nothing to disk).** Every image is passed through
    a fresh random transform each time it is loaded, so the model never sees identical pixels
    twice across a 250-epoch run, but every pixel originates in a real photo. Exact
@@ -95,12 +109,24 @@ best benchmark model:
    shear 0, perspective 0, flipud 0, fliplr 0.5, mosaic 1.0, close_mosaic 10, mixup 0,
    copy_paste 0, erasing 0.4.
 
-**Training recipe** (the "champion" configuration used by the current model cards):
-YOLOv11n, two-stage transfer learning from COCO weights — stage 1: 150 epochs, SGD,
-lr0 = 0.01, imgsz = 1280, batch 16; stage 2: continue from stage-1 best for 100 epochs at
-lr0 = 0.00334, lrf = 0.1535 (OneCycle) — then evaluated on the untouched 120-image test
-split. Exact reproduction commands, per-class metrics (mean ± std over ≥3 seeds), and
-provenance for each trained model are in the individual cards under `models/<name>/README.md`.
+**Training method, end to end** (the "champion" configuration used by the current model
+cards):
+
+1. **Build the dataset** — the clean 561/116/120 split above.
+2. **Oversample the train split only** — duplicate the 36 Defective_Damper training images
+   to 3 copies each (561 → 633 images). Val/test untouched.
+3. **Stage 1 (transfer learning):** start from COCO-pretrained YOLOv11n weights and train
+   150 epochs on the oversampled train split — SGD, lr0 = 0.01, image size 1280, batch 16.
+   The online augmentation (mechanism 2 above, `scale=0.9`) is applied on the fly to every
+   training batch in this and the next stage; it is never applied at evaluation time.
+4. **Stage 2 (fine-tune):** continue from stage-1's best checkpoint for 100 more epochs at
+   a much lower learning rate (lr0 = 0.00334, lrf = 0.1535, OneCycle).
+5. **Evaluate** on the untouched 120-image test split — original images, no duplication,
+   no augmentation.
+
+Repeated with ≥3 random seeds; all reported numbers are seed means ± std. Exact
+reproduction commands, per-class metrics, and provenance for each trained model are in the
+individual cards under `models/<name>/README.md`.
 
 **Effect of the augmentation** (3 seeds each, identical clean test split): baseline without
 oversampling/hi-res = mAP@0.5 0.736 ± 0.015 (Defective_Damper AP 0.614) → with the recipe
