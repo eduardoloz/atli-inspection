@@ -26,6 +26,7 @@ server / GitHub Releases per the rules above.
 | [champ_v11n_1280_clean](champ_v11n_1280_clean/README.md) | 0.784 ± 0.011 | clean-data champion (reference) |
 | [champ_v11n_768_deploy](champ_v11n_768_deploy/README.md) | 0.769 ± 0.009 | edge/drone deployment model |
 | [obb_champ_v11n_1280](obb_champ_v11n_1280/README.md) | 0.765 ± 0.015 (OBB) | oriented-box variant |
+| [obb_champ_eduardo_1280](obb_champ_eduardo_1280/README.md) | 0.743 ± 0.015 (OBB) | ATLI+eduardo OBB, DD 258→699 |
 
 Benchmark graphs (all on the identical clean 120-image test split, 3 seeds):
 
@@ -76,7 +77,7 @@ Caveat that applies to every card: the test split has only **12 Defective_Damper
 so DD numbers carry ±0.05–0.08 seed spread and are directional; 5-fold CV on the clean pool
 is the planned hardening step.
 
-**eduardos-annotated-photos: NOT included in any current card.** The 300 user-annotated
+**eduardos-annotated-photos: included in `obb_champ_eduardo_1280` (train-only, leak-gated); NOT in the other cards.** The 300 user-annotated
 images (151 Defective_Damper, 819 Normal_Damper, 992 Normal_Insulators, 152 generic
 Defective_Insulators) were part of the old pre-purge 1,343-image merged pool but are excluded
 from the clean dataset and every model above. They are the largest untapped

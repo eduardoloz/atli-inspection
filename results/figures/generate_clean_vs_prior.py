@@ -247,3 +247,30 @@ fig.tight_layout()
 fig.savefig(OUT / "fig_h_blur_fragility.png", dpi=150, bbox_inches="tight")
 
 print("wrote:", *[p.name for p in sorted(OUT.glob("*.png"))], sep="\n  ")
+
+# ── Fig I: eduardo OBB merge — DD count + AP/recall before/after ─────────────
+fig, (axL, axR) = plt.subplots(1, 2, figsize=(11, 4))
+# left: DD training-instance count
+axL.bar([0, 1], [258, 699], 0.5, color=[BLUE, AQUA])
+for xi, v in zip([0, 1], [258, 699]):
+    axL.text(xi, v + 12, str(v), ha="center", va="bottom", fontsize=10, color=INK)
+axL.set_xticks([0, 1], ["ATLI OBB only", "+ eduardo photos"])
+axL.set_ylabel("Defective_Damper training instances (×3 oversampled)")
+axL.set_title("DD training data: +eduardo")
+axL.set_ylim(0, 780); axL.grid(axis="y", color=GRID, linewidth=0.8); axL.set_axisbelow(True)
+# right: DD AP and recall before/after
+groups = ["DD AP@0.5", "DD recall", "overall mAP"]
+before = [0.768, 0.826, 0.765]; after = [0.704, 0.847, 0.743]
+x = np.arange(3); w = 0.36
+axR.bar(x - w/2 - 0.01, before, w, color=BLUE, label="ATLI OBB only",
+        yerr=[0.033, 0, 0.015], error_kw=dict(ecolor=INK2, elinewidth=1, capsize=2))
+axR.bar(x + w/2 + 0.01, after, w, color=AQUA, label="+ eduardo photos",
+        yerr=[0.093, 0, 0.015], error_kw=dict(ecolor=INK2, elinewidth=1, capsize=2))
+for xi, v in zip(x - w/2 - 0.01, before): axR.text(xi, v + 0.02, f"{v:.3f}", ha="center", fontsize=8, color=INK2)
+for xi, v in zip(x + w/2 + 0.01, after): axR.text(xi, v + 0.02, f"{v:.3f}", ha="center", fontsize=8, color=INK)
+axR.set_xticks(x, groups); axR.set_ylim(0.5, 1.0)
+axR.set_title("OBB metrics: recall up, AP down (axis-aligned eduardo dampers)")
+axR.grid(axis="y", color=GRID, linewidth=0.8); axR.set_axisbelow(True)
+axR.legend(frameon=True, facecolor=SURFACE, edgecolor=GRID, loc="upper right", fontsize=8)
+fig.tight_layout()
+fig.savefig(OUT / "fig_i_eduardo_obb.png", dpi=150, bbox_inches="tight")
