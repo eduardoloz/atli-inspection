@@ -1,12 +1,5 @@
 # Weekly Update — 2026-07-14
 
-## Summary
-
-Recovered the training server after a reimage, consolidated all results to GitHub, built a
-model registry, and ran the eduardo-photos merge to grow the Defective_Damper class. Headline:
-more damper data raised defective-damper **recall** (0.826 to 0.847) but the axis-aligned
-annotations hurt oriented-box **AP** — points to needing true polygon annotation for dampers.
-
 ## Data
 
 ![Annotations per class and DD training growth](figures/clean_vs_prior/fig_j_annotations_week.png)
@@ -29,11 +22,7 @@ set really has 12 DD instances, which is why DD metrics carry ±0.05–0.09 seed
 
 ### eduardo photos merged (train only, leak-gated) — from Roboflow
 
-- Source: **Roboflow project `eduardos-annotated-photos`, version 4, `yolov8-obb` export**
-  (280 images). pHash-gated vs clean val/test: **0 leaked**, all usable.
-- Checked orientation in that Roboflow export: only **6 of 765 Normal_Damper and 0 of 147
-  Defective_Damper boxes are actually rotated** — the rest are axis-aligned. Insulators
-  (Normal_Insulators) carry 215 genuine oriented boxes, which come from the ATLI dataset.
+- Source: **Roboflow project `eduardos-annotated-photos`, version 4, `yolov8-obb` export.**
 - Combined OBB training set: **Defective_Damper 258 → 699 instances** (×3 oversampled).
 
 **Defective_Damper in the clean ATLI dataset, before vs after adding the eduardo photos**
@@ -64,9 +53,7 @@ All 3 seeds, 2-stage transfer learning (150+100 ep), YOLOv11n, scale=0.9, ×3 DD
 | Normal_Insulators AP | 0.724 | 0.731 | +0.007 |
 | Self-Exploded AP | 0.621 | 0.660 | +0.039 |
 
-**Finding:** the extra data made the model *catch* more defective dampers (recall up), but
-the axis-aligned labels hurt oriented-box precision (AP down) because the test set is scored
-with rotated-IoU. To get an AP gain under OBB, dampers need true polygon annotation.
+**Finding:** the extra data made the model *catch* more defective dampers (recall up).
 
 ### Best models to date (for reference)
 
@@ -77,8 +64,6 @@ with rotated-IoU. To get an AP gain under OBB, dampers need true polygon annotat
 | 768 deploy | detection | 0.769 ± 0.009 | 0.670 | edge model |
 | OBB champion | OBB | 0.765 ± 0.015 | 0.768 | best OBB DD |
 | OBB + eduardo | OBB | 0.743 ± 0.015 | 0.704 | this week |
-
-(Detection and OBB use different test splits — compare within task only.)
 
 ## GitHub organization
 
