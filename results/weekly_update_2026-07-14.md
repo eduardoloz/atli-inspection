@@ -25,18 +25,22 @@ set really has 12 DD instances, which is why DD metrics carry ±0.05–0.09 seed
 - Source: **Roboflow project `eduardos-annotated-photos`, version 4, `yolov8-obb` export.**
 - Combined OBB training set: **Defective_Damper 258 → 699 instances** (×3 oversampled).
 
-**Defective_Damper in the clean ATLI dataset, before vs after adding the eduardo photos**
-(added to train only; val/test unchanged, so evaluation stays honest):
+**Per-class training data in the clean ATLI dataset, before vs after adding the eduardo photos**
+(added to train only; val/test unchanged):
 
-![Defective_Damper before vs after eduardo photos](figures/clean_vs_prior/fig_k_dd_before_after.png)
+![Per-class before vs after eduardo photos](figures/clean_vs_prior/fig_l_allclass_before_after.png)
 
-| DD instances | clean ATLI (before) | + eduardo (after) |
-|---|---|---|
-| train (unique) | 82 | 232 |
-| train (×3 oversampled) | 246 | 696 |
-| val | 16 | 16 (unchanged) |
-| test | 12 | 12 (unchanged) |
-| **total (unique)** | **110** | **260** |
+| class | clean ATLI (before) | + eduardo (after) | added |
+|---|---|---|---|
+| Normal_Insulators | 604 | 1,535 | +931 |
+| Normal_Damper | 833 | 1,598 | +765 |
+| Defective_Damper | 82 | 229 | +147 |
+| Broken_Insulator | 140 | 275 | +135 |
+| Flashover_Insulator | 302 | 302 | +0 |
+| Self-Exploded_Insulator | 221 | 221 | +0 |
+| Birdnest | 162 | 162 | +0 |
+
+(Train instances, unique. Eduardo photos only contain damper and insulator classes.)
 
 ## Training / benchmarks this week
 
