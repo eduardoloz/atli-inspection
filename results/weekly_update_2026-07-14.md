@@ -27,13 +27,27 @@ instances per class (train+val+test), and this week's Defective_Damper training 
 Note: oversampling is applied to **train only** — val/test keep their true counts (the test
 set really has 12 DD instances, which is why DD metrics carry ±0.05–0.09 seed spread).
 
-### eduardo photos merged (train only, leak-gated)
+### eduardo photos merged (train only, leak-gated) — from Roboflow
 
-- 300 photos pHash-gated vs clean val/test: **0 leaked**, all usable.
-- Pulled the correct `yolov8-obb` Roboflow export (v4). Checked orientation: only **6 of 765
-  Normal_Damper and 0 of 147 Defective_Damper boxes are actually rotated** — the rest are
-  axis-aligned. Insulators (Normal_Insulators) carry 215 genuine oriented boxes from ATLI.
+- Source: **Roboflow project `eduardos-annotated-photos`, version 4, `yolov8-obb` export**
+  (280 images). pHash-gated vs clean val/test: **0 leaked**, all usable.
+- Checked orientation in that Roboflow export: only **6 of 765 Normal_Damper and 0 of 147
+  Defective_Damper boxes are actually rotated** — the rest are axis-aligned. Insulators
+  (Normal_Insulators) carry 215 genuine oriented boxes, which come from the ATLI dataset.
 - Combined OBB training set: **Defective_Damper 258 → 699 instances** (×3 oversampled).
+
+**Defective_Damper in the clean ATLI dataset, before vs after adding the eduardo photos**
+(added to train only; val/test unchanged, so evaluation stays honest):
+
+![Defective_Damper before vs after eduardo photos](figures/clean_vs_prior/fig_k_dd_before_after.png)
+
+| DD instances | clean ATLI (before) | + eduardo (after) |
+|---|---|---|
+| train (unique) | 82 | 232 |
+| train (×3 oversampled) | 246 | 696 |
+| val | 16 | 16 (unchanged) |
+| test | 12 | 12 (unchanged) |
+| **total (unique)** | **110** | **260** |
 
 ## Training / benchmarks this week
 
