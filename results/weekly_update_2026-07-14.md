@@ -112,9 +112,29 @@ Each model folder's `README.md` is a full card: exact reproduction command, data
 with per-class annotation counts, augmentation config, per-class metrics ± std, provenance,
 and whether eduardo's photos were included.
 
+## Growing the Defective_Damper test set (option under review)
+
+The clean test set has only **12 Defective_Damper instances**, which is why DD metrics carry
+±0.05–0.09 seed spread. Eduardo v4 has **147 DD instances on 146 images** (~1 DD/image).
+Including eduardo photos in the test set (leakage-safe: no image in both train and test) would
+raise the DD test count:
+
+| approach | DD test instances | notes |
+|---|---|---|
+| current (eduardo train-only) | 12 | today's noisy baseline |
+| add 15% of eduardo to test | ~34 | keep ATLI splits, split eduardo 70/15/15, add its test share |
+| full combined 70/15/15 re-split | ~39 | re-split the whole ATLI+eduardo pool |
+| 5-fold CV on combined pool | **257 (all, once each)** | every DD instance tested once — best error bars |
+
+Roughly **tripling** the DD test count (12 → ~34–39) would shrink the DD error bar from ±0.08
+to ~±0.03–0.04. Two caveats: (1) a new test set is not comparable to prior numbers (0.784 /
+0.802 / 0.765), so baselines must be re-run on it; (2) for genuinely tight DD bars, 5-fold CV
+on the combined pool (tests all 257 DD instances) beats any fixed ~39-instance test.
+
 ## Next / open
 
+- Decide DD-test strategy: combined 5-fold CV (recommended, best DD error bars) vs a combined
+  70/15/15 re-split with eduardo in all three splits.
 - Run the same eduardo merge in **plain detection mode** (axis-aligned eval) to measure the
   pure "more DD data" effect without the orientation penalty.
 - For true OBB gains: annotate dampers as polygons in an instance-segmentation project.
-- 5-fold CV on the clean pool to tighten the noisy DD numbers (12-instance test set).
