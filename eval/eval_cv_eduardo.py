@@ -15,10 +15,13 @@ CLASSES = ["Birdnest", "Broken_Insulator", "Defective_Damper", "Flashover_Insula
            "Normal_Damper", "Normal_Insulators", "Self-Exploded_Insulator"]
 # key, run-name prefix, task, cv dir, yaml, imgsz
 CONDS = [
-    ("baseline",   "EDU_base_v11",       "detect", "CV_eduardo_det", "base.yaml",  640),
-    ("obbdeg45",   "EDU_obbdeg45_v11",   "obb",    "CV_eduardo_obb", "osall.yaml", 1280),
-    ("obbref",     "EDU_obbref_v11",     "obb",    "CV_eduardo_obb", "osall.yaml", 1280),
-    ("champosall", "EDU_champosall_v11", "detect", "CV_eduardo_det", "osall.yaml", 1280),
+    ("baseline",   "EDU_base_v11",       "detect", "CV_eduardo_det", "base.yaml",        640),
+    ("obbdeg45",   "EDU_obbdeg45_v11",   "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("obbref",     "EDU_obbref_v11",     "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("champosall", "EDU_champosall_v11", "detect", "CV_eduardo_det", "osall.yaml",       1280),
+    ("obbdeg20",   "EDU_obbdeg20_v11",   "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("cplid_obb",  "EDU_cplidobb_v11",   "obb",    "CV_eduardo_obb", "osall_cplid.yaml", 1280),
+    ("cplid_det",  "EDU_cpliddet_v11",   "detect", "CV_eduardo_det", "osall_cplid.yaml", 1280),
 ]
 DEVICE = 3
 
