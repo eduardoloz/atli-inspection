@@ -22,6 +22,14 @@ CONDS = [
     ("obbdeg20",   "EDU_obbdeg20_v11",   "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
     ("cplid_obb",  "EDU_cplidobb_v11",   "obb",    "CV_eduardo_obb", "osall_cplid.yaml", 1280),
     ("cplid_det",  "EDU_cpliddet_v11",   "detect", "CV_eduardo_det", "osall_cplid.yaml", 1280),
+    ("deg15",      "EDU_deg15_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("deg25",      "EDU_deg25_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("deg30",      "EDU_deg30_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("shear",      "EDU_shear_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("v5base",     "EDU_v5base",         "detect", "CV_eduardo_det", "base.yaml",        640),
+    ("v8base",     "EDU_v8base",         "detect", "CV_eduardo_det", "base.yaml",        640),
+    ("v5champ",    "EDU_v5champ",        "detect", "CV_eduardo_det", "osall.yaml",       1280),
+    ("v8obbchamp", "EDU_v8obbchamp",     "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
 ]
 DEVICE = 3
 
@@ -52,6 +60,9 @@ def ms(folds, field):
 
 results = {}
 for key, name, task, cvdir, yamlname, imz in CONDS:
+    if not (ROOT / "runs" / f"{name}_f0_s2" / "weights" / "best.pt").exists():
+        print(f"\n=== {key}: SKIP (not trained yet) ===")
+        continue
     folds = [ev(name, task, cvdir, yamlname, imz, k) for k in range(5)]
     results[key] = {"task": task, "folds": folds}
     print(f"\n=== {key} ({task}, {imz}) ===")
