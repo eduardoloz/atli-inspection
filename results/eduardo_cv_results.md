@@ -8,8 +8,8 @@ Metrics are **mean ± std across the 5 folds** (± shown on AP@0.5 and overall m
 
 Shared recipe: **YOLOv11n**, **2-stage transfer learning** — Stage 1 = 150 ep from the
 pretrained checkpoint (SGD `lr0=0.01`); Stage 2 = 100 ep fine-tune (SGD `lr0=0.00334`,
-`lrf=0.1535`); batch 16. **Oversampling & augmentation are train-split only** — val/test are
-untouched originals. Group-aware folds (eduardos' 21 dup-clusters kept whole, 0 span a split).
+`lrf=0.1535`); batch 16. **Oversampling & augmentation are train-only** (val/test untouched);
+group-aware folds keep every duplicate cluster within a single split.
 
 | # | experiment | task | init | imgsz | train split | aug override |
 |---|---|---|---|--:|---|---|
@@ -93,14 +93,3 @@ Pool = 974 images (796 no-CPLID ATLI + 178 eduardos).
 | Self-Exploded_Insulator | 0.531 | 0.714 | 0.682 | 0.719 | 0.693 |
 | **overall (mean R)** | **0.609** | **0.727** | **0.731** | **0.750** | **0.695** |
 
-## Takeaways
-- **★ Best = OBB + deg20 (mAP 0.780, DD AP 0.721, DD recall 0.670)** — a *milder* rotation is
-  the sweet spot: 20° helps, 45° hurts. deg20 beats the no-rotation OBB (0.759) and deg45
-  (0.758) on mAP by **+0.02**, and lifts Defective_Damper AP by **+0.05 / +0.07** respectively.
-- All 1280 + oversampled champions beat the 640 baseline by **+0.08–0.11 mAP**; the biggest
-  per-class jumps are **Defective_Damper (0.501 → 0.721, +0.22)** and Self-Exploded.
-- **OBB ≥ detection** here (OBB arms 0.758–0.780 vs detection champion 0.749).
-- Defective_Damper is scored on **24–36 test instances/fold** (vs 12 in the old single split),
-  so these numbers are far more stable — though DD still carries the widest fold-to-fold std.
-- New pool = fresh benchmark (eduardos in val/test); **not** directly comparable to the prior
-  clean-split 0.784 / 0.802 numbers.
