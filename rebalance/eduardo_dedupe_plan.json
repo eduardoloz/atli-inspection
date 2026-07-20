@@ -1,0 +1,2187 @@
+{
+  "_readme": "Dedupe plan for tl-target-set-focus/eduardos-annotated-photos, audited 2026-07-19. Executed by rebalance/dedupe_eduardos.py (dry-run by default). Keeper policy: the polygon-annotated copy first (tight hand-drawn 'orig'), tie-broken by smallest mean normalized bbox area. To override a choice, swap ids between 'keeper' and 'delete' in that group before running. pHashes are 64-bit DCT hashes recomputed by the script from the hosted originals before any deletion (mismatch => image skipped). Groups flagged 'label_conflict' continue the 2026-07-10 REVIEW backlog: copies carry different real defect labels, so the script deletes them only after the keeper's live annotation covers 'defects_missing_from_keeper' (merge the boxes onto the keeper in the Roboflow UI first), or set 'accept_keeper_as_is': true to override.",
+  "workspace": "tl-target-set-focus",
+  "project": "eduardos-annotated-photos",
+  "audit_date": "2026-07-19",
+  "backup_version": 5,
+  "backup_version_note": "generated 2026-07-19 (UI name pending rename): auto-orient only, no aug, 201 imgs",
+  "expected_project_images_before": 201,
+  "expected_project_images_after": 129,
+  "n_groups": 39,
+  "n_delete": 72,
+  "n_label_conflict_groups": 21,
+  "groups": [
+    {
+      "group": 1,
+      "size": 8,
+      "keeper": "tR3pJTnPLZEOqi0f3zLj",
+      "delete": [
+        "T0VnV1gF2M4T9OMFSW3F",
+        "yBIhY0qTYFPoedch7POC",
+        "LzmzfOkFb4H3IcAemfUz",
+        "uYx5nqKdk7n3SelPB3cG",
+        "x6e7zOHf75QAyUpgQ6N8",
+        "u8FlLw7jaoEgHiBAszGC",
+        "eDgM8xg6400SrolXFqlU"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "tR3pJTnPLZEOqi0f3zLj",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/tR3pJTnPLZEOqi0f3zLj/original.jpg",
+          "phash": "12acf1ae12653b96",
+          "dhash": "bebebbacfc19849c",
+          "n_polygons": 5,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.002845876131254069,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 2
+          }
+        },
+        {
+          "id": "T0VnV1gF2M4T9OMFSW3F",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/T0VnV1gF2M4T9OMFSW3F/original.jpg",
+          "phash": "16acf0ae96653b14",
+          "dhash": "be3f3bf47c0da69c",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.004710756673177083,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "yBIhY0qTYFPoedch7POC",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/yBIhY0qTYFPoedch7POC/original.jpg",
+          "phash": "16acf0ae96653b14",
+          "dhash": "be3f3bf47c0da69c",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.0047479534505208325,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "LzmzfOkFb4H3IcAemfUz",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/LzmzfOkFb4H3IcAemfUz/original.jpg",
+          "phash": "16acf0ae96653b14",
+          "dhash": "bebf3bf47c0da69c",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.004996488037109376,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 2
+          }
+        },
+        {
+          "id": "uYx5nqKdk7n3SelPB3cG",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/uYx5nqKdk7n3SelPB3cG/original.jpg",
+          "phash": "12acf1ae12653b96",
+          "dhash": "bebfbbacfc09849c",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.005140904017857143,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "x6e7zOHf75QAyUpgQ6N8",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/x6e7zOHf75QAyUpgQ6N8/original.jpg",
+          "phash": "16acf0ae96457b14",
+          "dhash": "bebfbbf47c0da69c",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.005565592447916667,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "u8FlLw7jaoEgHiBAszGC",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/u8FlLw7jaoEgHiBAszGC/original.jpg",
+          "phash": "12acf1ae92653b16",
+          "dhash": "be3f3bacfc19ac9c",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.005775553385416667,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "eDgM8xg6400SrolXFqlU",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/eDgM8xg6400SrolXFqlU/original.jpg",
+          "phash": "16acf0ae96653b14",
+          "dhash": "bc303bf47c0da69c",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.0071337890625,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 2,
+      "size": 6,
+      "keeper": "8qb7BV8q2lLwEK0umzf7",
+      "delete": [
+        "9h5O9p3C8mOw2uMzZ2RP",
+        "UZ1DgQFN5QrylX7Hypd9",
+        "xkLHIRYcELHTIUEJSGj1",
+        "DN94ryXq5oVQpIopuYhM",
+        "TJB8gulZBwN7wzGjaDir"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "8qb7BV8q2lLwEK0umzf7",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/8qb7BV8q2lLwEK0umzf7/original.jpg",
+          "phash": "0abebf805c59236c",
+          "dhash": "2c2f6db9a5e9b2ba",
+          "n_polygons": 4,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.007692034069639369,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "9h5O9p3C8mOw2uMzZ2RP",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/9h5O9p3C8mOw2uMzZ2RP/original.jpg",
+          "phash": "0ebebd80c65d5322",
+          "dhash": "7e3f69a9a5f8b2ba",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.0061096191406250005,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "UZ1DgQFN5QrylX7Hypd9",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/UZ1DgQFN5QrylX7Hypd9/original.jpg",
+          "phash": "08bebd804659736e",
+          "dhash": "3e3f3da9a5a8b3ba",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.00683135986328125,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "xkLHIRYcELHTIUEJSGj1",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/xkLHIRYcELHTIUEJSGj1/original.jpg",
+          "phash": "0cbebd80c6595363",
+          "dhash": "7e3f69a1a5f8b2ba",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.007097648111979166,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "DN94ryXq5oVQpIopuYhM",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/DN94ryXq5oVQpIopuYhM/original.jpg",
+          "phash": "08febd804659332f",
+          "dhash": "2c377da9a5a8b3ba",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.007329711914062499,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 3
+          }
+        },
+        {
+          "id": "TJB8gulZBwN7wzGjaDir",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/TJB8gulZBwN7wzGjaDir/original.jpg",
+          "phash": "1abfbd805851636c",
+          "dhash": "3e2f6da8a5adb8aa",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.00751953125,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 3
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 3,
+      "size": 5,
+      "keeper": "MDCoNflKrpm6ZSA3XxsM",
+      "delete": [
+        "nxlxdlntplp4e0dvuFJR",
+        "6hj75E3E0S6lTyvHUkzK",
+        "ks4IadecsLX4HZSn4mTw",
+        "CjgEPldpk6BmjPQ6xgg6"
+      ],
+      "flags": [
+        "multiple_polygon_copies",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "MDCoNflKrpm6ZSA3XxsM",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/MDCoNflKrpm6ZSA3XxsM/original.jpg",
+          "phash": "0de3bc4fc12c5a15",
+          "dhash": "d2739ac2c26367f2",
+          "n_polygons": 7,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.0036077166663492843,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 2,
+            "Normal_Insulators": 6
+          }
+        },
+        {
+          "id": "nxlxdlntplp4e0dvuFJR",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/nxlxdlntplp4e0dvuFJR/original.jpg",
+          "phash": "0de3bd4ec12c7215",
+          "dhash": "e2339ac2e26377f2",
+          "n_polygons": 5,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.004974685524265137,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 5
+          }
+        },
+        {
+          "id": "6hj75E3E0S6lTyvHUkzK",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/6hj75E3E0S6lTyvHUkzK/original.jpg",
+          "phash": "0de3bc4fc12c5a15",
+          "dhash": "f2739ac2c26367f2",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.007628173828124999,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 6,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "ks4IadecsLX4HZSn4mTw",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/ks4IadecsLX4HZSn4mTw/original.jpg",
+          "phash": "0de3bc4fc12c5a15",
+          "dhash": "e2739ac2c26367f2",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.007628173828124999,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 6,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "CjgEPldpk6BmjPQ6xgg6",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/CjgEPldpk6BmjPQ6xgg6/original.jpg",
+          "phash": "0de3bc4fc12c5a15",
+          "dhash": "e2739ac2c26367f2",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.007628173828124999,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 6,
+            "Normal_Damper": 3
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 4,
+      "size": 5,
+      "keeper": "9h9Jmc3U1I2GwkOsDWY7",
+      "delete": [
+        "E7vK1tMoCHk0w4UMXdIK",
+        "JQ6egph0XqgTiGpVTZUh",
+        "QdJ7LdOw0D6wmFGuM9gQ",
+        "xxVmTrFhxzP0yFpQPvAV"
+      ],
+      "flags": [
+        "multiple_polygon_copies",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "9h9Jmc3U1I2GwkOsDWY7",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/9h9Jmc3U1I2GwkOsDWY7/original.jpg",
+          "phash": "18a5d0bf45641b8f",
+          "dhash": "30b0f3b27339b0d9",
+          "n_polygons": 7,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.002391938427548218,
+          "classes": {
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4,
+            "Defective_Damper": 1
+          }
+        },
+        {
+          "id": "E7vK1tMoCHk0w4UMXdIK",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/E7vK1tMoCHk0w4UMXdIK/original.jpg",
+          "phash": "18add2bf45641b0b",
+          "dhash": "9090faa67339f9d9",
+          "n_polygons": 6,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.0022552847744964598,
+          "classes": {
+            "Normal_Insulators": 3,
+            "Defective_Damper": 1,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "JQ6egph0XqgTiGpVTZUh",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/JQ6egph0XqgTiGpVTZUh/original.jpg",
+          "phash": "18add2bf45641b0b",
+          "dhash": "9090faa67339f9d9",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.002543788364955357,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 2
+          }
+        },
+        {
+          "id": "QdJ7LdOw0D6wmFGuM9gQ",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/QdJ7LdOw0D6wmFGuM9gQ/original.jpg",
+          "phash": "18add0bf8764170b",
+          "dhash": "b090faa27339b1d9",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.003950892857142857,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 3
+          }
+        },
+        {
+          "id": "xxVmTrFhxzP0yFpQPvAV",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/xxVmTrFhxzP0yFpQPvAV/original.jpg",
+          "phash": "18edd2bf40540be5",
+          "dhash": "3030f2b2f77934d9",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.0053955078124999995,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 3
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Broken_Insulator"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 5,
+      "size": 4,
+      "keeper": "XpL8G7yrqDD4aUjRYHz1",
+      "delete": [
+        "tUtZg1AwJjXWDSDWKZln",
+        "LCg21RHkWaoSp5XFu0fn",
+        "oC4mgSYSJaOcgHlRzfux"
+      ],
+      "flags": [
+        "multiple_polygon_copies",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "XpL8G7yrqDD4aUjRYHz1",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/XpL8G7yrqDD4aUjRYHz1/original.jpg",
+          "phash": "5ffd308f070d07c0",
+          "dhash": "323070706060f0f0",
+          "n_polygons": 3,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.005692296506274415,
+          "classes": {
+            "Normal_Insulators": 4,
+            "Broken_Insulator": 1,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "tUtZg1AwJjXWDSDWKZln",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/tUtZg1AwJjXWDSDWKZln/original.jpg",
+          "phash": "4fe174981f83882f",
+          "dhash": "6064606060e06064",
+          "n_polygons": 3,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.006187433019731988,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "LCg21RHkWaoSp5XFu0fn",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/LCg21RHkWaoSp5XFu0fn/original.jpg",
+          "phash": "0ffc71984ec01c1f",
+          "dhash": "6070706060707060",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.00592771376953125,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Defective_Damper": 1,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "oC4mgSYSJaOcgHlRzfux",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/oC4mgSYSJaOcgHlRzfux/original.jpg",
+          "phash": "4ffc1c9e1b986490",
+          "dhash": "70606460606070f0",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.006987458170572917,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Normal_Damper": 3,
+            "Broken_Insulator": 1
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 6,
+      "size": 4,
+      "keeper": "V5SejL9WTuLd9T5dV52V",
+      "delete": [
+        "zorqyuCS1kb53IQNy4SZ",
+        "jZ9Nc9hfIVpk4An7PoLS",
+        "Sqg2ucCf6d5Wp5AFXvHv"
+      ],
+      "flags": [
+        "multiple_polygon_copies",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "V5SejL9WTuLd9T5dV52V",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/V5SejL9WTuLd9T5dV52V/original.jpg",
+          "phash": "47fef0a783944312",
+          "dhash": "0c06206063e3e6c6",
+          "n_polygons": 8,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.0038098370763888886,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 5
+          }
+        },
+        {
+          "id": "zorqyuCS1kb53IQNy4SZ",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/zorqyuCS1kb53IQNy4SZ/original.jpg",
+          "phash": "45fbf0a38396c152",
+          "dhash": "0c122061e3e2e6c6",
+          "n_polygons": 8,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.004188815875301107,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "jZ9Nc9hfIVpk4An7PoLS",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/jZ9Nc9hfIVpk4An7PoLS/original.jpg",
+          "phash": "4ef6e4ae8694c219",
+          "dhash": "0406206061e3e2e6",
+          "n_polygons": 0,
+          "n_boxes": 12,
+          "mean_bbox_area": 0.0058107503255208325,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 6,
+            "Normal_Damper": 5
+          }
+        },
+        {
+          "id": "Sqg2ucCf6d5Wp5AFXvHv",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Sqg2ucCf6d5Wp5AFXvHv/original.jpg",
+          "phash": "47fbf1839314681c",
+          "dhash": "080a2060e3e3e6c6",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.00832900132533482,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 2
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 7,
+      "size": 4,
+      "keeper": "87zZTs30jiFCVRMfThbw",
+      "delete": [
+        "5n30s9tt5KDp2dD4Ie9R",
+        "9OStwvcpNmcXvSujVHMD",
+        "Ry3mkwxDihCHTkPl2j75"
+      ],
+      "flags": [
+        "no_polygon_copy",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "87zZTs30jiFCVRMfThbw",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/87zZTs30jiFCVRMfThbw/original.jpg",
+          "phash": "6ab5c981665e0d72",
+          "dhash": "0303726cede3e1e3",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.007929551757812498,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "5n30s9tt5KDp2dD4Ie9R",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/5n30s9tt5KDp2dD4Ie9R/original.jpg",
+          "phash": "6ab5c981e65e0972",
+          "dhash": "d303326ccde3e1e3",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.00793178013392857,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 3
+          }
+        },
+        {
+          "id": "9OStwvcpNmcXvSujVHMD",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/9OStwvcpNmcXvSujVHMD/original.jpg",
+          "phash": "6ab5c981a65e0d72",
+          "dhash": "0203326ccde3e1e3",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.008280552455357143,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "Ry3mkwxDihCHTkPl2j75",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Ry3mkwxDihCHTkPl2j75/original.jpg",
+          "phash": "6bf5c980e61d0d52",
+          "dhash": "0303326e8de3e3e1",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.00858251953125,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 6
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 8,
+      "size": 4,
+      "keeper": "jh0PyeaUsdQ2tZSCsG89",
+      "delete": [
+        "LuqRI1XWwQOFKm8xvClY",
+        "MlVGtqbdbfTMenkA6HtA",
+        "fEmRRbJCyXKCbaznop5s"
+      ],
+      "flags": [
+        "no_polygon_copy",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "jh0PyeaUsdQ2tZSCsG89",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/jh0PyeaUsdQ2tZSCsG89/original.jpg",
+          "phash": "0cffc5c0bccc0571",
+          "dhash": "06076c338ef6f3fa",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.006200086805555556,
+          "classes": {
+            "Normal_Damper": 3,
+            "Normal_Insulators": 5,
+            "Defective_Damper": 1
+          }
+        },
+        {
+          "id": "LuqRI1XWwQOFKm8xvClY",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/LuqRI1XWwQOFKm8xvClY/original.jpg",
+          "phash": "0cffc5c1bcc80563",
+          "dhash": "02076431cff2f3fa",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.006200086805555557,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 5
+          }
+        },
+        {
+          "id": "MlVGtqbdbfTMenkA6HtA",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/MlVGtqbdbfTMenkA6HtA/original.jpg",
+          "phash": "0cff81c1bed80563",
+          "dhash": "02076635cff6f3f2",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.006200086805555557,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 3,
+            "Normal_Insulators": 5
+          }
+        },
+        {
+          "id": "fEmRRbJCyXKCbaznop5s",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/fEmRRbJCyXKCbaznop5s/original.jpg",
+          "phash": "0cffc5c1bcc80563",
+          "dhash": "02076431cff2f3fa",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.006350972412109375,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 4
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Broken_Insulator"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 9,
+      "size": 4,
+      "keeper": "lD6tbFgtGQepPK9dXzCV",
+      "delete": [
+        "E0jGKn27n2TdbBtcqTX8",
+        "b1TOlEG21lgLokOcI32F",
+        "K9033sE4CfZGSVN6yRyQ"
+      ],
+      "flags": [],
+      "members": [
+        {
+          "id": "lD6tbFgtGQepPK9dXzCV",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/lD6tbFgtGQepPK9dXzCV/original.jpg",
+          "phash": "44bbd4a74b406e56",
+          "dhash": "b090b3db54d694a4",
+          "n_polygons": 3,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.004088368986322022,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "E0jGKn27n2TdbBtcqTX8",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/E0jGKn27n2TdbBtcqTX8/original.jpg",
+          "phash": "44bbd4af4b516c14",
+          "dhash": "b0b0b2db557694a4",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.004232661315917968,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "b1TOlEG21lgLokOcI32F",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/b1TOlEG21lgLokOcI32F/original.jpg",
+          "phash": "41bbd4a54f506e46",
+          "dhash": "d2d8b3db56d694a4",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.006639932250976564,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "K9033sE4CfZGSVN6yRyQ",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/K9033sE4CfZGSVN6yRyQ/original.jpg",
+          "phash": "41bbd4a50f58694e",
+          "dhash": "9095b3db56d6b4a4",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.00921323291015625,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 2
+          }
+        }
+      ]
+    },
+    {
+      "group": 10,
+      "size": 3,
+      "keeper": "yEcW2uQPORF4KlUMxKsR",
+      "delete": [
+        "NbE0mDjQ4gP9hyktqDDK",
+        "Xp6fuaXvM3S2oAG9WbMq"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "yEcW2uQPORF4KlUMxKsR",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/yEcW2uQPORF4KlUMxKsR/original.jpg",
+          "phash": "19ae6596508e57b8",
+          "dhash": "32323030b838b090",
+          "n_polygons": 0,
+          "n_boxes": 11,
+          "mean_bbox_area": 0.003354187966086648,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 5,
+            "Normal_Insulators": 5
+          }
+        },
+        {
+          "id": "NbE0mDjQ4gP9hyktqDDK",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/NbE0mDjQ4gP9hyktqDDK/original.jpg",
+          "phash": "19ae7496508e53bc",
+          "dhash": "30307030b878b090",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.0038105401123046875,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 5
+          }
+        },
+        {
+          "id": "Xp6fuaXvM3S2oAG9WbMq",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Xp6fuaXvM3S2oAG9WbMq/original.jpg",
+          "phash": "5c8f609c619c66d3",
+          "dhash": "7070703070303090",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.005326027180989584,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 3
+          }
+        }
+      ]
+    },
+    {
+      "group": 11,
+      "size": 3,
+      "keeper": "CTJow6F2wauWRC5VKTxd",
+      "delete": [
+        "MbgPqG8XIh3v9G6Yehiu",
+        "XRw0bcKmsdsPP3dq3JR6"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "CTJow6F2wauWRC5VKTxd",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/CTJow6F2wauWRC5VKTxd/original.jpg",
+          "phash": "4cb59ab54936414f",
+          "dhash": "b2370496e22a65b1",
+          "n_polygons": 6,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.004235861100760323,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "MbgPqG8XIh3v9G6Yehiu",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/MbgPqG8XIh3v9G6Yehiu/original.jpg",
+          "phash": "4cb59a954936494f",
+          "dhash": "b23744d6e22a65b1",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.009783611188616073,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 2,
+            "Normal_Insulators": 4
+          }
+        },
+        {
+          "id": "XRw0bcKmsdsPP3dq3JR6",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/XRw0bcKmsdsPP3dq3JR6/original.jpg",
+          "phash": "4cb5dab54936414e",
+          "dhash": "b2334496e22a65b1",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.009891183035714287,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 2,
+            "Normal_Insulators": 4
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 12,
+      "size": 3,
+      "keeper": "B53HprrW09uSpfl29q4w",
+      "delete": [
+        "1jpmsMC6ByKj1M2u5cgT",
+        "ph0cRdzJDhoih884hmf4"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "B53HprrW09uSpfl29q4w",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/B53HprrW09uSpfl29q4w/original.jpg",
+          "phash": "6596ed92330d0c5b",
+          "dhash": "0c0f725ac8c7c3c3",
+          "n_polygons": 9,
+          "n_boxes": 11,
+          "mean_bbox_area": 0.0028964520620361326,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 6
+          }
+        },
+        {
+          "id": "1jpmsMC6ByKj1M2u5cgT",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/1jpmsMC6ByKj1M2u5cgT/original.jpg",
+          "phash": "61d6e692b30d0c5b",
+          "dhash": "0c0c725ac8c7c3c3",
+          "n_polygons": 0,
+          "n_boxes": 11,
+          "mean_bbox_area": 0.005206588911576704,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 6
+          }
+        },
+        {
+          "id": "ph0cRdzJDhoih884hmf4",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/ph0cRdzJDhoih884hmf4/original.jpg",
+          "phash": "61d6e692b30d0c5b",
+          "dhash": "0c0c721ac8c7c3c3",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.008137451171875,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 5,
+            "Normal_Insulators": 4
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 13,
+      "size": 3,
+      "keeper": "fj73EkvQ3Rc5TIDaknFA",
+      "delete": [
+        "hNC3MpHiaMBirl8gTTK2",
+        "soYKwJZfv0TO51oy1cUJ"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "fj73EkvQ3Rc5TIDaknFA",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/fj73EkvQ3Rc5TIDaknFA/original.jpg",
+          "phash": "4dba948758516e17",
+          "dhash": "e2d223d3d646d2b6",
+          "n_polygons": 1,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.009058529452604167,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Defective_Damper": 1
+          }
+        },
+        {
+          "id": "hNC3MpHiaMBirl8gTTK2",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/hNC3MpHiaMBirl8gTTK2/original.jpg",
+          "phash": "45bad4a758516e16",
+          "dhash": "f2d223d3d646d2b6",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.007159249441964286,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 1
+          }
+        },
+        {
+          "id": "soYKwJZfv0TO51oy1cUJ",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/soYKwJZfv0TO51oy1cUJ/original.jpg",
+          "phash": "4deaf48709112e6e",
+          "dhash": "f2c323d353c2d2b2",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.009031031439887151,
+          "classes": {
+            "Normal_Damper": 3,
+            "Normal_Insulators": 5,
+            "Broken_Insulator": 1
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Broken_Insulator"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 14,
+      "size": 3,
+      "keeper": "MFQ1GRHXlCzbYKcWfeUl",
+      "delete": [
+        "EKhjU4T224L8sE12o85p",
+        "Ike92KDilO6xVSEg53XT"
+      ],
+      "flags": [],
+      "members": [
+        {
+          "id": "MFQ1GRHXlCzbYKcWfeUl",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/MFQ1GRHXlCzbYKcWfeUl/original.jpg",
+          "phash": "55e887fe18073c52",
+          "dhash": "e2c210b230a2c8d0",
+          "n_polygons": 3,
+          "n_boxes": 5,
+          "mean_bbox_area": 0.00478797381658203,
+          "classes": {
+            "Normal_Insulators": 2,
+            "Defective_Damper": 1,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "EKhjU4T224L8sE12o85p",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/EKhjU4T224L8sE12o85p/original.jpg",
+          "phash": "5de887fc11073856",
+          "dhash": "e2e3109a90156850",
+          "n_polygons": 0,
+          "n_boxes": 5,
+          "mean_bbox_area": 0.00605615234375,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 1
+          }
+        },
+        {
+          "id": "Ike92KDilO6xVSEg53XT",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Ike92KDilO6xVSEg53XT/original.jpg",
+          "phash": "5de887f611073856",
+          "dhash": "d2e2109210b46850",
+          "n_polygons": 0,
+          "n_boxes": 4,
+          "mean_bbox_area": 0.01103759765625,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 1
+          }
+        }
+      ]
+    },
+    {
+      "group": 15,
+      "size": 3,
+      "keeper": "cHtc1LgXqjxO5VxDG0xr",
+      "delete": [
+        "GPqM85qAABPozf8RmoTy",
+        "OOtLeGKj1wCOxIoWz7ra"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "cHtc1LgXqjxO5VxDG0xr",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/cHtc1LgXqjxO5VxDG0xr/original.jpg",
+          "phash": "3cdbe498e64d1264",
+          "dhash": "b038f4721f989686",
+          "n_polygons": 4,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.004545193855388532,
+          "classes": {
+            "Normal_Insulators": 3,
+            "Normal_Damper": 3,
+            "Defective_Damper": 1
+          }
+        },
+        {
+          "id": "GPqM85qAABPozf8RmoTy",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/GPqM85qAABPozf8RmoTy/original.jpg",
+          "phash": "3cdbe498e64d1264",
+          "dhash": "b038f47a3f989686",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.0045275878906249995,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "OOtLeGKj1wCOxIoWz7ra",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/OOtLeGKj1wCOxIoWz7ra/original.jpg",
+          "phash": "3cdbe498e64d1264",
+          "dhash": "b038f47a1f989686",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.004577648817274306,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 6
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Broken_Insulator"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 16,
+      "size": 3,
+      "keeper": "drjKSUy37TJTxTjv9T7r",
+      "delete": [
+        "Rjm092E6RMhgkjgNAn4R",
+        "lKUMAw6LsXl1QSAIfFex"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "drjKSUy37TJTxTjv9T7r",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/drjKSUy37TJTxTjv9T7r/original.jpg",
+          "phash": "558e8f955428539e",
+          "dhash": "74686182a8c816e0",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.005569661458333333,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "Rjm092E6RMhgkjgNAn4R",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Rjm092E6RMhgkjgNAn4R/original.jpg",
+          "phash": "558e8f915429539e",
+          "dhash": "746a6182a8c816e0",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.005569661458333333,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "lKUMAw6LsXl1QSAIfFex",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/lKUMAw6LsXl1QSAIfFex/original.jpg",
+          "phash": "55aeae914428d39e",
+          "dhash": "64686182a8c816e0",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.005569661458333333,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2
+          }
+        }
+      ]
+    },
+    {
+      "group": 17,
+      "size": 2,
+      "keeper": "lCpNZGNEJIGPzZpYliX3",
+      "delete": [
+        "WwNNbFAJycgnVKIGJV6T"
+      ],
+      "flags": [
+        "no_polygon_copy",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "lCpNZGNEJIGPzZpYliX3",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/lCpNZGNEJIGPzZpYliX3/original.jpg",
+          "phash": "3c32e1e0992c1f1f",
+          "dhash": "9e1d3c366667e6f2",
+          "n_polygons": 0,
+          "n_boxes": 13,
+          "mean_bbox_area": 0.004734060922475961,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 7
+          }
+        },
+        {
+          "id": "WwNNbFAJycgnVKIGJV6T",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/WwNNbFAJycgnVKIGJV6T/original.jpg",
+          "phash": "3c32f1ac8c3613f4",
+          "dhash": "1e1d1c2e266756f2",
+          "n_polygons": 0,
+          "n_boxes": 13,
+          "mean_bbox_area": 0.004917367788461538,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 6,
+            "Normal_Insulators": 6
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 18,
+      "size": 2,
+      "keeper": "lwwEQxN5Raep8k4Z828Z",
+      "delete": [
+        "jKLt2kPewGzOjJ5n5kIw"
+      ],
+      "flags": [],
+      "members": [
+        {
+          "id": "lwwEQxN5Raep8k4Z828Z",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/lwwEQxN5Raep8k4Z828Z/original.jpg",
+          "phash": "3d8e07913838367e",
+          "dhash": "b840243090941808",
+          "n_polygons": 7,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.005852988241503906,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "jKLt2kPewGzOjJ5n5kIw",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/jKLt2kPewGzOjJ5n5kIw/original.jpg",
+          "phash": "398e0731303866ff",
+          "dhash": "9858243090541808",
+          "n_polygons": 0,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.006144138647460938,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 4
+          }
+        }
+      ]
+    },
+    {
+      "group": 19,
+      "size": 2,
+      "keeper": "wfULgoBtCU5lr6m2zeaw",
+      "delete": [
+        "EUiphmeofuD1NND6VFUz"
+      ],
+      "flags": [],
+      "members": [
+        {
+          "id": "wfULgoBtCU5lr6m2zeaw",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/wfULgoBtCU5lr6m2zeaw/original.jpg",
+          "phash": "47d05f81fefd0044",
+          "dhash": "c064e400c8d85060",
+          "n_polygons": 3,
+          "n_boxes": 10,
+          "mean_bbox_area": 0.006477272130595703,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "EUiphmeofuD1NND6VFUz",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/EUiphmeofuD1NND6VFUz/original.jpg",
+          "phash": "45d41f81ffbd0046",
+          "dhash": "c0e0e400c8d0d060",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.0056519625651041665,
+          "classes": {
+            "Normal_Damper": 3,
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5
+          }
+        }
+      ]
+    },
+    {
+      "group": 20,
+      "size": 2,
+      "keeper": "jftYgjOtiAR2KVAvYi3i",
+      "delete": [
+        "Ll4sPMUpN9n46KRfp95g"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "jftYgjOtiAR2KVAvYi3i",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/jftYgjOtiAR2KVAvYi3i/original.jpg",
+          "phash": "6da5d2b74934501e",
+          "dhash": "cc4f929663826491",
+          "n_polygons": 3,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.006795194720632935,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "Ll4sPMUpN9n46KRfp95g",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Ll4sPMUpN9n46KRfp95g/original.jpg",
+          "phash": "6ca5d6a54b35501e",
+          "dhash": "e467909263822481",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.010476074218750001,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 3
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 21,
+      "size": 2,
+      "keeper": "RdShrorkOfvFpy9Kz6gU",
+      "delete": [
+        "BBjKvLqD0NAWxhjnPWPP"
+      ],
+      "flags": [
+        "multiple_polygon_copies"
+      ],
+      "members": [
+        {
+          "id": "RdShrorkOfvFpy9Kz6gU",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/RdShrorkOfvFpy9Kz6gU/original.jpg",
+          "phash": "1de1818eaf68685b",
+          "dhash": "e2c410267db17078",
+          "n_polygons": 7,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.003568546364249675,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Broken_Insulator": 1,
+            "Normal_Damper": 3
+          }
+        },
+        {
+          "id": "BBjKvLqD0NAWxhjnPWPP",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/BBjKvLqD0NAWxhjnPWPP/original.jpg",
+          "phash": "1ce1c18daf68287b",
+          "dhash": "e2c410267d307078",
+          "n_polygons": 1,
+          "n_boxes": 12,
+          "mean_bbox_area": 0.003831957435131837,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 6
+          }
+        }
+      ]
+    },
+    {
+      "group": 22,
+      "size": 2,
+      "keeper": "uK4JuvEfNICnCCwc51I8",
+      "delete": [
+        "SFug90J0ReddRsONO1At"
+      ],
+      "flags": [],
+      "members": [
+        {
+          "id": "uK4JuvEfNICnCCwc51I8",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/uK4JuvEfNICnCCwc51I8/original.jpg",
+          "phash": "19fcd095bb980467",
+          "dhash": "303126335ff6f2f9",
+          "n_polygons": 2,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.0080276044686615,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "SFug90J0ReddRsONO1At",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/SFug90J0ReddRsONO1At/original.jpg",
+          "phash": "19f990b3bb190467",
+          "dhash": "181006135ff6faf8",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.007038661342075893,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 2
+          }
+        }
+      ]
+    },
+    {
+      "group": 23,
+      "size": 2,
+      "keeper": "CLmGXWQU4cm6sCpGg25i",
+      "delete": [
+        "iRk7ReEMLq3G7NMpKXVC"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "CLmGXWQU4cm6sCpGg25i",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/CLmGXWQU4cm6sCpGg25i/original.jpg",
+          "phash": "14bbbad6815f4826",
+          "dhash": "929cb3d2c6b424b2",
+          "n_polygons": 0,
+          "n_boxes": 1,
+          "mean_bbox_area": 0.0014248828125000002,
+          "classes": {
+            "Broken_Insulator": 1
+          }
+        },
+        {
+          "id": "iRk7ReEMLq3G7NMpKXVC",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/iRk7ReEMLq3G7NMpKXVC/original.jpg",
+          "phash": "14bbf8d6015f48a6",
+          "dhash": "b2bcb3d2c6b424b2",
+          "n_polygons": 0,
+          "n_boxes": 5,
+          "mean_bbox_area": 0.00333101875,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 2
+          }
+        }
+      ]
+    },
+    {
+      "group": 24,
+      "size": 2,
+      "keeper": "QF9jNqeEfsynxQakWIG8",
+      "delete": [
+        "BE031xyZjp7KPtCKrRS7"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "QF9jNqeEfsynxQakWIG8",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/QF9jNqeEfsynxQakWIG8/original.jpg",
+          "phash": "542485854e3bf8f9",
+          "dhash": "e4c694a5b4945898",
+          "n_polygons": 8,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.0035656268215057373,
+          "classes": {
+            "Normal_Damper": 1,
+            "Normal_Insulators": 6,
+            "Defective_Damper": 1
+          }
+        },
+        {
+          "id": "BE031xyZjp7KPtCKrRS7",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/BE031xyZjp7KPtCKrRS7/original.jpg",
+          "phash": "542485854e3bf8f9",
+          "dhash": "e4c694a5b4945898",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.007131287841796875,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Broken_Insulator": 1,
+            "Normal_Damper": 2
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Broken_Insulator"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 25,
+      "size": 2,
+      "keeper": "qLhNkuEY23pJXSxBe7dY",
+      "delete": [
+        "lrUcH1aEnIlIQrkZ8XUh"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "qLhNkuEY23pJXSxBe7dY",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/qLhNkuEY23pJXSxBe7dY/original.jpg",
+          "phash": "4c60616178793bb7",
+          "dhash": "83e3613034587a70",
+          "n_polygons": 0,
+          "n_boxes": 11,
+          "mean_bbox_area": 0.0028319511274857954,
+          "classes": {
+            "Normal_Damper": 5,
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5
+          }
+        },
+        {
+          "id": "lrUcH1aEnIlIQrkZ8XUh",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/lrUcH1aEnIlIQrkZ8XUh/original.jpg",
+          "phash": "4de869617c7919c1",
+          "dhash": "8363613024587a70",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.005163970581054687,
+          "classes": {
+            "Normal_Damper": 2,
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5
+          }
+        }
+      ]
+    },
+    {
+      "group": 26,
+      "size": 2,
+      "keeper": "jW6VkKyHWAcIebZft5wM",
+      "delete": [
+        "wwrFZwnH185nqfbxZHN2"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "jW6VkKyHWAcIebZft5wM",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/jW6VkKyHWAcIebZft5wM/original.jpg",
+          "phash": "64a292a645197e6f",
+          "dhash": "cccc04b26626cec4",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.007014508928571429,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 2
+          }
+        },
+        {
+          "id": "wwrFZwnH185nqfbxZHN2",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/wwrFZwnH185nqfbxZHN2/original.jpg",
+          "phash": "64a292aec5117e2f",
+          "dhash": "cc4d04a26626cec4",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.007014508928571429,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 2
+          }
+        }
+      ]
+    },
+    {
+      "group": 27,
+      "size": 2,
+      "keeper": "pniPvESepsbCqa9hCYtF",
+      "delete": [
+        "HVdBZFbIhHip6cHDBIe7"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "pniPvESepsbCqa9hCYtF",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/pniPvESepsbCqa9hCYtF/original.jpg",
+          "phash": "3433c1e155363c3e",
+          "dhash": "9e8e2d2426a6e6e6",
+          "n_polygons": 0,
+          "n_boxes": 13,
+          "mean_bbox_area": 0.002888813138521635,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 7
+          }
+        },
+        {
+          "id": "HVdBZFbIhHip6cHDBIe7",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/HVdBZFbIhHip6cHDBIe7/original.jpg",
+          "phash": "363b61e154261e1f",
+          "dhash": "9e9e2d2c6eeee4e4",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.0035677862141927077,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Normal_Damper": 3,
+            "Broken_Insulator": 1
+          }
+        }
+      ]
+    },
+    {
+      "group": 28,
+      "size": 2,
+      "keeper": "bfkbCXgL0bAlrhK8BBYp",
+      "delete": [
+        "apbS1SWZ4k7ojVyXpYWP"
+      ],
+      "flags": [
+        "multiple_polygon_copies"
+      ],
+      "members": [
+        {
+          "id": "bfkbCXgL0bAlrhK8BBYp",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/bfkbCXgL0bAlrhK8BBYp/original.jpg",
+          "phash": "26d3f3b4c3371c02",
+          "dhash": "0c0d55d4ed3e0ecb",
+          "n_polygons": 5,
+          "n_boxes": 11,
+          "mean_bbox_area": 0.0050316022472034795,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 6
+          }
+        },
+        {
+          "id": "apbS1SWZ4k7ojVyXpYWP",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/apbS1SWZ4k7ojVyXpYWP/original.jpg",
+          "phash": "26d3f3b4c3351c03",
+          "dhash": "4c0d55c4ed3e0ecb",
+          "n_polygons": 5,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.0059669697354422435,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 3
+          }
+        }
+      ]
+    },
+    {
+      "group": 29,
+      "size": 2,
+      "keeper": "8DZSbr3yidooctvywnor",
+      "delete": [
+        "7W4UGMyoXOSQQFq58Uh7"
+      ],
+      "flags": [
+        "multiple_polygon_copies",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "8DZSbr3yidooctvywnor",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/8DZSbr3yidooctvywnor/original.jpg",
+          "phash": "40f9b08f93546177",
+          "dhash": "98100080e1e3e6c6",
+          "n_polygons": 7,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.0054073742836739675,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Normal_Damper": 2
+          }
+        },
+        {
+          "id": "7W4UGMyoXOSQQFq58Uh7",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/7W4UGMyoXOSQQFq58Uh7/original.jpg",
+          "phash": "41f9b08f92546177",
+          "dhash": "98130080e1e3e6c6",
+          "n_polygons": 1,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.008081452523242187,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 1
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 30,
+      "size": 2,
+      "keeper": "HfgxFp94Dc3KJd7nht9o",
+      "delete": [
+        "Nw1HGc3nTUhHEB4zAzWp"
+      ],
+      "flags": [
+        "no_polygon_copy",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "HfgxFp94Dc3KJd7nht9o",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/HfgxFp94Dc3KJd7nht9o/original.jpg",
+          "phash": "4cede5f48a0b111e",
+          "dhash": "86026061209442a6",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.003496220703125,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 5
+          }
+        },
+        {
+          "id": "Nw1HGc3nTUhHEB4zAzWp",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Nw1HGc3nTUhHEB4zAzWp/original.jpg",
+          "phash": "4cede5f48e0b1116",
+          "dhash": "0202e021a09442a6",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.0047259521484375,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 31,
+      "size": 2,
+      "keeper": "AEW5ROQ6zSzs5cfQU2xU",
+      "delete": [
+        "RrnQgAfLBPiDo781v6iw"
+      ],
+      "flags": [
+        "no_polygon_copy",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "AEW5ROQ6zSzs5cfQU2xU",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/AEW5ROQ6zSzs5cfQU2xU/original.jpg",
+          "phash": "40ada9cbc43e5f03",
+          "dhash": "e607082ce8e99990",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.005682497477213541,
+          "classes": {
+            "Normal_Damper": 3,
+            "Normal_Insulators": 2,
+            "Broken_Insulator": 1
+          }
+        },
+        {
+          "id": "RrnQgAfLBPiDo781v6iw",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/RrnQgAfLBPiDo781v6iw/original.jpg",
+          "phash": "42ada9cb843e5f03",
+          "dhash": "e6130824e8e99990",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.008534458705357142,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 2,
+            "Normal_Insulators": 4
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 32,
+      "size": 2,
+      "keeper": "sljZWoTsF2ynONwbyIsd",
+      "delete": [
+        "Iif6weucQbQb6U9MblrO"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "sljZWoTsF2ynONwbyIsd",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/sljZWoTsF2ynONwbyIsd/original.jpg",
+          "phash": "50446fd1b5c01fb3",
+          "dhash": "b4ada5b4d8d19130",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.008785650983537946,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 5,
+            "Normal_Damper": 1
+          }
+        },
+        {
+          "id": "Iif6weucQbQb6U9MblrO",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Iif6weucQbQb6U9MblrO/original.jpg",
+          "phash": "50446ef1b5c05cbd",
+          "dhash": "b4adb4b458919970",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.011069988444010416,
+          "classes": {
+            "Normal_Insulators": 5,
+            "Broken_Insulator": 1
+          }
+        }
+      ]
+    },
+    {
+      "group": 33,
+      "size": 2,
+      "keeper": "cCGwRTi8xk2MSwmzqPrh",
+      "delete": [
+        "pVpDPG648ua7u5NZp6Sl"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "cCGwRTi8xk2MSwmzqPrh",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/cCGwRTi8xk2MSwmzqPrh/original.jpg",
+          "phash": "50b9b9955a2c558b",
+          "dhash": "989612a5f090a6c8",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.00487274169921875,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        },
+        {
+          "id": "pVpDPG648ua7u5NZp6Sl",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/pVpDPG648ua7u5NZp6Sl/original.jpg",
+          "phash": "50a9bbd54a2c558b",
+          "dhash": "989012a5f09086c8",
+          "n_polygons": 0,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.00487274169921875,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 4
+          }
+        }
+      ]
+    },
+    {
+      "group": 34,
+      "size": 2,
+      "keeper": "sdFgHG5EzPvedsAdcKPQ",
+      "delete": [
+        "RGfFfkICOyMSudtTAqyA"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "sdFgHG5EzPvedsAdcKPQ",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/sdFgHG5EzPvedsAdcKPQ/original.jpg",
+          "phash": "49fcf8cd037003ec",
+          "dhash": "f3d3b3d343c292d1",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.007615559895833333,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 1,
+            "Normal_Insulators": 4
+          }
+        },
+        {
+          "id": "RGfFfkICOyMSudtTAqyA",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/RGfFfkICOyMSudtTAqyA/original.jpg",
+          "phash": "41fef8c50b7003ec",
+          "dhash": "e6e6b3d143d2b2cb",
+          "n_polygons": 0,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.007717285156250001,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 1,
+            "Normal_Insulators": 4
+          }
+        }
+      ]
+    },
+    {
+      "group": 35,
+      "size": 2,
+      "keeper": "BjKPl2BTWYbqYUHIpLFx",
+      "delete": [
+        "Yx5POCiix79l9747QKht"
+      ],
+      "flags": [
+        "no_polygon_copy",
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "BjKPl2BTWYbqYUHIpLFx",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/BjKPl2BTWYbqYUHIpLFx/original.jpg",
+          "phash": "009dfec173114a7d",
+          "dhash": "c0063edcc2c1e6c5",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.0019059414760044643,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Damper": 5,
+            "Normal_Insulators": 1
+          }
+        },
+        {
+          "id": "Yx5POCiix79l9747QKht",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/Yx5POCiix79l9747QKht/original.jpg",
+          "phash": "009dfec173114a7d",
+          "dhash": "c0063edcc2c1e6c5",
+          "n_polygons": 0,
+          "n_boxes": 7,
+          "mean_bbox_area": 0.0026991489955357144,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 4,
+            "Normal_Insulators": 2
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 36,
+      "size": 2,
+      "keeper": "mLHsn0pTle1Xyia8Zwa7",
+      "delete": [
+        "sCzC3muTALd05xZusmiH"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "mLHsn0pTle1Xyia8Zwa7",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/mLHsn0pTle1Xyia8Zwa7/original.jpg",
+          "phash": "58ec87b9ce403f60",
+          "dhash": "f20225b13012f040",
+          "n_polygons": 4,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.006955939148087565,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 4,
+            "Normal_Damper": 1
+          }
+        },
+        {
+          "id": "sCzC3muTALd05xZusmiH",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/sCzC3muTALd05xZusmiH/original.jpg",
+          "phash": "58ec87b9ce403f60",
+          "dhash": "f28225b03012f040",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.009302842881944443,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Damper": 2,
+            "Normal_Insulators": 6
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 37,
+      "size": 2,
+      "keeper": "aKaam0jqs5Tc1p87fGdn",
+      "delete": [
+        "NVIwNMxHyAFVhaGR17t4"
+      ],
+      "flags": [
+        "label_conflict"
+      ],
+      "members": [
+        {
+          "id": "aKaam0jqs5Tc1p87fGdn",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/aKaam0jqs5Tc1p87fGdn/original.jpg",
+          "phash": "4da4a4e51f562876",
+          "dhash": "e6c6a4606082c460",
+          "n_polygons": 5,
+          "n_boxes": 8,
+          "mean_bbox_area": 0.0020569047237609865,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 5
+          }
+        },
+        {
+          "id": "NVIwNMxHyAFVhaGR17t4",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/NVIwNMxHyAFVhaGR17t4/original.jpg",
+          "phash": "4daca0e19f542a76",
+          "dhash": "e646a4706082c440",
+          "n_polygons": 0,
+          "n_boxes": 9,
+          "mean_bbox_area": 0.005448947482638889,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 5
+          }
+        }
+      ],
+      "defects_missing_from_keeper": [
+        "Defective_Damper"
+      ],
+      "accept_keeper_as_is": false
+    },
+    {
+      "group": 38,
+      "size": 2,
+      "keeper": "hHb6yQiEOQKt8FtYeGkL",
+      "delete": [
+        "KbMHHrD26MQk0VqjIPsR"
+      ],
+      "flags": [],
+      "members": [
+        {
+          "id": "hHb6yQiEOQKt8FtYeGkL",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/hHb6yQiEOQKt8FtYeGkL/original.jpg",
+          "phash": "08bfbd80cd536668",
+          "dhash": "7e3f7529a5e5b8ba",
+          "n_polygons": 3,
+          "n_boxes": 6,
+          "mean_bbox_area": 0.004675623415808106,
+          "classes": {
+            "Normal_Insulators": 3,
+            "Normal_Damper": 2,
+            "Defective_Damper": 1
+          }
+        },
+        {
+          "id": "KbMHHrD26MQk0VqjIPsR",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/KbMHHrD26MQk0VqjIPsR/original.jpg",
+          "phash": "08bebd84d8136769",
+          "dhash": "be3f35a9a5e5b8ba",
+          "n_polygons": 0,
+          "n_boxes": 4,
+          "mean_bbox_area": 0.011375732421875,
+          "classes": {
+            "Defective_Damper": 1,
+            "Normal_Insulators": 2,
+            "Normal_Damper": 1
+          }
+        }
+      ]
+    },
+    {
+      "group": 39,
+      "size": 2,
+      "keeper": "5dQQ2Fb86r8g9BUNdBmp",
+      "delete": [
+        "8sqQahpGgORptJACcEJI"
+      ],
+      "flags": [
+        "no_polygon_copy"
+      ],
+      "members": [
+        {
+          "id": "5dQQ2Fb86r8g9BUNdBmp",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/5dQQ2Fb86r8g9BUNdBmp/original.jpg",
+          "phash": "4373759496e511a3",
+          "dhash": "8c49d9cbb9f2e3e4",
+          "n_polygons": 0,
+          "n_boxes": 2,
+          "mean_bbox_area": 0.0021017822265625,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 1
+          }
+        },
+        {
+          "id": "8sqQahpGgORptJACcEJI",
+          "url": "https://source.roboflow.com/7jmQxvvyNwOpYnC2YXtMjjhaGLI3/8sqQahpGgORptJACcEJI/original.jpg",
+          "phash": "4373759494e311f1",
+          "dhash": "8c49c9e9f9f363e2",
+          "n_polygons": 0,
+          "n_boxes": 5,
+          "mean_bbox_area": 0.004182517431640625,
+          "classes": {
+            "Broken_Insulator": 1,
+            "Normal_Insulators": 3,
+            "Normal_Damper": 1
+          }
+        }
+      ]
+    }
+  ]
+}

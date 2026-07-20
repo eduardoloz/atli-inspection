@@ -45,3 +45,9 @@ results/email_to_PI*.md
 results/LOCAL_*
 results/data_outreach*.md
 *.pdf
+
+# Dedupe backups + regenerable duplicate-review contact sheets (plan/findings
+# committed in rebalance/eduardo_dedupe_plan.json + results/eduardo_dedup_audit.md;
+# pixels frozen in Roboflow version v5)
+rebalance/backups/
+results/eduardo_dupes_review/
