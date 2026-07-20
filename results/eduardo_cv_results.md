@@ -1,6 +1,6 @@
 # ATLI + eduardos — 5-fold CV results (all classes, all experiments)
 
-YOLOv11n on the combined **ATLI-no-CPLID + eduardos** pool, group-aware 5-fold CV.
+YOLOv11n on the combined **ATLI-no-CPLID + eduardos** pool.
 Metrics are **mean ± std across the 5 folds** (± shown on AP@0.5 and overall mAP; P/R are
 5-fold means). On each fold's held-out test split. Full card: `models/cv_eduardo_v11n/README.md`.
 
@@ -9,7 +9,7 @@ Metrics are **mean ± std across the 5 folds** (± shown on AP@0.5 and overall m
 Shared recipe: **YOLOv11n**, **2-stage transfer learning** — Stage 1 = 150 ep from the
 pretrained checkpoint (SGD `lr0=0.01`); Stage 2 = 100 ep fine-tune (SGD `lr0=0.00334`,
 `lrf=0.1535`); batch 16. **Oversampling & augmentation are train-only** (val/test untouched);
-group-aware folds keep every duplicate cluster within a single split.
+group-aware folds keep every duplicate cluster within one split (no near-dup spans train/test).
 
 | # | experiment | task | init | imgsz | train split | aug override |
 |---|---|---|---|--:|---|---|
@@ -24,7 +24,7 @@ Flashover_Insulator, Self-Exploded_Insulator) duplicated **×3**. So exps 2–5 
 **OBB/detection + oversampling + scale-aug**, differing only in rotation (deg45/none/deg20)
 and task. ★ = current best.
 
-_Two more conditions (CPLID-in-train OBB & detection champions) are still running — added when they finish._
+
 
 ## Instance counts per split (per-fold mean across 5 folds)
 
