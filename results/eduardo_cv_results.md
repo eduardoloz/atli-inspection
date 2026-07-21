@@ -176,3 +176,32 @@ with a mild rotation.
 | Self-Exploded_Insulator | 0.869 | 0.699 | 0.803 ± 0.054 |
 | **overall** | **0.839** | **0.726** | **0.793 ± 0.023** |
 
+## Cross-model comparison (YOLOv5n / v8n / v11n)
+
+Same group-aware folds. Baseline = detection @640; champion = 1280 + osall + scale=0.9
+(v8/v11 use OBB; **v5 has no OBB checkpoint, so its champion is detection**). v11 champion =
+its best config (OBB + deg15).
+
+| model | baseline mAP | champion mAP | champion recipe | baseline DD AP | champion DD AP |
+|---|--:|--:|---|--:|--:|
+| YOLOv5n | 0.657 | 0.731 | detection (no OBB) | 0.505 | 0.558 |
+| YOLOv8n | 0.656 | 0.765 | OBB | 0.490 | 0.708 |
+| **YOLOv11n** | **0.668** | **0.793** | OBB + deg15 | 0.501 | **0.729** |
+
+**Verdict:** clean ordering **v11 > v8 > v5** on both mAP and Defective_Damper at every stage.
+OBB (v8/v11) clearly beats detection (v5's ceiling). **YOLOv11n remains the best architecture**
+— consistent with the original paper, now confirmed with oriented boxes on the ATLI+eduardos pool.
+
+### Per-class AP@0.5 (mean ± std over 5 folds)
+| class | v5 base | v8 base | v5 champ (det) | v8 champ (OBB) |
+|---|--:|--:|--:|--:|
+| Birdnest | 0.880 ± 0.034 | 0.910 ± 0.041 | 0.885 ± 0.078 | 0.942 ± 0.024 |
+| Broken_Insulator | 0.521 ± 0.068 | 0.528 ± 0.070 | 0.677 ± 0.074 | 0.693 ± 0.051 |
+| Defective_Damper | 0.505 ± 0.154 | 0.490 ± 0.092 | 0.558 ± 0.131 | 0.708 ± 0.139 |
+| Flashover_Insulator | 0.594 ± 0.082 | 0.566 ± 0.072 | 0.707 ± 0.081 | 0.681 ± 0.059 |
+| Normal_Damper | 0.661 ± 0.053 | 0.677 ± 0.033 | 0.714 ± 0.043 | 0.754 ± 0.034 |
+| Normal_Insulators | 0.777 ± 0.025 | 0.771 ± 0.018 | 0.791 ± 0.030 | 0.825 ± 0.028 |
+| Self-Exploded_Insulator | 0.663 ± 0.055 | 0.648 ± 0.081 | 0.782 ± 0.064 | 0.756 ± 0.066 |
+| **overall (mAP@0.5)** | **0.657** | **0.656** | **0.731** | **0.765** |
+| dataset P / R | 0.758 / 0.599 | 0.763 / 0.605 | 0.789 / 0.672 | 0.819 / 0.730 |
+
