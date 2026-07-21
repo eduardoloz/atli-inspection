@@ -9,7 +9,7 @@ Metrics are **mean ± std across the 5 folds** (± shown on AP@0.5 and overall m
 Shared recipe: **YOLOv11n**, **2-stage transfer learning** — Stage 1 = 150 ep from the
 pretrained checkpoint (SGD `lr0=0.01`); Stage 2 = 100 ep fine-tune (SGD `lr0=0.00334`,
 `lrf=0.1535`); batch 16. **Oversampling & augmentation are train-only** (val/test untouched);
-group-aware folds keep every duplicate cluster within one split (no near-dup spans train/test).
+
 
 | # | experiment | task | init | imgsz | train split | aug override |
 |---|---|---|---|--:|---|---|
@@ -92,4 +92,44 @@ Pool = 974 images (796 no-CPLID ATLI + 178 eduardos).
 | Normal_Insulators | 0.766 | 0.813 | 0.810 | 0.817 | 0.783 |
 | Self-Exploded_Insulator | 0.531 | 0.714 | 0.682 | 0.719 | 0.693 |
 | **overall (mean R)** | **0.609** | **0.727** | **0.731** | **0.750** | **0.695** |
+
+## CPLID-in-train (train-only) — does restoring CPLID to training help?
+
+The 250 CPLID images removed during decontamination, added back to **training only** (val/test
+unchanged, leakage-checked), on the champion recipes:
+
+| condition | task | mAP@0.5 | DD AP | DD recall | Self-Exploded AP |
+|---|---|--:|--:|--:|--:|
+| OBB champion (no CPLID) | OBB | 0.759 | 0.672 | 0.657 | 0.743 |
+| **OBB champion + CPLID** | OBB | **0.773 ± 0.027** | 0.677 | 0.632 | 0.784 |
+| Detection champion (no CPLID) | det | 0.749 | 0.617 | 0.577 | 0.799 |
+| Detection champion + CPLID | det | 0.742 ± 0.030 | 0.641 | 0.549 | 0.773 |
+
+**Verdict:** CPLID-in-train gives OBB a small **+0.014 mAP** (0.759 → 0.773), driven mainly by
+**Self-Exploded (+0.041)** — expected, since the 250 CPLID images are 249 Self-Exploded
+insulators. For detection it's ~flat (−0.007). Neither beats OBB + deg20 (0.780).
+
+### Per-class P / R / AP@0.5 (mean ± std over 5 folds)
+
+**OBB champion + CPLID-in-train** (mAP 0.773 ± 0.027, P 0.818, R 0.733)
+| class | P | R | AP@0.5 |
+|---|--:|--:|--:|
+| Birdnest | 0.879 | 0.932 | 0.952 ± 0.022 |
+| Broken_Insulator | 0.814 | 0.663 | 0.716 ± 0.083 |
+| Defective_Damper | 0.788 | 0.632 | 0.677 ± 0.115 |
+| Flashover_Insulator | 0.736 | 0.622 | 0.676 ± 0.082 |
+| Normal_Damper | 0.815 | 0.736 | 0.781 ± 0.034 |
+| Normal_Insulators | 0.826 | 0.814 | 0.823 ± 0.043 |
+| Self-Exploded_Insulator | 0.867 | 0.732 | 0.784 ± 0.079 |
+
+**Detection champion + CPLID-in-train** (mAP 0.742 ± 0.030, P 0.801, R 0.676)
+| class | P | R | AP@0.5 |
+|---|--:|--:|--:|
+| Birdnest | 0.878 | 0.860 | 0.904 ± 0.031 |
+| Broken_Insulator | 0.783 | 0.628 | 0.667 ± 0.082 |
+| Defective_Damper | 0.763 | 0.549 | 0.641 ± 0.131 |
+| Flashover_Insulator | 0.734 | 0.618 | 0.679 ± 0.067 |
+| Normal_Damper | 0.800 | 0.641 | 0.728 ± 0.052 |
+| Normal_Insulators | 0.806 | 0.776 | 0.805 ± 0.029 |
+| Self-Exploded_Insulator | 0.842 | 0.661 | 0.773 ± 0.056 |
 
