@@ -133,3 +133,46 @@ insulators. For detection it's ~flat (−0.007). Neither beats OBB + deg20 (0.78
 | Normal_Insulators | 0.806 | 0.776 | 0.805 ± 0.029 |
 | Self-Exploded_Insulator | 0.842 | 0.661 | 0.773 ± 0.056 |
 
+## Rotation sweep + shear (v11 OBB, no CPLID) — where's the sweet spot?
+
+Rotation angle and shear swept on the OBB champion (osall + scale=0.9):
+
+| aug | mAP@0.5 | Precision | Recall | DD AP | DD recall |
+|---|--:|--:|--:|--:|--:|
+| none (OBB champion) | 0.759 | 0.816 | 0.731 | 0.672 | 0.657 |
+| **deg15 ★** | **0.793 ± 0.023** | 0.839 | 0.726 | **0.729** | 0.671 |
+| deg20 | 0.780 ± 0.024 | 0.809 | 0.750 | 0.721 | 0.670 |
+| deg25 | 0.781 ± 0.013 | 0.834 | 0.735 | 0.708 | 0.677 |
+| deg30 | 0.784 ± 0.029 | 0.834 | 0.737 | 0.715 | 0.660 |
+| deg45 | 0.758 ± 0.025 | 0.817 | 0.727 | 0.654 | 0.610 |
+| shear=10 | 0.779 ± 0.033 | 0.827 | 0.739 | 0.715 | 0.656 |
+
+**Verdict:** the rotation sweet spot is **≈15°** — mAP **0.793**, DD AP **0.729**, the new overall
+best. Mild rotation (15–30°) forms a plateau (~0.78–0.79); **45° collapses** back to the
+no-rotation level. **Shear=10 also helps** (+0.020 mAP over the no-aug OBB champion), on par
+with a mild rotation.
+
+### Per-class AP@0.5 (mean ± std over 5 folds)
+| class | deg15 ★ | deg25 | deg30 | shear |
+|---|--:|--:|--:|--:|
+| Birdnest | 0.935 ± 0.028 | 0.953 ± 0.011 | 0.956 ± 0.014 | 0.947 ± 0.012 |
+| Broken_Insulator | 0.743 ± 0.090 | 0.752 ± 0.087 | 0.721 ± 0.083 | 0.739 ± 0.068 |
+| Defective_Damper | 0.729 ± 0.096 | 0.708 ± 0.092 | 0.715 ± 0.087 | 0.715 ± 0.121 |
+| Flashover_Insulator | 0.732 ± 0.044 | 0.704 ± 0.033 | 0.734 ± 0.034 | 0.715 ± 0.081 |
+| Normal_Damper | 0.783 ± 0.035 | 0.768 ± 0.029 | 0.776 ± 0.035 | 0.769 ± 0.048 |
+| Normal_Insulators | 0.830 ± 0.036 | 0.840 ± 0.019 | 0.833 ± 0.023 | 0.828 ± 0.031 |
+| Self-Exploded_Insulator | 0.803 ± 0.054 | 0.740 ± 0.055 | 0.756 ± 0.091 | 0.739 ± 0.100 |
+| **overall (mAP@0.5)** | **0.793** | **0.781** | **0.784** | **0.779** |
+
+### deg15 (new best) — full per-class P / R / AP@0.5
+| class | P | R | AP@0.5 |
+|---|--:|--:|--:|
+| Birdnest | 0.900 | 0.895 | 0.935 ± 0.028 |
+| Broken_Insulator | 0.897 | 0.640 | 0.743 ± 0.090 |
+| Defective_Damper | 0.793 | 0.671 | 0.729 ± 0.096 |
+| Flashover_Insulator | 0.776 | 0.653 | 0.732 ± 0.044 |
+| Normal_Damper | 0.819 | 0.724 | 0.783 ± 0.035 |
+| Normal_Insulators | 0.820 | 0.799 | 0.830 ± 0.036 |
+| Self-Exploded_Insulator | 0.869 | 0.699 | 0.803 ± 0.054 |
+| **overall** | **0.839** | **0.726** | **0.793 ± 0.023** |
+
