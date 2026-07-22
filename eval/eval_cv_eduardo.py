@@ -6,6 +6,7 @@ aggregates mean+/-std across folds. Writes ~/atli/eval_eduardo_results.json.
 Run on server: ~/atli/env/bin/python eval_cv_eduardo.py
 """
 import json
+import os
 from pathlib import Path
 import numpy as np
 from ultralytics import YOLO
@@ -30,15 +31,27 @@ CONDS = [
     ("v8base",     "EDU_v8base",         "detect", "CV_eduardo_det", "base.yaml",        640),
     ("v5champ",    "EDU_v5champ",        "detect", "CV_eduardo_det", "osall.yaml",       1280),
     ("v8obbchamp", "EDU_v8obbchamp",     "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    # phase 5
+    ("cpliddeg15", "EDU_cpliddeg15_v11", "obb",    "CV_eduardo_obb", "osall_cplid.yaml", 1280),
+    ("blurdeg15",  "EDU_blurdeg15_v11",  "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    # phase 6 — lighter-backbone grafts (same deg15 recipe)
+    ("ghost_deg15", "EDU_ghost_deg15",   "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("dws_deg15",  "EDU_dws_deg15",      "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
 ]
-DEVICE = 3
+if os.environ.get("FNET") == "1":
+    # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET
+    # rebinding would corrupt loading of REAL C3Ghost checkpoints — so fnet is
+    # evaluated in its own pass:  FNET=1 PYTHONPATH=~/atli/modpatch python eval_cv_eduardo.py
+    CONDS = [("fnet_deg15", "EDU_fnet_deg15", "obb", "CV_eduardo_obb", "osall.yaml", 1280)]
+DEVICE = int(os.environ.get("EVAL_DEV", 3))
+BATCH = int(os.environ.get("EVAL_BATCH", 8))  # small: may share a GPU with training
 
 
 def ev(name, task, cvdir, yamlname, imz, fold):
     w = ROOT / "runs" / f"{name}_f{fold}_s2" / "weights" / "best.pt"
     ya = ROOT / cvdir / f"fold{fold}" / yamlname
     m = YOLO(str(w))
-    r = m.val(data=str(ya), split="test", imgsz=imz, device=DEVICE,
+    r = m.val(data=str(ya), split="test", imgsz=imz, device=DEVICE, batch=BATCH,
               verbose=False, save_json=False, plots=False)
     met = r.box   # both DetMetrics and OBBMetrics expose per-class results under .box
     idx = {r.names[c]: i for i, c in enumerate(met.ap_class_index)}
@@ -58,13 +71,20 @@ def ms(folds, field):
     return (float(np.mean(vals)), float(np.std(vals))) if vals else (float("nan"), 0.0)
 
 
-results = {}
+out_path = ROOT / "eval_eduardo_results.json"
+results = json.load(open(out_path)) if out_path.exists() else {}
 for key, name, task, cvdir, yamlname, imz in CONDS:
-    if not (ROOT / "runs" / f"{name}_f0_s2" / "weights" / "best.pt").exists():
-        print(f"\n=== {key}: SKIP (not trained yet) ===")
+    if key in results:
+        print(f"\n=== {key}: SKIP (already evaluated) ===")
+        continue
+    missing = [k for k in range(5)
+               if not (ROOT / "runs" / f"{name}_f{k}_s2" / "weights" / "best.pt").exists()]
+    if missing:
+        print(f"\n=== {key}: SKIP (folds not trained yet: {missing}) ===")
         continue
     folds = [ev(name, task, cvdir, yamlname, imz, k) for k in range(5)]
     results[key] = {"task": task, "folds": folds}
+    json.dump(results, open(out_path, "w"), indent=1)  # incremental save
     print(f"\n=== {key} ({task}, {imz}) ===")
     mm, ms_ = ms(folds, "mAP50"); pp = ms(folds, "P"); rr = ms(folds, "R")
     print(f"  overall  mAP50 {mm:.3f}+/-{ms_:.3f}   P {pp[0]:.3f}   R {rr[0]:.3f}")
