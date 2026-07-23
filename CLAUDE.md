@@ -162,6 +162,8 @@ Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_re
 
 **Eduardo-CV phases 7-9 — shear stack + 640 resolution grid (2026-07-22 evening):** (1) deg15+shear10 = 0.788 — third stack-on-deg15 that doesn't compose (CPLID 0.792, blur 0.790, shear 0.788 vs deg15 0.793: geometric-aug budget saturates). (2) **640-px grid**: v11n deg15@640 = 0.726 ± 0.023 (resolution alone = +0.067 of the champion's margin; recall 0.726→0.681), v8n deg15@640 = 0.728 ± 0.026 (ties v11n at 640), v5n champ@640 = 0.667 ± 0.046. Recipe carries +0.058 even at 640 (vs 0.668 baseline). All weights (50 checkpoints incl. v8/v5 champions + 640 grid, descriptive fold names) on GitHub release `weights-eduardo-cv-2026-07-22`.
 
+**Eduardo-CV phase 10 — 640-px recall recovery: all three cheap levers FAIL (2026-07-23):** vs deg15@640 (0.726 / R 0.681 / DD 0.635): close_mosaic=20 = wash (0.725); multi_scale=True = +0.006 mAP but DD recall −0.046 (worse where it matters); **P2 stride-4 head = 0.682 (−0.044)** — fresh-head init debt (297/649 transferred), same signature as the backbone grafts (`models_graft/yolo11n-p2-obb.yaml`). Conclusion: the 640 gap is information-loss the training side can't cheaply recover; remaining levers are 1280→640 distillation and loss-level reweighting (both code projects). Driver `train/sweep_eduardo_p10.sh`.
+
 **Convention going forward:** log new experiment conditions in this section (seed-averaged, with the recipe), update `results/config_benchmark.csv`, and `git push` — so GitHub always reflects the full experiment record. Git/privacy/model-card conventions: see `GIT.md` (noreply email only; no advisor names or personal emails in committed markdown; server = `$ATLI_SERVER` from `.env`).
 
 ## Repo structure & key scripts

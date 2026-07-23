@@ -42,6 +42,10 @@ CONDS = [
     ("deg15_640",  "EDU_deg15_640_v11",  "obb",    "CV_eduardo_obb", "osall.yaml",       640),
     ("v8deg15_640", "EDU_v8deg15_640",   "obb",    "CV_eduardo_obb", "osall.yaml",       640),
     ("v5champ_640", "EDU_v5champ_640",   "detect", "CV_eduardo_det", "osall.yaml",       640),
+    # phase 10 — recall recovery at 640
+    ("cm20_640",   "EDU_cm20_640",       "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("ms_640",     "EDU_ms_640",         "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("p2_640",     "EDU_p2_640",         "obb",    "CV_eduardo_obb", "osall.yaml",       640),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET
