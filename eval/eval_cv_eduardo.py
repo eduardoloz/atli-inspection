@@ -37,6 +37,11 @@ CONDS = [
     # phase 6 — lighter-backbone grafts (same deg15 recipe)
     ("ghost_deg15", "EDU_ghost_deg15",   "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
     ("dws_deg15",  "EDU_dws_deg15",      "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    # phases 7-9
+    ("deg15shear10", "EDU_deg15shear10_v11", "obb", "CV_eduardo_obb", "osall.yaml",      1280),
+    ("deg15_640",  "EDU_deg15_640_v11",  "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("v8deg15_640", "EDU_v8deg15_640",   "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("v5champ_640", "EDU_v5champ_640",   "detect", "CV_eduardo_det", "osall.yaml",       640),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET
