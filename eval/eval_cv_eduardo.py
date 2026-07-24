@@ -63,12 +63,16 @@ CONDS = [
     ("mix15_1280", "EDU_mix15_1280",     "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
     ("deg15_768",  "EDU_deg15_768",      "obb",    "CV_eduardo_obb", "osall.yaml",       768),
     ("mix15_768",  "EDU_mix15_768",      "obb",    "CV_eduardo_obb", "osall.yaml",       768),
+    # phase 14 — v8 backbone-graft twins of phase 6
+    ("v8ghost_deg15", "EDU_v8ghost_deg15", "obb",  "CV_eduardo_obb", "osall.yaml",       1280),
+    ("v8dws_deg15",   "EDU_v8dws_deg15",   "obb",  "CV_eduardo_obb", "osall.yaml",       1280),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET
     # rebinding would corrupt loading of REAL C3Ghost checkpoints — so fnet is
     # evaluated in its own pass:  FNET=1 PYTHONPATH=~/atli/modpatch python eval_cv_eduardo.py
-    CONDS = [("fnet_deg15", "EDU_fnet_deg15", "obb", "CV_eduardo_obb", "osall.yaml", 1280)]
+    CONDS = [("fnet_deg15", "EDU_fnet_deg15", "obb", "CV_eduardo_obb", "osall.yaml", 1280),
+             ("v8fnet_deg15", "EDU_v8fnet_deg15", "obb", "CV_eduardo_obb", "osall.yaml", 1280)]
 DEVICE = int(os.environ.get("EVAL_DEV", 3))
 BATCH = int(os.environ.get("EVAL_BATCH", 8))  # small: may share a GPU with training
 
