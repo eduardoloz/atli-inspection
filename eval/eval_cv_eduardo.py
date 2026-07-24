@@ -46,6 +46,9 @@ CONDS = [
     ("cm20_640",   "EDU_cm20_640",       "obb",    "CV_eduardo_obb", "osall.yaml",       640),
     ("ms_640",     "EDU_ms_640",         "obb",    "CV_eduardo_obb", "osall.yaml",       640),
     ("p2_640",     "EDU_p2_640",         "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    # phase 12 — v8 gap-fill for the family comparison
+    ("v8champ",    "EDU_v8champ",        "detect", "CV_eduardo_det", "osall.yaml",       1280),
+    ("v8deg15",    "EDU_v8deg15",        "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET

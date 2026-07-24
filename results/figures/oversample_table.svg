@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="668.08pt" height="330.4pt" viewBox="0 0 668.08 330.4" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-23T10:11:14.340175</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.5.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 330.4 
+L 668.08 330.4 
+L 668.08 0 
+L 0 0 
+L 0 330.4 
+z
+" style="fill: none; opacity: 0"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 10.4684 119.696 
+L 654.3432 119.696 
+L 654.3432 90.624 
+L 10.4684 90.624 
+z
+" clip-path="url(#pf03a387597)" style="fill: #fbeaec"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 10.4684 150.032 
+L 654.3432 150.032 
+L 654.3432 120.96 
+L 10.4684 120.96 
+z
+" clip-path="url(#pf03a387597)" style="fill: #fbeaec"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 10.4684 180.368 
+L 654.3432 180.368 
+L 654.3432 151.296 
+L 10.4684 151.296 
+z
+" clip-path="url(#pf03a387597)" style="fill: #fbeaec"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 10.4684 210.704 
+L 654.3432 210.704 
+L 654.3432 181.632 
+L 10.4684 181.632 
+z
+" clip-path="url(#pf03a387597)" style="fill: #fbeaec"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 20.2736 84.62 
+L 641.2696 84.62 
+" clip-path="url(#pf03a387597)" style="fill: none; stroke: #b9b7b4; stroke-width: 1.1; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 20.2736 302.344 
+L 641.2696 302.344 
+" clip-path="url(#pf03a387597)" style="fill: none; stroke: #b9b7b4; stroke-width: 1.1; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #1d1d1f; font: 700 14.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="26.9875" transform="rotate(-0, 20.2736, 26.9875)">Class instances across the data pipeline</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #52514e; font: 10px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="65.085156" transform="rotate(-0, 20.2736, 65.085156)">class</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #52514e; font: 10px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="55.605156" transform="rotate(-0, 320.9664, 55.605156)">base</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #b9b7b4; font: 8.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="72.669102" transform="rotate(-0, 320.9664, 72.669102)">(ATLI pool)</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #52514e; font: 10px 'Helvetica Neue'; text-anchor: end" x="464.776" y="55.605156" transform="rotate(-0, 464.776, 55.605156)">+ additional photos</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #b9b7b4; font: 8.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="72.617969" transform="rotate(-0, 464.776, 72.617969)">(merged pool)</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #52514e; font: 10px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="55.545" transform="rotate(-0, 641.2696, 55.545)">training oversampling</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #b9b7b4; font: 8.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="72.669102" transform="rotate(-0, 641.2696, 72.669102)">(train split, ×3 defects)</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="108.225469" transform="rotate(-0, 20.2736, 108.225469)">Broken Insulator</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="108.13293" transform="rotate(-0, 320.9664, 108.13293)">194</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="108.13293" transform="rotate(-0, 464.776, 108.13293)">290</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="108.225469" transform="rotate(-0, 641.2696, 108.225469)">618</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="138.561469" transform="rotate(-0, 20.2736, 138.561469)">Defective Damper</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="138.46893" transform="rotate(-0, 320.9664, 138.46893)">110</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="138.46893" transform="rotate(-0, 464.776, 138.46893)">193</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="138.561469" transform="rotate(-0, 641.2696, 138.561469)">401</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="168.897469" transform="rotate(-0, 20.2736, 168.897469)">Flashover Insulator</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="168.80493" transform="rotate(-0, 320.9664, 168.80493)">434</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="168.80493" transform="rotate(-0, 464.776, 168.80493)">434</text>
+   </g>
+   <g id="text_20">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="168.897469" transform="rotate(-0, 641.2696, 168.897469)">910</text>
+   </g>
+   <g id="text_21">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="199.3305" transform="rotate(-0, 20.2736, 199.3305)">Self-Exploded Insulator</text>
+   </g>
+   <g id="text_22">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="199.14093" transform="rotate(-0, 320.9664, 199.14093)">304</text>
+   </g>
+   <g id="text_23">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="199.14093" transform="rotate(-0, 464.776, 199.14093)">305</text>
+   </g>
+   <g id="text_24">
+    <text style="fill: #c8102e; font: 700 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="199.233469" transform="rotate(-0, 641.2696, 199.233469)">622</text>
+   </g>
+   <g id="text_25">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="229.47693" transform="rotate(-0, 20.2736, 229.47693)">Normal Damper</text>
+   </g>
+   <g id="text_26">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="229.47693" transform="rotate(-0, 320.9664, 229.47693)">1,184</text>
+   </g>
+   <g id="text_27">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="229.47693" transform="rotate(-0, 464.776, 229.47693)">1,713</text>
+   </g>
+   <g id="text_28">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="229.47693" transform="rotate(-0, 641.2696, 229.47693)">2,321</text>
+   </g>
+   <g id="text_29">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="259.81293" transform="rotate(-0, 20.2736, 259.81293)">Normal Insulators</text>
+   </g>
+   <g id="text_30">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="259.81293" transform="rotate(-0, 320.9664, 259.81293)">856</text>
+   </g>
+   <g id="text_31">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="259.81293" transform="rotate(-0, 464.776, 259.81293)">1,458</text>
+   </g>
+   <g id="text_32">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="259.81293" transform="rotate(-0, 641.2696, 259.81293)">2,171</text>
+   </g>
+   <g id="text_33">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: start" x="20.2736" y="290.14893" transform="rotate(-0, 20.2736, 290.14893)">Birdnest</text>
+   </g>
+   <g id="text_34">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="320.9664" y="290.14893" transform="rotate(-0, 320.9664, 290.14893)">235</text>
+   </g>
+   <g id="text_35">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="464.776" y="290.14893" transform="rotate(-0, 464.776, 290.14893)">234</text>
+   </g>
+   <g id="text_36">
+    <text style="fill: #1d1d1f; font: 11.5px 'Helvetica Neue'; text-anchor: end" x="641.2696" y="290.14893" transform="rotate(-0, 641.2696, 290.14893)">173</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf03a387597">
+   <rect x="7.2" y="7.2" width="653.68" height="316"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -164,6 +164,8 @@ Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_re
 
 **Eduardo-CV phase 10 — 640-px recall recovery: all three cheap levers FAIL (2026-07-23):** vs deg15@640 (0.726 / R 0.681 / DD 0.635): close_mosaic=20 = wash (0.725); multi_scale=True = +0.006 mAP but DD recall −0.046 (worse where it matters); **P2 stride-4 head = 0.682 (−0.044)** — fresh-head init debt (297/649 transferred), same signature as the backbone grafts (`models_graft/yolo11n-p2-obb.yaml`). Conclusion: the 640 gap is information-loss the training side can't cheaply recover; remaining levers are 1280→640 distillation and loss-level reweighting (both code projects). Driver `train/sweep_eduardo_p10.sh`.
 
+**Eduardo-CV phase 12 — v8 recipe-ladder gap-fill (2026-07-23):** v8n det champ @1280 = 0.723 ± 0.042; **v8n OBB+deg15 @1280 = 0.773 ± 0.025** — full four-rung ladder now exists for v8n and v11n; v11n deg15 stays best (0.793), OBB>det and deg15>no-rotation hold on both models (recipe ordering is architecture-independent). v5n OBB tiers permanently impossible (no Ultralytics v5-OBB variant). Chart: `results/figures/yolo_comparison.*`; driver `train/sweep_eduardo_p12.sh`.
+
 **Convention going forward:** log new experiment conditions in this section (seed-averaged, with the recipe), update `results/config_benchmark.csv`, and `git push` — so GitHub always reflects the full experiment record. Git/privacy/model-card conventions: see `GIT.md` (noreply email only; no advisor names or personal emails in committed markdown; server = `$ATLI_SERVER` from `.env`).
 
 ## Repo structure & key scripts
