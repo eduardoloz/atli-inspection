@@ -49,6 +49,20 @@ CONDS = [
     # phase 12 — v8 gap-fill for the family comparison
     ("v8champ",    "EDU_v8champ",        "detect", "CV_eduardo_det", "osall.yaml",       1280),
     ("v8deg15",    "EDU_v8deg15",        "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    # phase 11 — 640-px shear pair + resolution-transfer levers
+    ("val640_hi",  "EDU_deg15_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("shear640",   "EDU_shear640",       "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("shonly640",  "EDU_shonly640",      "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("prog640",    "EDU_prog640",        "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("mixup640",   "EDU_mixup640",       "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    # phase 13 — mixup exploitation + resolution frontier
+    ("val960_hi",  "EDU_deg15_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       960),
+    ("val768_hi",  "EDU_deg15_v11",      "obb",    "CV_eduardo_obb", "osall.yaml",       768),
+    ("mix010_640", "EDU_mix010_640",     "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("mix025_640", "EDU_mix025_640",     "obb",    "CV_eduardo_obb", "osall.yaml",       640),
+    ("mix15_1280", "EDU_mix15_1280",     "obb",    "CV_eduardo_obb", "osall.yaml",       1280),
+    ("deg15_768",  "EDU_deg15_768",      "obb",    "CV_eduardo_obb", "osall.yaml",       768),
+    ("mix15_768",  "EDU_mix15_768",      "obb",    "CV_eduardo_obb", "osall.yaml",       768),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET
