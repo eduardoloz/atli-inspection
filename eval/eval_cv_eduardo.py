@@ -73,6 +73,8 @@ CONDS = [
     ("os6mix_640",     "EDU_os6mix_640",     "obb", "CV_eduardo_obb", "osall.yaml",       640),
     ("cls1mix_640",    "EDU_cls1mix_640",    "obb", "CV_eduardo_obb", "osall.yaml",       640),
     ("os6cls1mix_640", "EDU_os6cls1mix_640", "obb", "CV_eduardo_obb", "osall.yaml",       640),
+    # phase 17 — 640 deployment recipe: blur-aug stacked on mixup
+    ("blurmix_640", "EDU_blurmix_640",       "obb", "CV_eduardo_obb", "osall.yaml",       640),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET

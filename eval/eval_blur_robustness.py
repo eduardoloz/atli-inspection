@@ -33,11 +33,24 @@ CONDS = {
     # blurred-test mAP like blur-aug did; if it's boundary regularization,
     # the gain over deg15 should stay modest
     "mix15_1280": ("EDU_mix15_1280", 1280),
+    # 640 deployment-res fragility baselines + the phase-17 blur-stacked arm
+    "deg15_640": ("EDU_deg15_640_v11", 640),
+    "mixup640": ("EDU_mixup640", 640),
+    "blurmix_640": ("EDU_blurmix_640", 640),
 }
 
 out_path = ROOT / "eval_blur_robustness.json"
 out = json.load(open(out_path)) if out_path.exists() else {}
-todo = {c: v for c, v in CONDS.items() if c not in out}
+todo = {}
+for c, (prefix, imz) in CONDS.items():
+    if c in out:
+        continue
+    missing = [k for k in range(5)
+               if not (ROOT / "runs" / f"{prefix}_f{k}_s2" / "weights" / "best.pt").exists()]
+    if missing:
+        print(f"{c}: SKIP (folds not trained yet: {missing})")
+        continue
+    todo[c] = (prefix, imz)
 results = {c: [] for c in todo}
 
 for f in range(5):
