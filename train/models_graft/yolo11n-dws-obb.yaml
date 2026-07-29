@@ -1,5 +1,8 @@
-# YOLO11n-OBB with MobileNet-style depthwise-separable backbone graft: all backbone
-# downsampling convs become DWConv (grouped depthwise). C3k2 blocks and head stock.
+# YOLO11n-OBB with a grouped-convolution backbone graft (MobileNet-inspired,
+# NOT literally depthwise-separable -- see README.md "DWS" section): all
+# backbone downsampling convs become Ultralytics DWConv, i.e. a single conv
+# with groups=gcd(c1,c2), not a depthwise conv + separate pointwise conv.
+# C3k2 blocks and head stock.
 nc: 80
 scales:
   n: [0.50, 0.25, 1024]

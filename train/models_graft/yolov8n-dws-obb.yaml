@@ -1,5 +1,7 @@
-# YOLOv8n-OBB with MobileNet-style depthwise-separable backbone graft — v8 twin
-# of yolo11n-dws-obb.yaml: all backbone downsampling convs become DWConv.
+# YOLOv8n-OBB with a grouped-convolution backbone graft (MobileNet-inspired,
+# NOT literally depthwise-separable -- see README.md "DWS" section) — v8 twin
+# of yolo11n-dws-obb.yaml: all backbone downsampling convs become Ultralytics
+# DWConv (single conv, groups=gcd(c1,c2), not depthwise+pointwise).
 # C2f blocks and head stock so pretrained yolov8n-obb.pt weights transfer there.
 nc: 80
 scales:

@@ -1,5 +1,6 @@
-# YOLOv8n-OBB with FasterNet backbone graft (PConv blocks) — v8 twin of
-# yolo11n-fnet-obb.yaml.
+# YOLOv8n-OBB with FasterNet backbone graft (PConv blocks, [chen2023fasternet];
+# app. inspiration [chai2025fpfsyolo] -- see README.md for known deviations
+# from the paper) — v8 twin of yolo11n-fnet-obb.yaml.
 # ⚠ MUST be trained/loaded with FNET=1 and PYTHONPATH=~/atli/modpatch — that
 # sitecustomize rebinds ultralytics.nn.tasks.C3Ghost to the vendored FasterNet
 # block (C3Faster), so the "C3Ghost" entries below are NOT Ghost modules.

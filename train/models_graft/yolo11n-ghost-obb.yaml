@@ -1,5 +1,7 @@
-# YOLO11n-OBB with GhostNet backbone graft (GhostConv + C3Ghost, cf. IDD-YOLO /
-# GhostNet+YOLOv5s). Head/neck stock so pretrained yolo11n-obb.pt weights transfer there.
+# YOLO11n-OBB with GhostNet backbone graft (GhostConv + C3Ghost -- Ultralytics'
+# native modules, faithful to Han et al. CVPR'20 [han2020ghostnet]; app.
+# inspiration Lu et al. 2024 [lu2024iddyolo] -- see README.md). Head/neck
+# stock so pretrained yolo11n-obb.pt weights transfer there.
 nc: 80
 scales:
   n: [0.50, 0.25, 1024]

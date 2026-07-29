@@ -1,0 +1,120 @@
+{
+ "v11_dws": {
+  "engine_640_fp32_conf0.25": {
+   "fps": 32.38,
+   "ms_per_img": 30.88
+  },
+  "engine_768_fp32_conf0.25": {
+   "fps": 22.56,
+   "ms_per_img": 44.33
+  },
+  "engine_1024_fp32_conf0.25": {
+   "fps": 15.15,
+   "ms_per_img": 65.99
+  },
+  "engine_1280_fp32_conf0.25": {
+   "fps": 9.61,
+   "ms_per_img": 104.07
+  },
+  "pt_1024_fp32_conf0.25": {
+   "fps": 15.49,
+   "ms_per_img": 64.57
+  }
+ },
+ "v8_dws": {
+  "engine_640_fp32_conf0.25": {
+   "fps": 29.4,
+   "ms_per_img": 34.01
+  },
+  "engine_768_fp32_conf0.25": {
+   "fps": 20.57,
+   "ms_per_img": 48.61
+  },
+  "engine_1024_fp32_conf0.25": {
+   "fps": 14.08,
+   "ms_per_img": 71.05
+  },
+  "engine_1280_fp32_conf0.25": {
+   "fps": 10.14,
+   "ms_per_img": 98.65
+  },
+  "pt_1024_fp32_conf0.25": {
+   "fps": 15.49,
+   "ms_per_img": 64.55
+  }
+ },
+ "best": {
+  "engine_640_fp16_conf0.25": {
+   "fps": 27.5,
+   "ms_per_img": 36.36
+  },
+  "engine_640_int8_conf0.25": {
+   "fps": 24.74,
+   "ms_per_img": 40.43
+  },
+  "engine_768_int8_conf0.25": {
+   "fps": 17.37,
+   "ms_per_img": 57.58
+  }
+ },
+ "v11_ghost": {
+  "pt_1024_fp32_conf0.25": {
+   "fps": 13.61,
+   "ms_per_img": 73.47
+  },
+  "engine_1024_fp16_conf0.25": {
+   "fps": 17.25,
+   "ms_per_img": 57.98
+  }
+ },
+ "v8_ghost": {
+  "pt_1024_fp32_conf0.25": {
+   "fps": 14.92,
+   "ms_per_img": 67.03
+  },
+  "engine_1024_fp16_conf0.25": {
+   "fps": 24.92,
+   "ms_per_img": 40.13
+  }
+ },
+ "v5n": {
+  "pt_1024_fp32_conf0.25": {
+   "fps": 16.85,
+   "ms_per_img": 59.35
+  },
+  "engine_1024_fp16_conf0.25": {
+   "fps": 31.8,
+   "ms_per_img": 31.45
+  }
+ },
+ "v11_p2": {
+  "pt_1024_fp32_conf0.25": {
+   "fps": 10.25,
+   "ms_per_img": 97.56
+  },
+  "engine_1024_fp16_conf0.25": {
+   "fps": 4.97,
+   "ms_per_img": 201.13
+  }
+ },
+ "v11_fnet": {
+  "pt_1024_fp32_conf0.25": {
+   "fps": 14.85,
+   "ms_per_img": 67.32
+  },
+  "engine_1024_fp16_conf0.25": {
+   "fps": 17.61,
+   "ms_per_img": 56.77
+  }
+ },
+ "v8_fnet": {
+  "pt_1024_fp32_conf0.25": {
+   "fps": 16.48,
+   "ms_per_img": 60.69
+  },
+  "engine_1024_fp16_conf0.25": {
+   "fps": 7.86,
+   "ms_per_img": 127.28
+  }
+ }
+}

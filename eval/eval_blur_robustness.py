@@ -37,6 +37,7 @@ CONDS = {
     "deg15_640": ("EDU_deg15_640_v11", 640),
     "mixup640": ("EDU_mixup640", 640),
     "blurmix_640": ("EDU_blurmix_640", 640),
+    "blurmix30_640": ("EDU_blurmix30_640", 640),
 }
 
 out_path = ROOT / "eval_blur_robustness.json"

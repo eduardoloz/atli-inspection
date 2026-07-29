@@ -75,6 +75,31 @@ CONDS = [
     ("os6cls1mix_640", "EDU_os6cls1mix_640", "obb", "CV_eduardo_obb", "osall.yaml",       640),
     # phase 17 — 640 deployment recipe: blur-aug stacked on mixup
     ("blurmix_640", "EDU_blurmix_640",       "obb", "CV_eduardo_obb", "osall.yaml",       640),
+    # phase 18 — v11 grafts on the blurmix_640 deployment recipe
+    ("ghost_blurmix640", "EDU_ghost_blurmix640", "obb", "CV_eduardo_obb", "osall.yaml",   640),
+    ("dws_blurmix640",   "EDU_dws_blurmix640",   "obb", "CV_eduardo_obb", "osall.yaml",   640),
+    # phase 19 — does more rotation stack with blurmix_640? stock backbone only
+    ("blurmix30_640", "EDU_blurmix30_640",       "obb", "CV_eduardo_obb", "osall.yaml",   640),
+    # phase 20 — v8n +blur-aug / +mixup rungs, to match the v11n ladder
+    ("v8blurdeg15",  "EDU_v8blurdeg15",   "obb", "CV_eduardo_obb", "osall.yaml",       1280),
+    ("v8mix15_1280", "EDU_v8mix15_1280",  "obb", "CV_eduardo_obb", "osall.yaml",       1280),
+    # phase 21 -- does deg30 (which beat deg15 inside blurmix_640) also help at 1280?
+    ("mix30_1280",     "EDU_mix30_1280",     "obb", "CV_eduardo_obb", "osall.yaml", 1280),
+    ("blurmix30_1280", "EDU_blurmix30_1280", "obb", "CV_eduardo_obb", "osall.yaml", 1280),
+    # phase 22 -- v8n backbone-graft twins @640 (deg15 + blurmix recipes)
+    ("v8ghost_640",        "EDU_v8ghost_640",        "obb", "CV_eduardo_obb", "osall.yaml", 640),
+    ("v8dws_640",          "EDU_v8dws_640",          "obb", "CV_eduardo_obb", "osall.yaml", 640),
+    ("v8ghost_blurmix640", "EDU_v8ghost_blurmix640", "obb", "CV_eduardo_obb", "osall.yaml", 640),
+    ("v8dws_blurmix640",   "EDU_v8dws_blurmix640",   "obb", "CV_eduardo_obb", "osall.yaml", 640),
+    # phase 23 -- CPLID in TRAIN only, on the two best v11n recipes (clean native test)
+    ("cplidmix15_1280",     "EDU_cplidmix15_1280",     "obb", "CV_eduardo_obb", "osall_cplid.yaml", 1280),
+    ("cplidblurmix30_1280", "EDU_cplidblurmix30_1280", "obb", "CV_eduardo_obb", "osall_cplid.yaml", 1280),
+    # mix15_1280 champion (0.804) probed at lower inference resolutions —
+    # mixup twin of the deg15 val*_hi probes, for the poster's Fig 9 frontier
+    ("mixval640_hi",  "EDU_mix15_1280", "obb", "CV_eduardo_obb", "osall.yaml", 640),
+    ("mixval768_hi",  "EDU_mix15_1280", "obb", "CV_eduardo_obb", "osall.yaml", 768),
+    ("mixval960_hi",  "EDU_mix15_1280", "obb", "CV_eduardo_obb", "osall.yaml", 960),
+    ("mixval1024_hi", "EDU_mix15_1280", "obb", "CV_eduardo_obb", "osall.yaml", 1024),
 ]
 if os.environ.get("FNET") == "1":
     # fnet checkpoints unpickle against the rebound C3Faster class, and the FNET
@@ -82,7 +107,13 @@ if os.environ.get("FNET") == "1":
     # evaluated in its own pass:  FNET=1 PYTHONPATH=~/atli/modpatch python eval_cv_eduardo.py
     CONDS = [("fnet_deg15", "EDU_fnet_deg15", "obb", "CV_eduardo_obb", "osall.yaml", 1280),
              ("v8fnet_deg15", "EDU_v8fnet_deg15", "obb", "CV_eduardo_obb", "osall.yaml", 1280),
-             ("fnet_640", "EDU_fnet_640", "obb", "CV_eduardo_obb", "osall.yaml", 640)]
+             ("fnet_640", "EDU_fnet_640", "obb", "CV_eduardo_obb", "osall.yaml", 640),
+             # phase 18 — fnet graft on the blurmix_640 recipe (needs FNET=1 + BLUR_AUG=1
+             # simultaneously; use the combined ~/atli/fnetblur_patch/sitecustomize.py)
+             ("fnet_blurmix640", "EDU_fnet_blurmix640", "obb", "CV_eduardo_obb", "osall.yaml", 640),
+             # phase 22 -- v8-fnet twins @640
+             ("v8fnet_640",        "EDU_v8fnet_640",        "obb", "CV_eduardo_obb", "osall.yaml", 640),
+             ("v8fnet_blurmix640", "EDU_v8fnet_blurmix640", "obb", "CV_eduardo_obb", "osall.yaml", 640)]
 DEVICE = int(os.environ.get("EVAL_DEV", 3))
 BATCH = int(os.environ.get("EVAL_BATCH", 8))  # small: may share a GPU with training
 

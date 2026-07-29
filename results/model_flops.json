@@ -68,5 +68,26 @@
   "GFLOPs_640": 7.04,
   "native_imgsz": 1280,
   "GFLOPs_native": 28.15
+ },
+ "v8_ghost_obb": {
+  "run": "yaml fresh-init fused, 2026-07-29",
+  "params_M": 2.516,
+  "GFLOPs_640": 7.1,
+  "native_imgsz": 1280,
+  "GFLOPs_native": 28.4
+ },
+ "v8_dws_obb": {
+  "run": "yaml fresh-init fused, 2026-07-29",
+  "params_M": 2.836,
+  "GFLOPs_640": 8.1,
+  "native_imgsz": 1280,
+  "GFLOPs_native": 32.4
+ },
+ "v8_fnet_obb": {
+  "run": "yaml fresh-init fused, 2026-07-29",
+  "params_M": 2.787,
+  "GFLOPs_640": 7.8,
+  "native_imgsz": 1280,
+  "GFLOPs_native": 31.2
  }
 }

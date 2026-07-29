@@ -122,7 +122,7 @@ L 43.1524 467.6768
 Q 43.1524 478.608 53.61128 478.608 
 L 53.61128 478.608 
 z
-" clip-path="url(#p7f52836256)" style="fill: none; stroke-dasharray: 7.5,6; stroke-dashoffset: 0; stroke: #c8102e; stroke-width: 1.5; stroke-linejoin: miter"/>
+" clip-path="url(#p7f52836256)" style="fill: none; stroke-dasharray: 7.5,6; stroke-dashoffset: 0; stroke: #8a8d8f; stroke-width: 1.5; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
     <path d="M 234.064703 437.616 
@@ -229,7 +229,7 @@ Q 213.1092 174.584 213.1092 184.1488
 L 213.1092 223.0912 
 Q 213.1092 232.656 222.26072 232.656 
 z
-" clip-path="url(#p7f52836256)" style="fill: #fbeaec; stroke: #c8102e; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p7f52836256)" style="fill: #f4f3f2; stroke: #8a8d8f; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_19">
     <path d="M 71.91432 341.968 
@@ -281,7 +281,7 @@ Q 62.7628 410.288 62.7628 419.8528
 L 62.7628 455.3792 
 Q 62.7628 464.944 71.91432 464.944 
 z
-" clip-path="url(#p7f52836256)" style="fill: #fbeaec; stroke: #c8102e; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p7f52836256)" style="fill: #f4f3f2; stroke: #8a8d8f; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_23">
     <path d="M 264.74992 464.944 
@@ -294,7 +294,7 @@ Q 255.5984 410.288 255.5984 419.8528
 L 255.5984 455.3792 
 Q 255.5984 464.944 264.74992 464.944 
 z
-" clip-path="url(#p7f52836256)" style="fill: #fbeaec; stroke: #c8102e; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p7f52836256)" style="fill: #f4f3f2; stroke: #8a8d8f; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_24">
     <path d="M 235.33432 553.76 
@@ -307,7 +307,7 @@ Q 226.1828 499.104 226.1828 508.6688
 L 226.1828 544.1952 
 Q 226.1828 553.76 235.33432 553.76 
 z
-" clip-path="url(#p7f52836256)" style="fill: #fbeaec; stroke: #c8102e; stroke-width: 1.6; stroke-linejoin: miter"/>
+" clip-path="url(#p7f52836256)" style="fill: #f4f3f2; stroke: #8a8d8f; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_25">
     <path d="M 144.4728 649.408 
@@ -323,77 +323,94 @@ z
 " clip-path="url(#p7f52836256)" style="fill: #e9f1e9; stroke: #3e7a3e; stroke-width: 1.6; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
-    <text style="fill: #1d1d1f; font: 700 11px 'Helvetica Neue'; text-anchor: middle" x="177.1568" y="47.289244" transform="rotate(-0, 177.1568, 47.289244)">ATLI target set</text>
+    <text style="fill: #1d1d1f; font: 700 12.6px 'Helvetica Neue'; text-anchor: middle" x="177.1568" y="47.289244" transform="rotate(-0, 177.1568, 47.289244)">ATLI target set</text>
    </g>
    <g id="text_2">
-    <text style="fill: #52514e; font: 11px 'Helvetica Neue'; text-anchor: middle" x="177.1568" y="68.3911" transform="rotate(-0, 177.1568, 68.3911)">796 images</text>
+    <text style="fill: #52514e; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="177.1568" y="68.3911" transform="rotate(-0, 177.1568, 68.3911)">796 images</text>
    </g>
    <g id="text_3">
-    <text style="fill: #1d1d1f; font: 700 11px 'Helvetica Neue'; text-anchor: middle" x="490.9232" y="47.366588" transform="rotate(-0, 490.9232, 47.366588)">Additional photos</text>
+    <text style="fill: #1d1d1f; font: 700 12.6px 'Helvetica Neue'; text-anchor: middle" x="490.9232" y="47.366588" transform="rotate(-0, 490.9232, 47.366588)">Additional photos</text>
    </g>
    <g id="text_4">
-    <text style="fill: #52514e; font: 11px 'Helvetica Neue'; text-anchor: middle" x="490.9232" y="68.3911" transform="rotate(-0, 490.9232, 68.3911)">178 images</text>
+    <text style="fill: #52514e; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="490.9232" y="68.3911" transform="rotate(-0, 490.9232, 68.3911)">178 images</text>
    </g>
    <g id="text_5">
-    <text style="fill: #1d1d1f; font: 10.5px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="134.53525" transform="rotate(-0, 334.04, 134.53525)">Merged pool — 974 images</text>
+    <text style="fill: #1d1d1f; font: 12.1px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="134.53525" transform="rotate(-0, 334.04, 134.53525)">Merged pool — 974 images</text>
    </g>
    <g id="text_6">
-    <text style="fill: #1d1d1f; font: 700 11px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="195.962587" transform="rotate(-0, 334.04, 195.962587)">5-fold cross validation</text>
+    <text style="fill: #1d1d1f; font: 700 12.6px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="195.962587" transform="rotate(-0, 334.04, 195.962587)">5-fold cross validation</text>
    </g>
    <g id="text_7">
-    <text style="fill: #52514e; font: 11px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="217.146084" transform="rotate(-0, 334.04, 217.146084)">(70/15/15 split)</text>
+    <text style="fill: #52514e; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="217.146084" transform="rotate(-0, 334.04, 217.146084)">(70/15/15 split)</text>
    </g>
    <g id="text_8">
-    <text style="fill: #8a8d8f; font: 700 9.5px 'Helvetica Neue'; text-anchor: start" x="60.80176" y="277.546744" transform="rotate(-0, 60.80176, 277.546744)">Train split</text>
+    <text style="fill: #8a8d8f; font: 700 10.9px 'Helvetica Neue'; text-anchor: start" x="60.80176" y="277.546744" transform="rotate(-0, 60.80176, 277.546744)">Train split</text>
    </g>
    <g id="text_9">
-    <text style="fill: #1d1d1f; font: 700 11px 'Helvetica Neue'; text-anchor: middle" x="131.3992" y="306.998056" transform="rotate(-0, 131.3992, 306.998056)">Oversampling</text>
+    <text style="fill: #1d1d1f; font: 700 12.6px 'Helvetica Neue'; text-anchor: middle" x="131.3992" y="306.998056" transform="rotate(-0, 131.3992, 306.998056)">Oversampling</text>
    </g>
    <g id="text_10">
-    <text style="fill: #52514e; font: 11px 'Helvetica Neue'; text-anchor: middle" x="131.3992" y="328.073272" transform="rotate(-0, 131.3992, 328.073272)">defect ×3</text>
+    <text style="fill: #52514e; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="131.3992" y="328.073272" transform="rotate(-0, 131.3992, 328.073272)">defect ×3</text>
    </g>
    <g id="text_11">
-    <text style="fill: #1d1d1f; font: 11px 'Helvetica Neue'; text-anchor: middle" x="288.2824" y="317.4175" transform="rotate(-0, 288.2824, 317.4175)">Augmentation</text>
+    <text style="fill: #1d1d1f; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="288.2824" y="317.4175" transform="rotate(-0, 288.2824, 317.4175)">Augmentation</text>
    </g>
    <g id="text_12">
-    <text style="fill: #1d1d1f; font: 700 11px 'Helvetica Neue'; text-anchor: middle" x="536.6808" y="305.274587" transform="rotate(-0, 536.6808, 305.274587)">Val + test</text>
+    <text style="fill: #1d1d1f; font: 700 12.6px 'Helvetica Neue'; text-anchor: middle" x="536.6808" y="305.274587" transform="rotate(-0, 536.6808, 305.274587)">Val + test</text>
    </g>
    <g id="text_13">
-    <text style="fill: #52514e; font: 11px 'Helvetica Neue'; text-anchor: middle" x="536.6808" y="326.2991" transform="rotate(-0, 536.6808, 326.2991)">not augmented</text>
+    <text style="fill: #52514e; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="536.6808" y="326.2991" transform="rotate(-0, 536.6808, 326.2991)">not augmented</text>
    </g>
    <g id="text_14">
-    <text style="fill: #52514e; font: 9px 'Helvetica Neue'; text-anchor: start" x="254.94472" y="245.572241" transform="rotate(-0, 254.94472, 245.572241)">train</text>
+    <text style="fill: #52514e; font: 10.3px 'Helvetica Neue'; text-anchor: start" x="254.94472" y="245.572241" transform="rotate(-0, 254.94472, 245.572241)">train</text>
    </g>
    <g id="text_15">
-    <text style="fill: #52514e; font: 9px 'Helvetica Neue'; text-anchor: start" x="470.65912" y="259.236241" transform="rotate(-0, 470.65912, 259.236241)"> val + test</text>
+    <text style="fill: #52514e; font: 10.3px 'Helvetica Neue'; text-anchor: start" x="470.65912" y="259.236241" transform="rotate(-0, 470.65912, 259.236241)"> val + test</text>
    </g>
    <g id="text_16">
-    <text style="fill: #c8102e; font: 700 9.5px 'Helvetica Neue'; text-anchor: start" x="60.80176" y="400.455947" transform="rotate(-0, 60.80176, 400.455947)">Two-stage training</text>
+    <text style="fill: #8a8d8f; font: 700 10.9px 'Helvetica Neue'; text-anchor: start" x="60.80176" y="400.455947" transform="rotate(-0, 60.80176, 400.455947)">Two-stage training</text>
    </g>
    <g id="text_17">
-    <text style="fill: #1d1d1f; font: 700 10.5px 'Helvetica Neue'; text-anchor: middle" x="147.7412" y="429.751478" transform="rotate(-0, 147.7412, 429.751478)">Transfer learning</text>
+    <text style="fill: #1d1d1f; font: 700 12.1px 'Helvetica Neue'; text-anchor: middle" x="147.7412" y="429.751478" transform="rotate(-0, 147.7412, 429.751478)">Transfer learning</text>
    </g>
    <g id="text_18">
-    <text style="fill: #52514e; font: 10.5px 'Helvetica Neue'; text-anchor: middle" x="147.7412" y="451.008608" transform="rotate(-0, 147.7412, 451.008608)">COCO-pretrained YOLO</text>
+    <text style="fill: #52514e; font: 12.1px 'Helvetica Neue'; text-anchor: middle" x="147.7412" y="451.008608" transform="rotate(-0, 147.7412, 451.008608)">COCO-pretrained YOLO</text>
    </g>
    <g id="text_19">
-    <text style="fill: #1d1d1f; font: 11px 'Helvetica Neue'; text-anchor: middle" x="304.6244" y="440.459672" transform="rotate(-0, 304.6244, 440.459672)">Fine-tune</text>
+    <text style="fill: #1d1d1f; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="304.6244" y="440.459672" transform="rotate(-0, 304.6244, 440.459672)">Fine-tune</text>
    </g>
    <g id="text_20">
-    <text style="fill: #1d1d1f; font: 700 11px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="518.774587" transform="rotate(-0, 334.04, 518.774587)">Per-fold evaluation</text>
+    <text style="fill: #1d1d1f; font: 700 12.6px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="518.774587" transform="rotate(-0, 334.04, 518.774587)">Per-fold evaluation</text>
    </g>
    <g id="text_21">
-    <text style="fill: #52514e; font: 11px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="539.865272" transform="rotate(-0, 334.04, 539.865272)">P / R / mAP</text>
+    <text style="fill: #52514e; font: 12.6px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="539.865272" transform="rotate(-0, 334.04, 539.865272)">P / R / mAP</text>
    </g>
    <g id="text_22">
-    <text style="fill: #1d1d1f; font: 700 10.5px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="607.5459" transform="rotate(-0, 334.04, 607.5459)">Comparison of SOTA models</text>
+    <text style="fill: #1d1d1f; font: 700 12.1px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="607.5459" transform="rotate(-0, 334.04, 607.5459)">Comparison of SOTA models</text>
    </g>
    <g id="text_23">
-    <text style="fill: #52514e; font: 10.5px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="628.588108" transform="rotate(-0, 334.04, 628.588108)">DINO-4scale · RTMDet-Tiny · Dynamic R-CNN · YOLO v5n / v8n / v11n</text>
+    <text style="fill: #52514e; font: 13.8px 'Helvetica Neue'; text-anchor: middle" x="334.04" y="628.588108" transform="rotate(-0, 334.04, 628.588108)">YOLO v5n / v8n / v11n</text>
    </g>
    <g id="text_24">
-    <text style="fill: #52514e; font: 9px 'Helvetica Neue'; text-anchor: start" x="343.19152" y="568.384241" transform="rotate(-0, 343.19152, 568.384241)">same folds</text>
+    <text style="fill: #52514e; font: 10.3px 'Helvetica Neue'; text-anchor: start" x="343.19152" y="568.384241" transform="rotate(-0, 343.19152, 568.384241)">same folds</text>
    </g>
+  <g id="merged_pool_note">
+   <text x="450" y="128" style="fill: #52514e; font: italic 10.3px 'Helvetica Neue'; text-anchor: start">redid all annotations</text>
+  </g>
+  <g id="step_badges">
+   <circle cx="72" cy="28" r="13" style="fill: #2166ac; stroke: white; stroke-width: 1.5"/>
+   <text x="72" y="32.2" style="fill: white; font: 700 13px 'Helvetica Neue'; text-anchor: middle">1</text>
+   <circle cx="386" cy="28" r="13" style="fill: #2166ac; stroke: white; stroke-width: 1.5"/>
+   <text x="386" y="32.2" style="fill: white; font: 700 13px 'Helvetica Neue'; text-anchor: middle">1</text>
+   <circle cx="229" cy="110" r="13" style="fill: #2166ac; stroke: white; stroke-width: 1.5"/>
+   <text x="229" y="114.2" style="fill: white; font: 700 13px 'Helvetica Neue'; text-anchor: middle">2</text>
+   <circle cx="216" cy="179" r="13" style="fill: #2166ac; stroke: white; stroke-width: 1.5"/>
+   <text x="216" y="183.2" style="fill: white; font: 700 13px 'Helvetica Neue'; text-anchor: middle">3</text>
+   <circle cx="66" cy="291" r="13" style="fill: #2166ac; stroke: white; stroke-width: 1.5"/>
+   <text x="66" y="295.2" style="fill: white; font: 700 13px 'Helvetica Neue'; text-anchor: middle">4</text>
+   <circle cx="229" cy="291" r="13" style="fill: #2166ac; stroke: white; stroke-width: 1.5"/>
+   <text x="229" y="295.2" style="fill: white; font: 700 13px 'Helvetica Neue'; text-anchor: middle">5</text>
+  </g>
   </g>
  </g>
  <defs>

@@ -51,3 +51,29 @@ results/data_outreach*.md
 # pixels frozen in Roboflow version v5)
 rebalance/backups/
 results/eduardo_dupes_review/
+
+# Local-only clutter (big datasets, poster drafts, reference PDFs, side projects)
+local/
+
+# Poster/slide binaries — canonical copies live in local/poster-drafts/
+*.pptx
+*.key
+
+# LaTeX build artifacts (paper/ sources are tracked; junk is not)
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+paper/main.log
+
+# Paper/poster figure PDFs are needed to build the docs — exempt from *.pdf
+!paper/figures/*.pdf
+!paper/poster/figures/*.pdf
+
+# Jetson artifacts that must be built on-device
+*.engine
+*.onnx
+hardware_testing/sample_images/
+hardware_testing/calib/

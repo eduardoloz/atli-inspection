@@ -1,4 +1,5 @@
-# YOLOv8n-OBB with GhostNet backbone graft (GhostConv + C3Ghost) — v8 twin of
+# YOLOv8n-OBB with GhostNet backbone graft (GhostConv + C3Ghost, [han2020ghostnet];
+# app. inspiration [lu2024iddyolo] -- see README.md) — v8 twin of
 # yolo11n-ghost-obb.yaml. Head/neck stock C2f so pretrained yolov8n-obb.pt
 # weights transfer there.
 nc: 80
