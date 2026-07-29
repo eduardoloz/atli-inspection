@@ -83,12 +83,12 @@ Directly tied to the UNLV transmission-line / wildfire-season power-reliability 
 ## Active thread: the `Defective_Damper` class problem
 The current research focus. `Defective_Damper` is heavily confused with `Normal_Damper` in `merged_atli_target` — it's rare and dominated (pool 113 / **177 train instances** vs Normal_Damper 1460 / **1283 train**, ~12.9:1). This is the field's hardest class (worst/near-worst class in every multi-class damper study reviewed). Three workstreams done so far:
 
-### (a) Literature review — `damper_lit_review.md`
+### (a) Literature review — `results/damper_lit_review.md`
 - Digest of the PI's paper folder (`ATLI/*.pdf`) on how the literature treats damper defects, plus a web-search extension. Memory: `damper-defect-literature`.
 - Key levers identified: more defective data, minority-targeted augmentation past parity, **detect-then-classify** (PA-DETR: sibling defect classes cost ~3 mAP), resolution/tiling (STN PLAD damper AP **0.21→0.84** with 4×4 tiling — dampers are a small-object problem), shape-aware attention. Nobody uses focal/class-weighted loss for the normal-vs-defective imbalance.
 - No *paper-published* dataset ships labeled defective dampers; Roboflow Universe has ~3,800 immediately-exportable images with binary damper-defect labels (unvetted).
 
-### (b) Dataset vetting — `damper_dataset_vetting.md`
+### (b) Dataset vetting — `results/damper_dataset_vetting.md`
 - `rebalance/vet_universe_dampers.py` (read-only) pHash-vetted candidate Universe damper sets vs `merged_atli_target` train + val/test.
 - **DVDI rejected** — ~50% already inside ATLI (40/300 in val/test, 109/300 in train; ATLI's "internet" images recycled DVDI). Harvesting it would have leaked eval images into train.
 - **`wangbo/damper-o5wo3` (zero leakage, cleanest) and `yolov11-tasks/damper-defect-detection` (usable after dropping 4 leaked imgs + intra-dups) passed** and were uploaded to the `universe-damper-staging` Roboflow project (2,175 imgs, 1,430 tagged `has_defective`). `samiksha-gadhave` excluded (defect-spot labels, different semantics).
@@ -195,7 +195,11 @@ Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_re
 **Convention going forward:** log new experiment conditions in this section (seed-averaged, with the recipe), update `results/config_benchmark.csv`, and `git push` — so GitHub always reflects the full experiment record. Git/privacy/model-card conventions: see `GIT.md` (noreply email only; no advisor names or personal emails in committed markdown; server = `$ATLI_SERVER` from `.env`).
 
 ## Repo structure & key scripts
-Repo was reorganized from a flat layout into `env/ data/ train/ eval/ analysis/ rebalance/ results/ scripts/` (see `README.md`). The old `.atli_*` hidden scripts were renamed and moved into these dirs. Key scripts:
+Repo was reorganized from a flat layout into `env/ data/ train/ eval/ analysis/ rebalance/ results/ scripts/` (see `README.md`). The old `.atli_*` hidden scripts were renamed and moved into these dirs.
+
+**2026-07-29 workspace reorg:** `paper/` (LaTeX + poster sources/generators) and `hardware_testing/` (Jetson bench harness) are now tracked. Main keeps only the paper/poster-used figures+generators; legacy/exploratory figures (old writeup figs, superseded frontier charts, unused poster variants) live on branch **`archive/full-2026-07-29`** (pushed; full pre-prune snapshot — restore anything with `git checkout archive/full-2026-07-29 -- <path>`). Untracked local clutter was consolidated into gitignored **`local/`**: `local/ATLI` (PI paper folder + its Drive zip), `local/poster-drafts/` (all pptx/key drafts — FNALDRAFT.pptx is the final poster), `local/refs/` (APET paper, thesis PDFs), `local/amazon-order-tracker` (unrelated side project). `datasets/` stays at repo root (gitignored; builders write there). Loose damper notes moved to `results/damper_{lit_review,dataset_vetting}.md`.
+
+Key scripts:
 - **Data builders** (`data/`): `build_dataset.py` (rebuild stratified merged dataset from Roboflow), `build_dataset_universe.py` (universe-augmented variants), `build_oversample_native.py` (duplicate native DD images N×), `build_ablation.py` / `build_condition_*.py` (ablation + per-condition variants), `explore_roboflow.py` (read-only inventory).
 - **Train drivers** (`train/`): `run_config_v3.sh` (current 2-stage TL recipe), `run_config_pf.sh` (pretrain→finetune), plus `run_config*.sh` variants and `*_sweep.sh` multi-config sweeps.
 - **Eval** (`eval/`): `collect_universe_results.py` (scrape runs → `epoch_map.csv` + `test_summary.csv`), `parse_results.py`, `eval_all.sh`.
