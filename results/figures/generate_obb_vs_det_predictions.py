@@ -40,12 +40,13 @@ from ultralytics import YOLO
 HERE = Path(__file__).parent
 
 COLS = [  # (stem, fold)
+    # 2026-07-29 4-panel rework: kept old cols 1/4/5, added a Broken_Insulator
+    # panel (100137, fold0 test — det champion finds 0 of 3 BI, OBB finds all;
+    # picked from a 336-image det-vs-OBB sweep of every BI holdout image)
     ("edu_TJB8gulZBwN7wzGjaDir_jpg.rf.276eaf5e62a55ce219d32b4907c3ac49", 2),
-    ("0638_jpg.rf.5a66946a6317e6aaf353516966cf7972", 2),
-    ("Screenshot-2025-06-26-114529_jpg.rf.3479958409278403949d6b74367c834a", 2),
+    ("100137_JPG.rf.823e68591ffe9d0d9c6bc08a580078", 0),
     ("1161_jpg.rf.118cfacf8cadfd4dc1dd4c99f4f611f4", 2),
     ("000068_jpg.rf.11f57b197c4fbab0f0983b30385e352e", 2),
-    ("LTFIGIVP2_T0001_ts-3526-065_jpg.rf.437b3fabc1ebeb194aa9e3da5f2a1a70", 2),
 ]
 
 COLORS = {  # match the annotation-figure palette: DD green, NI teal, ND purple, defects warm
@@ -139,8 +140,15 @@ def main():
                   r.obb.xyxyxyxy[i].reshape(-1).tolist()) for i in range(len(r.obb))]
         tiles["obb"].append(render_tile(img, preds, font, 5))
 
-    mosaic = np.vstack([np.hstack([np.asarray(t) for t in tiles[row]]) for row in ("aabb", "obb")])
-    canvas = Image.fromarray(mosaic)  # bare mosaic — no title, caption, or row labels
+    # Figure-1-style layout: white gutters between photos (and rows), white border
+    GAP, MARGIN = 28, 12
+    n = len(COLS)
+    W = MARGIN * 2 + n * TILE + (n - 1) * GAP
+    H = MARGIN * 2 + 2 * TILE + GAP
+    canvas = Image.new("RGB", (W, H), (255, 255, 255))
+    for r, row in enumerate(("aabb", "obb")):
+        for c, t in enumerate(tiles[row]):
+            canvas.paste(t, (MARGIN + c * (TILE + GAP), MARGIN + r * (TILE + GAP)))
     canvas.save(args.out)
     print("wrote", args.out, canvas.size)
 

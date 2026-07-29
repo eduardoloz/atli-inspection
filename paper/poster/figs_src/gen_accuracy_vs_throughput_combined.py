@@ -149,8 +149,7 @@ axR.plot([0], [0], transform=axR.transAxes, **break_kw)
 
 fig.text(0.11, 0.915, "Accuracy vs. edge throughput across backbones (1280px & 640px)",
           ha="left", va="bottom", fontsize=17, fontweight="bold", color=INK)
-fig.text(0.11, 0.005, "Each point = best recipe for that backbone & resolution (original models: mixup/blur champion rungs; grafts: best of deg15/blur-mix).",
-          ha="left", va="bottom", fontsize=8.5, style="italic", color=MUTED)
+# (footnote removed per user 2026-07-29; recipe rule documented in the module docstring)
 
 for ext in ("png", "pdf"):
     fig.savefig(OUT / f"accuracy_vs_throughput_combined.{ext}", facecolor="white", dpi=300)
