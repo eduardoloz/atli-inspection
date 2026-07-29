@@ -1,0 +1,150 @@
+{
+ "baseline": {
+  "folds": [
+   {
+    "Birdnest_AP": 0.8381867022840654,
+    "Broken_Insulator_AP": 0.6719818581042196,
+    "Defective_Damper_AP": 0.41455615569445003,
+    "Flashover_Insulator_AP": 0.4417381794658364,
+    "Normal_Damper_AP": 0.5229404324769946,
+    "Normal_Insulators_AP": 0.622886876570363,
+    "Self-Exploded_Insulator_AP": 0.43234874342456764,
+    "task1_mAP50": 0.5635198497172139,
+    "hbb_mAP50": 0.606,
+    "hbb_mAP50_95": 0.275,
+    "hbb_P": 0.818,
+    "hbb_R": 0.538
+   },
+   {
+    "Birdnest_AP": 0.9004774511353457,
+    "Broken_Insulator_AP": 0.6820670449256989,
+    "Defective_Damper_AP": 0.30183994815754295,
+    "Flashover_Insulator_AP": 0.5683367280064471,
+    "Normal_Damper_AP": 0.42507265038578457,
+    "Normal_Insulators_AP": 0.6073904573966894,
+    "Self-Exploded_Insulator_AP": 0.4546909627342398,
+    "task1_mAP50": 0.5628393203916783,
+    "hbb_mAP50": 0.607,
+    "hbb_mAP50_95": 0.274,
+    "hbb_P": 0.735,
+    "hbb_R": 0.554
+   },
+   {
+    "Birdnest_AP": 0.8743375036478485,
+    "Broken_Insulator_AP": 0.5987470229782,
+    "Defective_Damper_AP": 0.33189499026723135,
+    "Flashover_Insulator_AP": 0.6337592003103274,
+    "Normal_Damper_AP": 0.4747216011507833,
+    "Normal_Insulators_AP": 0.4800062987214768,
+    "Self-Exploded_Insulator_AP": 0.5330298120360387,
+    "task1_mAP50": 0.5609280613017009,
+    "hbb_mAP50": 0.623,
+    "hbb_mAP50_95": 0.295,
+    "hbb_P": 0.784,
+    "hbb_R": 0.569
+   },
+   {
+    "Birdnest_AP": 0.8969401763304412,
+    "Broken_Insulator_AP": 0.5229093718285448,
+    "Defective_Damper_AP": 0.5699489228928691,
+    "Flashover_Insulator_AP": 0.5461368501813937,
+    "Normal_Damper_AP": 0.5987877254578508,
+    "Normal_Insulators_AP": 0.5961280387755867,
+    "Self-Exploded_Insulator_AP": 0.6200298114844565,
+    "task1_mAP50": 0.6215544138501633,
+    "hbb_mAP50": 0.688,
+    "hbb_mAP50_95": 0.324,
+    "hbb_P": 0.806,
+    "hbb_R": 0.61
+   },
+   {
+    "Birdnest_AP": 0.9823509823509824,
+    "Broken_Insulator_AP": 0.45926763157381956,
+    "Defective_Damper_AP": 0.5395998330906164,
+    "Flashover_Insulator_AP": 0.6237762687564785,
+    "Normal_Damper_AP": 0.6646452220320402,
+    "Normal_Insulators_AP": 0.6027543122869662,
+    "Self-Exploded_Insulator_AP": 0.7056159343802088,
+    "task1_mAP50": 0.6540014549244446,
+    "hbb_mAP50": 0.71,
+    "hbb_mAP50_95": 0.319,
+    "hbb_P": 0.835,
+    "hbb_R": 0.647
+   }
+  ]
+ },
+ "champion": {
+  "folds": [
+   {
+    "Birdnest_AP": 0.7779759573237834,
+    "Broken_Insulator_AP": 0.7141715341338439,
+    "Defective_Damper_AP": 0.35986581642144766,
+    "Flashover_Insulator_AP": 0.5639749611134904,
+    "Normal_Damper_AP": 0.6468622219378313,
+    "Normal_Insulators_AP": 0.715278807961282,
+    "Self-Exploded_Insulator_AP": 0.7685890311123907,
+    "task1_mAP50": 0.6495311900005813,
+    "hbb_mAP50": 0.718,
+    "hbb_mAP50_95": 0.327,
+    "hbb_P": 0.79,
+    "hbb_R": 0.653
+   },
+   {
+    "Birdnest_AP": 0.960278941903656,
+    "Broken_Insulator_AP": 0.6588099892870043,
+    "Defective_Damper_AP": 0.46813315913671394,
+    "Flashover_Insulator_AP": 0.7070888397635339,
+    "Normal_Damper_AP": 0.616514529378894,
+    "Normal_Insulators_AP": 0.6620860399348267,
+    "Self-Exploded_Insulator_AP": 0.7933619300525407,
+    "task1_mAP50": 0.6951819184938814,
+    "hbb_mAP50": 0.73,
+    "hbb_mAP50_95": 0.355,
+    "hbb_P": 0.724,
+    "hbb_R": 0.7
+   },
+   {
+    "Birdnest_AP": 0.7841560445727113,
+    "Broken_Insulator_AP": 0.737493786919436,
+    "Defective_Damper_AP": 0.39098031001256806,
+    "Flashover_Insulator_AP": 0.7876219536784428,
+    "Normal_Damper_AP": 0.5590169494141783,
+    "Normal_Insulators_AP": 0.5429870922933386,
+    "Self-Exploded_Insulator_AP": 0.6607005513997852,
+    "task1_mAP50": 0.6375652411843513,
+    "hbb_mAP50": 0.697,
+    "hbb_mAP50_95": 0.333,
+    "hbb_P": 0.742,
+    "hbb_R": 0.666
+   },
+   {
+    "Birdnest_AP": 0.9146411577237494,
+    "Broken_Insulator_AP": 0.5646132642938017,
+    "Defective_Damper_AP": 0.5363144953915746,
+    "Flashover_Insulator_AP": 0.6392992379436349,
+    "Normal_Damper_AP": 0.6116596512428943,
+    "Normal_Insulators_AP": 0.6683134093214484,
+    "Self-Exploded_Insulator_AP": 0.7202739887869369,
+    "task1_mAP50": 0.665016457814863,
+    "hbb_mAP50": 0.723,
+    "hbb_mAP50_95": 0.352,
+    "hbb_P": 0.781,
+    "hbb_R": 0.657
+   },
+   {
+    "Birdnest_AP": 0.8515247378883744,
+    "Broken_Insulator_AP": 0.5317331167448202,
+    "Defective_Damper_AP": 0.6880734512528458,
+    "Flashover_Insulator_AP": 0.7075404884117068,
+    "Normal_Damper_AP": 0.7067426061557613,
+    "Normal_Insulators_AP": 0.6421414023108307,
+    "Self-Exploded_Insulator_AP": 0.8209140251167155,
+    "task1_mAP50": 0.7069528325544364,
+    "hbb_mAP50": 0.768,
+    "hbb_mAP50_95": 0.359,
+    "hbb_P": 0.769,
+    "hbb_R": 0.706
+   }
+  ]
+ }
+}

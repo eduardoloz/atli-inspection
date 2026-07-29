@@ -984,6 +984,14 @@ save(fig, "poster_fig_resolution_frontier")
 # condition names). Source: results/eval_eduardo_results.json fold means.
 RES_ED = _json.load(open(Path(__file__).resolve().parents[3]
                          / "results/eval_eduardo_results.json"))
+# YOLOv5n-OBB (community yolov5_obb fork — Ultralytics ships no v5-OBB): same
+# folds/recipe as the v8/v11 "+ OBB (1280)" rung (champ+osall, 150+100, 1280)
+# but scored by DOTA_devkit Task1 rotated eval, not Ultralytics OBBMetrics —
+# same metric family, different evaluator (see results/yolov5_obb_results.md).
+RES_V5OBB = _json.load(open(Path(__file__).resolve().parents[3]
+                            / "results/eval_v5obb_results.json"))
+RES_ED["v5obbchamp"] = {"folds": [{"mAP50": f["task1_mAP50"]}
+                                  for f in RES_V5OBB["champion"]["folds"]]}
 
 def ed_map(cond):
     a = np.array([f["mAP50"] for f in RES_ED[cond]["folds"]])
@@ -995,7 +1003,7 @@ RL_CONDS = [  # (legend label, color, {model: json key})
     ("Baseline + oversample x3 + 1280 res", "#d0700e",
      {"YOLOv5n": "v5champ", "YOLOv8n": "v8champ", "YOLOv11n": "champosall"}),
     ("+ OBB (1280)", "#1a9850",
-     {"YOLOv8n": "v8obbchamp", "YOLOv11n": "obbref"}),
+     {"YOLOv5n": "v5obbchamp", "YOLOv8n": "v8obbchamp", "YOLOv11n": "obbref"}),
     ("+ deg15 rotation (1280)", "#c51b7d",
      {"YOLOv8n": "v8deg15", "YOLOv11n": "deg15"}),
     ("+ blur-aug (1280)", "#0891b2",
@@ -1008,10 +1016,11 @@ n_cond = len(RL_CONDS)
 step = 0.86 / n_cond
 bw = step * 0.82
 
-# YOLOv5n only has 2 of the 6 conditions (no v5-OBB variant), so its group
-# only reserves 2 bar-slots instead of 6 -- no dead space held open for the
-# missing OBB/deg15/blur-aug/mixup bars. Groups are packed left-to-right with
-# a fixed inter-group gap instead of evenly-spaced fixed-width slots.
+# YOLOv5n only has 3 of the 6 conditions (its OBB rung comes from the
+# community yolov5_obb fork; the fork has no deg15/blur/mixup equivalents), so
+# its group only reserves 3 bar-slots instead of 6 -- no dead space held open
+# for the missing bars. Groups are packed left-to-right with a fixed
+# inter-group gap instead of evenly-spaced fixed-width slots.
 model_entries = {m: [(k, lab, col, keys[m]) for k, (lab, col, keys) in enumerate(RL_CONDS)
                       if m in keys] for m in RL_MODELS}
 GROUP_GAP = 0.22
@@ -1029,9 +1038,18 @@ for m in RL_MODELS:
     for k_pos, (k, lab, col, key) in enumerate(model_entries[m]):
         mean, sd = ed_map(key)
         xp = group_starts[m] + (k_pos + 0.5) * step
+        # v5n's OBB bar comes from a different fork + evaluator -- hatch it
+        # and star its label so it isn't read as bit-identical to v8/v11.
+        # It also never provides the legend entry: its hatch would land on
+        # the "+ OBB (1280)" swatch and imply every OBB bar is fork-sourced
+        # (v5n is drawn first, so it would win the label).
+        fork_bar = key == "v5obbchamp"
         ax.bar(xp, mean, width=bw, color=col, zorder=3,
-               label=None if lab in legend_done else lab)
-        legend_done.add(lab)
+               hatch="//" if fork_bar else None,
+               edgecolor="white" if fork_bar else None, linewidth=0,
+               label=None if fork_bar or lab in legend_done else lab)
+        if not fork_bar:
+            legend_done.add(lab)
         ax.errorbar(xp, mean, yerr=sd, fmt="none", ecolor=INK2,
                     elinewidth=1.3, capsize=3.5, zorder=4)
         # Sit right above this bar's own error-bar cap (no cross-bar
@@ -1040,13 +1058,15 @@ for m in RL_MODELS:
         # annotation_clip=False as a belt-and-braces guard against that
         # clipping recurring if a label ever lands right at the ylim edge.
         ly = mean + sd + 0.006
-        ax.annotate(f"{mean:.3f}", (xp, ly), ha="center",
-                    fontsize=9.5, color=INK, zorder=5, annotation_clip=False)
-# v5n has no OBB variant -- note it in the (now much smaller) gap right after
-# its 2 bars, at mid-height so it clears both the bars and the legend box.
-no_obb_xp = group_starts["YOLOv8n"] - GROUP_GAP / 2
-ax.annotate("no v5\nOBB\nvariant", (no_obb_xp, 0.68), ha="center", fontsize=8,
-            color=MUTED, style="italic", linespacing=1.3)
+        ax.annotate(f"{mean:.3f}*" if fork_bar else f"{mean:.3f}", (xp, ly),
+                    ha="center", fontsize=9.5, color=INK, zorder=5,
+                    annotation_clip=False)
+# Footnote for the fork-sourced v5n OBB bar (replaces the old "no v5 OBB
+# variant" gap note now that the rung exists).
+fig.text(0.5, 0.012,
+         "* v5n-OBB via community yolov5_obb fork (Ultralytics has no v5-OBB); "
+         "rotated Task1 mAP@0.5, DOTA_devkit eval — later rungs N/A for the fork.",
+         ha="center", fontsize=8.5, color=MUTED, style="italic")
 ax.set_xticks([group_centers[m] for m in RL_MODELS])
 ax.set_xticklabels(RL_MODELS, fontsize=18)
 ax.set_xlim(-0.12, cursor - GROUP_GAP + 0.12)
