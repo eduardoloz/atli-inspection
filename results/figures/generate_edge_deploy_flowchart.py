@@ -58,9 +58,12 @@ class Canvas:
         return (x0, y0, x1, y1)
 
     def arrow(self, p0, p1, ls="-"):
+        # boxes render with 0.4 units of rounded pad beyond their layout
+        # rect — shrink both arrow ends (points) so heads/tails stop at the
+        # visible edge instead of poking inside it
         self.ax.add_patch(FancyArrowPatch(
             p0, p1, arrowstyle="-|>", mutation_scale=13,
-            color=ARROW, lw=1.3, ls=ls, shrinkA=0, shrinkB=0))
+            color=ARROW, lw=1.3, ls=ls, shrinkA=5, shrinkB=5))
 
     def note(self, x, y, text, color=SUB, ha="center", bold=False):
         self.ax.text(x, y, text, ha=ha, va="center", fontsize=FS_LABEL,
