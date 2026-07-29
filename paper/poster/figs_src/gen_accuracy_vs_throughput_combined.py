@@ -40,7 +40,7 @@ BLUE, ORANGE, GREEN = "#2166ac", "#d0700e", "#1a9850"
 INK, INK2, MUTED, GRID = "#1a1a1a", "#4d4c49", "#898781", "#e3e2dc"
 
 FAMILY_COLOR = {"YOLOv11n": BLUE, "YOLOv8n": ORANGE, "YOLOv5n": GREEN}
-BACKBONE_MARKER = {"Stock": "o", "Ghost": "s", "DWS": "^", "FasterNet": "D"}
+BACKBONE_MARKER = {"Original model": "o", "Ghost": "s", "DWS": "^", "FasterNet": "D"}
 
 
 def ed_map(cond):
@@ -55,9 +55,9 @@ def fps(model_key, res):
 # key rule: best recipe per backbone x resolution (see module docstring)
 POINTS = [
     # 1280px-trained (filled)
-    ("YOLOv11n", "Stock", "mix15_1280", "v11n_obb", 1280),      # 0.804 champion
-    ("YOLOv8n", "Stock", "v8mix15_1280", "v8n_obb_champ", 1280),  # 0.798 (p20)
-    ("YOLOv5n", "Stock", "v5champ", "v5n", 1280),
+    ("YOLOv11n", "Original model", "mix15_1280", "v11n_obb", 1280),      # 0.804 champion
+    ("YOLOv8n", "Original model", "v8mix15_1280", "v8n_obb_champ", 1280),  # 0.798 (p20)
+    ("YOLOv5n", "Original model", "v5champ", "v5n", 1280),
     ("YOLOv11n", "Ghost", "ghost_deg15", "v11_ghost", 1280),
     ("YOLOv8n", "Ghost", "v8ghost_deg15", "v8_ghost", 1280),
     ("YOLOv11n", "DWS", "dws_deg15", "v11_dws", 1280),
@@ -65,9 +65,9 @@ POINTS = [
     ("YOLOv11n", "FasterNet", "fnet_deg15", "v11_fnet", 1280),
     ("YOLOv8n", "FasterNet", "v8fnet_deg15", "v8_fnet", 1280),
     # 640px-trained (hollow); v8 grafts from phase 22 (2026-07-29)
-    ("YOLOv11n", "Stock", "blurmix_640", "v11n_obb", 640),      # 0.757 640-champion
-    ("YOLOv8n", "Stock", "v8deg15_640", "v8n_obb_champ", 640),  # best/only v8@640
-    ("YOLOv5n", "Stock", "v5champ_640", "v5n", 640),
+    ("YOLOv11n", "Original model", "blurmix_640", "v11n_obb", 640),      # 0.757 640-champion
+    ("YOLOv8n", "Original model", "v8deg15_640", "v8n_obb_champ", 640),  # best/only v8@640
+    ("YOLOv5n", "Original model", "v5champ_640", "v5n", 640),
     ("YOLOv11n", "Ghost", "ghost_640", "v11_ghost", 640),           # deg15 > blurmix
     ("YOLOv8n", "Ghost", "v8ghost_640", "v8_ghost", 640),           # deg15 > blurmix
     ("YOLOv11n", "DWS", "dws_blurmix640", "v11_dws", 640),          # blurmix > deg15
@@ -149,7 +149,7 @@ axR.plot([0], [0], transform=axR.transAxes, **break_kw)
 
 fig.text(0.11, 0.915, "Accuracy vs. edge throughput across backbones (1280px & 640px)",
           ha="left", va="bottom", fontsize=17, fontweight="bold", color=INK)
-fig.text(0.11, 0.005, "Each point = best recipe for that backbone & resolution (stock: mixup/blur champion rungs; grafts: best of deg15/blur-mix).",
+fig.text(0.11, 0.005, "Each point = best recipe for that backbone & resolution (original models: mixup/blur champion rungs; grafts: best of deg15/blur-mix).",
           ha="left", va="bottom", fontsize=8.5, style="italic", color=MUTED)
 
 for ext in ("png", "pdf"):
