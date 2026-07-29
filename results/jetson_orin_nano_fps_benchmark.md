@@ -118,3 +118,39 @@ not left as a generic Nano/projection claim.
 
 Raw data: `hardware_testing/jetson_fps_results.json` (pulled from the
 Jetson at `/home/eduardo/hardware_testing/jetson_fps_results.json`).
+
+---
+
+## Session 2 — gap benchmarks (2026-07-29, pinned clocks)
+
+Two-phase run after a board power cycle (unpinned overnight pass built all
+engines + ran the clock-independent INT8 accuracy val; pinned pass re-timed
+everything into this file's canonical json). Harness additions:
+`hardware_testing/run_gap_bench.sh` / `run_gap_bench_unpinned.sh` /
+`jetson_int8_val.py`.
+
+### 1. DWS TensorRT rescued — FP32 engine build works (anomaly #1 resolved)
+The FP16 build failure is precision-specific: `--precision fp32` builds and
+runs on both DWS grafts. Pinned fps (engine fp32): **v11-DWS 38.0 / 27.6 /
+18.8 / 11.8** and **v8-DWS 36.0 / 26.4 / 18.0 / 12.6** at 640/768/1024/1280.
+38 fps @640 makes DWS the fastest graft engine measured — but its CV mAP
+(0.571–0.587 @640) keeps it dominated by stock+TensorRT on accuracy.
+
+### 2. INT8 is dead on this stack (fps AND accuracy)
+Pinned INT8 engines (champion arch, calibrated on fold0 val): **640 = 30.1
+fps, 768 = 21.7 fps — SLOWER than FP16 (34.8 / 23.4)**, and the accuracy val
+(`results/jetson_int8_accuracy.json`, fold0 test) shows mAP 0.715/0.746 vs
+FP16's 0.739/0.755 with **Defective_Damper AP −0.10** (0.530 vs 0.628 @640)
+— the predicted minority-class quantization damage. FP16 is the deployment
+precision; INT8 is a documented negative result on JetPack 7.2 / TRT 11.1.
+
+### 3. 1024px column completed for all architectures
+(pt fp32 / engine fp16 unless noted): v11n-OBB 15.0/11.9 · v8n-OBB(det
+16.97/30.6; obb champ 15.4/13.0) · v11-Ghost 13.8/21.2 · v8-Ghost 14.9/28.5
+· v11-DWS 15.5/18.8(fp32) · v8-DWS 15.7/18.0(fp32) · v11-FasterNet 14.9/22.0
+· v8-FasterNet 16.4/9.0 · v5n 16.8/32.6 · v11-P2 10.3/5.4. The P2 and
+v8-FasterNet TensorRT-slower-than-PyTorch anomalies reproduce at 1024.
+
+Ops note: the Jetson ML stack lives in `~/.venvs/jetson-jp72` (python3.12)
+— non-interactive SSH must activate it explicitly; fnet checkpoints need
+`FNET=1 PYTHONPATH=~/hardware_testing/modpatch`.
