@@ -196,6 +196,9 @@ Per-run metrics: `results/config_benchmark.csv`. Full writeup: `results/paper_re
 
 **Convention going forward:** log new experiment conditions in this section (seed-averaged, with the recipe), update `results/config_benchmark.csv`, and `git push` — so GitHub always reflects the full experiment record. Git/privacy/model-card conventions: see `GIT.md` (noreply email only; no advisor names or personal emails in committed markdown; server = `$ATLI_SERVER` from `.env`).
 
+## Paper workflow (paper/draft_sections_2_3)
+**MANDATORY: before making ANY edit to `paper/draft_sections_2_3/`, run the `/sync-overleaf` skill (`python3 scripts/sync_overleaf.py status`) to check for collaborator edits on Overleaf.** If it shows diffs: `pull --apply`, review, commit theirs first. After local edits: rebuild (`latexmk -pdf`, TinyTeX on PATH), commit (dated, GIT.md conventions), then `push` to Overleaf. GitHub = source of truth; Overleaf project (free plan, no git bridge): https://www.overleaf.com/project/6aa0740339f566201feeae3e — contributors: Eddie, Soum (hardware analysis), Giovanny, the PI.
+
 ## Repo structure & key scripts
 Repo was reorganized from a flat layout into `env/ data/ train/ eval/ analysis/ rebalance/ results/ scripts/` (see `README.md`). The old `.atli_*` hidden scripts were renamed and moved into these dirs.
 
