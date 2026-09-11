@@ -1,0 +1,153 @@
+% refs_sota.bib — current state-of-the-art references (2024-2026), collected
+% 2026-09-08 from a verified web survey for this draft.
+% VERIFICATION PASS 2026-09-08: every entry below checked against primary
+% sources (Crossref publisher-deposited metadata via api.crossref.org, the
+% arXiv API, and PMC). No "to be verified" placeholders remain. Numbers
+% quoted in the notes below were re-checked against the primary source.
+%
+% For the PI's Related Work section, the most citation-worthy of these are:
+%   faisal2025powerline (already in refs.bib) - field survey, Applied Energy 2025
+%   hu2026poldyolo   - nearest published analog to our setup (nano YOLO11,
+%                      1,249 images, 5 classes incl. vibration damper +
+%                      corroded vibration damper + bird's nest,
+%                      92.4 mAP50, 1.55M params; no per-class rare-class analysis,
+%                      no CV, no edge measurement)  [counts confirmed vs full text]
+%   zhou2026carenet  - most recent damper-condition detector (normal/rusted/
+%                      dilapidated, mAP50 0.951 on a custom set, 2.44M params)
+%   chen2025plddetr  - RT-DETR variant on a 7-category defect set incl. damaged
+%                      dampers and bird nests (CDTLD)
+%   wang2026mleyolo  - current nano-model SOTA on CPLID (92.1) / IDID (95.3)
+%   fan2026survey    - Drones 2026 survey naming small objects + sample
+%                      imbalance as the field's core open challenges
+
+% Verified vs Crossref 2026-09-08: authors, vol/no/pages, year, DOI all correct.
+@article{zhou2026carenet,
+  author  = {Zhou, Yujie and Ji, Chao and Wang, Huan and Zhao, Long and Yang, Peng and Zhang, Chao},
+  title   = {{CARE-Net}: A Compact Framework for Vibration Damper Detection in {UAV}-Based Transmission Line Inspection},
+  journal = {Sensors},
+  volume  = {26},
+  number  = {17},
+  pages   = {5648},
+  year    = {2026},
+  doi     = {10.3390/s26175648}
+}
+
+% Verified vs Crossref 2026-09-08: authors, vol/no/pages, year, DOI all correct.
+@article{hu2026poldyolo,
+  author  = {Hu, Bo and Wu, Fanfan and Zhang, Pengchao and Cui, Jinkai and Liu, Yingying},
+  title   = {{POLD-YOLO}: A Lightweight {YOLO11}-Based Algorithm for Insulator Defect Detection in {UAV} Aerial Images},
+  journal = {Sensors},
+  volume  = {26},
+  number  = {5},
+  pages   = {1733},
+  year    = {2026},
+  doi     = {10.3390/s26051733}
+}
+
+% Verified vs Crossref 2026-09-08: authors, vol 156, art. 111129, year, DOI correct.
+@article{yang2025oneforall,
+  author  = {Yang, Ke and Hu, Zhedong and Zhao, Xiaoyu and Wang, Qianming and Hu, Dongyang and Zhai, Yongjie},
+  title   = {One for All: Geometric Structural-Guided Single Domain Generalization for Vibration Damper Defect Detection},
+  journal = {Engineering Applications of Artificial Intelligence},
+  volume  = {156},
+  pages   = {111129},
+  year    = {2025},
+  doi     = {10.1016/j.engappai.2025.111129}
+}
+
+% Verified vs Crossref 2026-09-08: authors, vol/no/pages, year, DOI all correct.
+@article{chen2025plddetr,
+  author  = {Chen, Jianing and Zhang, Xin and Feng, Dawei and Li, Jiahao and Zhu, Liang},
+  title   = {{PLD-DETR}: A Method for Defect Inspection of Power Transmission Lines},
+  journal = {Electronics},
+  volume  = {14},
+  number  = {20},
+  pages   = {4107},
+  year    = {2025},
+  doi     = {10.3390/electronics14204107}
+}
+
+% Completed 2026-09-08 from PMC13249930 + Crossref: full author list, DOI,
+% vol 6, issue 1, article 13, published 2026-06-09.
+@article{stefenon2026diffusion,
+  author  = {Stefenon, Stefano Frizzo and Matos-Carvalho, Jo{\~a}o Pedro and Mariani, Viviana Cocco and dos Santos Coelho, Leandro and Yow, Kin-Choong},
+  title   = {Diffusion-Augmented {YOLO26-Swin} Cascaded Framework with Hybrid {SHAP-CAM} for Autonomous Power Grid Inspection},
+  journal = {Autonomous Intelligent Systems},
+  volume  = {6},
+  number  = {1},
+  pages   = {13},
+  year    = {2026},
+  doi     = {10.1007/s43684-026-00135-2}
+}
+
+% Verified vs Crossref 2026-09-08: authors, vol 10(1):55, year 2026, DOI correct.
+@article{fan2026survey,
+  author  = {Fan, Shanshan and Cao, Bin},
+  title   = {The Survey of Evolutionary Deep Learning-Based {UAV} Intelligent Power Inspection},
+  journal = {Drones},
+  volume  = {10},
+  number  = {1},
+  pages   = {55},
+  year    = {2026},
+  doi     = {10.3390/drones10010055}
+}
+
+% Verified vs Crossref 2026-09-08: authors, pages 966-970, year, DOI correct.
+@inproceedings{akyon2022sahi,
+  author    = {Akyon, Fatih Cagatay and Altinuc, Sinan Onur and Temizel, Alptekin},
+  title     = {Slicing Aided Hyper Inference and Fine-Tuning for Small Object Detection},
+  booktitle = {Proc. IEEE International Conference on Image Processing (ICIP)},
+  pages     = {966--970},
+  year      = {2022},
+  doi       = {10.1109/ICIP46576.2022.9897990}
+}
+
+% Completed 2026-09-08 from Crossref: 3 authors; vol 8 (per publisher-deposited
+% metadata, despite the 2026-03-02 publication date), article 1732616.
+@article{farooq2026teyolov8,
+  author  = {Farooq, Umer and Yang, Fan and Shaikh, Jamshed Ali},
+  title   = {Transformer Enhanced Based {YOLOv8} Integration: A Hybrid Deep Learning Framework for Intelligent Insulator Defect Detection in High-Voltage Transmission Systems},
+  journal = {Frontiers in Artificial Intelligence},
+  volume  = {8},
+  pages   = {1732616},
+  year    = {2026},
+  doi     = {10.3389/frai.2025.1732616}
+}
+
+% Completed 2026-09-08 from Crossref: 5 authors; vol 21(8), e0354898, 2026-08-03.
+@article{wang2026mleyolo,
+  author  = {Wang, Yuan and Cui, Hanzhi and Li, Jinxian and Duan, Zongxiu and Wei, Qiqi},
+  title   = {{MLE-YOLOv11n}: Multi-Scale Layer Aggregation and Context-Aware Feature Fusion for Insulator Defect Detection in Aerial Imagery},
+  journal = {PLOS One},
+  volume  = {21},
+  number  = {8},
+  pages   = {e0354898},
+  year    = {2026},
+  doi     = {10.1371/journal.pone.0354898}
+}
+
+% Completed 2026-09-08 from the arXiv API (2602.13378v1, cs.CV, submitted
+% 2026-02-13). NOTE: the placeholder title in the earlier draft was wrong;
+% this is the exact arXiv title.
+@misc{laf2026yolo,
+  author       = {Farooqui, Sohail Ali and Taha, Zuhair Ahmed Khan and Uddin, Mohammed Mudassir and Alam, Shahnawaz},
+  title        = {{LAF-YOLOv10} with Partial Convolution Backbone, Attention-Guided Feature Pyramid, Auxiliary {P2} Head, and {Wise-IoU} Loss for Small Object Detection in Drone Aerial Imagery},
+  howpublished = {arXiv preprint arXiv:2602.13378},
+  year         = {2026}
+}
+
+% Completed 2026-09-08 from Crossref + arXiv 2311.01619 (author lists match):
+% pages 7294-7320; full 8-author list. The earlier draft wrongly included
+% "de Menezes Chaves, Thiago" (an author of the 2021 STN PLAD paper, not of
+% InsPLAD) - removed. "Franscisco" is the as-published spelling in both the
+% journal metadata and the arXiv version (sic).
+@article{vieiraesilva2023insplad,
+  author  = {Vieira e Silva, Andr{\'e} Luiz Buarque and de Castro Felix, Heitor and Sim{\~o}es, Franscisco Paulo Magalh{\~a}es and Teichrieb, Veronica and dos Santos, Michel and Santiago, Hemir and Sgotti, Virginia and Lott Neto, Henrique},
+  title   = {{InsPLAD}: A Dataset and Benchmark for Power Line Asset Inspection in {UAV} Images},
+  journal = {International Journal of Remote Sensing},
+  volume  = {44},
+  number  = {23},
+  pages   = {7294--7320},
+  year    = {2023},
+  doi     = {10.1080/01431161.2023.2283900}
+}

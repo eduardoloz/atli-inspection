@@ -1,0 +1,36 @@
+% Cut from main.tex on 2026-09-10 at the user's request ("my research didn't
+% focus on robustness") — preserved here in case it is restored later.
+% Was Section IV-G, between "Ablations and Negative Results" and
+% "Resolution Scaling and Edge Deployment".
+
+\subsection{Robustness to Motion Blur}
+\label{sec:robust}
+UAV footage induces motion blur, and Table~\ref{tab:blur} shows the model family is fragile to it: a 7\,px motion-blur perturbation of the test set costs the rotation-rung model 32.7 mAP points (79.3\%$\to$46.6\%). Mixup adds only ${\approx}3$ points of blur robustness---evidence that its clean-accuracy gain acts through label regularization, not input realism---whereas blur-augmented training recovers $+20$ points at \emph{zero} clean-accuracy cost. The final recipe retains this property (82.0\% clean / 70.1\% blurred), as does its 640\,px deployment variant (76.4\% / 70.2\%). Blur augmentation is therefore considered mandatory for flight deployment even though it contributes no clean-test gain on its own.
+
+\begin{table}[t]
+\caption{Clean vs.\ motion-blurred test \map{} (\%, mean over 5 folds, 1280\,px).}
+\label{tab:blur}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcc}
+\toprule
+Configuration & Clean & Blurred \\
+\midrule
++ rotation ($15^\circ$) & 79.3 & 46.6 \\
++ mixup & 80.4 & 49.7 \\
++ blur aug.\ on rotation rung & 79.0 & 67.8 \\
+Final recipe (blur, mixup, deg30) & $\mathbf{82.0}$ & $\mathbf{70.1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Also cut with this section:
+% - Metrics sentence: "In addition to clean-test accuracy, robustness is
+%   measured by re-evaluating each model on a blurred copy of every test fold
+%   (7 px linear motion blur, simulating UAV camera motion)."
+% - Results-intro list item: "robustness to motion blur;"
+% - Conclusion bullet: "Blur-augmented training buys +20 mAP points under
+%   motion blur at zero clean-accuracy cost and is mandatory for flight
+%   deployment."
+% - Edge-section blurred numbers: "/ 70.2\% blurred" on the 640 recipe.
